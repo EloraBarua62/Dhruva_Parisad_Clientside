@@ -1,0 +1,53 @@
+@import "../../styles/config";
+
+.access_form_design{
+    width: 100%;
+    
+
+    form{
+        width: 100%;
+        margin: 0 auto;
+        padding: 70px 38px;
+        background-color: $deep-purple;
+        color: $brown-color;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        @media (min-width: 576px) {
+            width: 350px;
+        }
+        @media (min-width: 992px) {
+            width: 400px;
+        }
+        @media (min-width: 1200px) {
+            width: 450px;
+        }
+
+        .field_design{
+            width: 100%;
+            background-color: red;
+            position: relative;
+            height: 40px;
+
+            label{
+                display: block;
+                position: absolute;
+                bottom: 2px;
+            }
+
+            label:target{
+                top: 0px;
+            }
+
+            input{
+                background-color: transparent;
+                border: 0;
+                border-bottom: 1px solid $brown-color;
+                outline: none;
+                position: absolute;
+                bottom: 0;
+            }
+        }
+    }
+}
