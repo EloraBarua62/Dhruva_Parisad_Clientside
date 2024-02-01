@@ -1,12 +1,22 @@
-import Link from 'next/link';
-import styles from './AccessForm.module.scss';
+import Link from "next/link";
+import styles from "./AccessForm.module.scss";
+import { useState } from "react";
 
 const AccessForm = ({ feature, route, fields }) => {
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const name = event.target.name.value || "";
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    console.log({ name, email, password });
+  };
+
   return (
     <div className={styles.access_form_design}>
       {/* Section: form design */}
       <div className={styles.form_design}>
-        <form>
+        <form onSubmit={handleFormSubmit}>
           <h1 className={styles.heading_design}>{feature}</h1>
 
           {/* Section: input field design */}
@@ -25,10 +35,7 @@ const AccessForm = ({ feature, route, fields }) => {
           <Link href={`/admin/${route}`} className={styles.routing}>
             New member?
           </Link>
-          <Link
-            href={`/`}
-            className={styles.routing}
-          >
+          <Link href={`/`} className={styles.routing}>
             Forget password
           </Link>
         </div>
