@@ -3,11 +3,13 @@ import styles from './signup.module.scss';
 import AccessForm from '@component/components/AccessForm/AccessForm';
 
 const Signup = () => {
+    const feature = "Signup";
+    const route = 'login'
     const fields = [['name','Name'], ['email','Email'], ['password','Password']]
     return (
         <div className={styles.signup_page_setup}>
            <Container>
-            <AccessForm fields={fields}/>
+            <AccessForm feature={feature} route={route} fields={fields}/>
            </Container>
         </div>
     );

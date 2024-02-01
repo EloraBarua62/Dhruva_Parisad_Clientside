@@ -1,4 +1,22 @@
 $deep-purple: #392467;
-$medium-purple: #5D3587;
-$light-purple: #A367B1;
-$brown-color: #EFE2B7;
+$medium-purple: #5d3587;
+$light-purple: #a367b1;
+$brown-color: #efe2b7;
+
+$text-label: 13px;
+$text-body: 16px;
+$text-subhead: 18px;
+$text-head: 18px;
+
+@media (min-width: 768px) {
+  $text-label: 14px;
+  $text-body: 16px;
+  $text-subhead: 28px;
+  $text-head: 32px;
+}
+@media (min-width: 1200px) {
+  $text-label: 16px;
+  $text-body: 18px;
+  $text-subhead: 30px;
+  $text-head: 35px;
+}
