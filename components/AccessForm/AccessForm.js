@@ -1,16 +1,36 @@
 import Link from "next/link";
 import styles from "./AccessForm.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { messageClear, userLogin, userSignup } from "@component/app/Reducers/authReducer";
+import {toast} from "react-hot-toast";
+
 
 const AccessForm = ({ feature, route, fields }) => {
+  const {isLoading, userInfo, successMessage, errorMessage} = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
     const name = event.target.name.value || "";
     const email = event.target.email.value;
     const password = event.target.password.value;
-
-    console.log({ name, email, password });
+    
+    name === "" ? dispatch(userLogin({email,password})) : dispatch(userSignup({name, email, password }));
+    
   };
+
+  useEffect(()=>{
+    if(successMessage){
+        toast.success(successMessage);
+        dispatch(messageClear());
+      }
+    if (errorMessage){
+        toast.error(errorMessage);
+        dispatch(messageClear());
+    }     
+  },[successMessage,errorMessage,dispatch,userInfo])
 
   return (
     <div className={styles.access_form_design}>
