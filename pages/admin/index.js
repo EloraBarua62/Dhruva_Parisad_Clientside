@@ -3,21 +3,26 @@ import DashboardHome from '@component/components/Dashboard/DataDisplay/Dashboard
 import Navbar from '@component/components/Dashboard/Navbar/Navbar';
 import getNavigation from '@component/components/Dashboard/Navigation';
 import Sidebar from '@component/components/Dashboard/Sidebar/Sidebar';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export default function Home() {
   const [openSidebar, setOpenSidebar] = useState(false);
   const [currentComponent, setCurrentComponent] = useState(DashboardHome);
   const [navigateMain, setNavigateMain] = useState([]);
   const [navigateOther, setNavigateOther] = useState([]);
+  const {role} = useSelector(state => state.auth);
 
   useEffect(() => {
-    setNavigateMain(getNavigation(role)[0]);
-    setNavigateOther(getNavigation(role)[1]);
-  }, []);
+    const array = getNavigation(role);
+    setNavigateMain([...array[0]]);
+    setNavigateOther(array[1]);
+  }, [role]);
   return (
-    <div>
+    <div className='dashboard_design'>
+      
       <Sidebar
+        role={role}
         navigateMain={navigateMain}
         navigateOther={navigateOther}
         currentComponent={currentComponent}
@@ -26,7 +31,7 @@ export default function Home() {
       />
       <div>
         <Navbar />
-        <CurrentState />
+        <CurrentState currentComponent={currentComponent}></CurrentState>
       </div>
     </div>
   );

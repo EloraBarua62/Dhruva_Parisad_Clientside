@@ -1,0 +1,115 @@
+@import "../../../styles/config";
+
+.sidebar_design {
+  width: 80%;
+  height: 100vh;
+  padding: 16px;
+  color: $brown-color;
+  background-color: $deep-purple;
+
+  @media (min-width: 576px) {
+    width: 250px;
+  }
+
+  // device: extra large
+  @media (min-width: 1200px) {
+    width: 300px;
+    padding: 28px;
+  }
+
+  //   Title design
+  .sidebar_title_design {
+    margin-bottom: 35px;
+    // Heading design
+    .sidebar_heading {
+      font-size: $text-head;
+      @media (min-width: 768px) {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      @media (min-width: 1200px) {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+    }
+
+    // Subheading design
+    .sidebar_subheading {
+      font-size: $text-label;
+      @media (min-width: 768px) {
+        font-size: 14px;
+        margin: 0;
+      }
+      @media (min-width: 1200px) {
+        font-size: 16px;
+        margin: 0;
+      }
+    }
+  }
+
+  // Admin profile design
+  .admin_profile {
+    padding: 9px;
+    background-color: #d9d9d9;
+    color: #392467;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    border: 0 solid;
+    border-radius: 13px;
+
+    // image deisgn
+    .image_design {
+      width: 50px;
+      height: 50px;
+      overflow: hidden;
+      border: 2px solid $deep-purple;
+      border-radius: 13px;
+
+      @media (min-width: 1200px) {
+        width: 70px;
+        height: 70px;
+      }
+
+      .image_sizing {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    // info design
+    .user_info_design {
+      display: flex;
+      flex-direction: column;
+      .name {
+        font-size: $text-subhead;
+        margin: 0px;
+
+        @media (min-width: 1200px) {
+          font-size: 20px;
+        }
+      }
+      .role {
+        font-size: $text-body;
+        font-weight: 400;
+        margin: 0px;
+
+        @media (min-width: 1200px) {
+          font-size: 18px;
+        }
+      }
+    }
+
+    button {
+      background-color: transparent;
+      border: 0;
+      color: $deep-purple;
+      font-size: $text-body;
+      cursor: pointer;
+
+      @media (min-width: 1200px) {
+          font-size: 18px;
+        }
+    }
+  }
+}
