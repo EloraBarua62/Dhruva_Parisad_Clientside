@@ -1,5 +1,6 @@
 // Import Files and Method
 import api from "@component/api/api";
+import { jwtDecode } from "jwt-decode";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
@@ -35,6 +36,17 @@ export const userLogin = createAsyncThunk(
   }
 );
 
+const returnRole = () => {
+  let token_string = '';
+  if (typeof document !== "undefined") {
+    token_string = document.cookie;
+    if (token_string?.length > 0) {
+      const decodeToken = jwtDecode(token_string);
+      return decodeToken.role;
+    } else return "";
+  } else return "";
+};
+
 export const authReducer = createSlice({
   name: "auth",
   initialState: {
@@ -42,6 +54,7 @@ export const authReducer = createSlice({
     errorMessage: "",
     isLoading: false,
     userInfo: "",
+    role: returnRole(),
   },
   reducers: {
     messageClear: (state) => {
@@ -50,12 +63,11 @@ export const authReducer = createSlice({
     },
   },
   extraReducers: (builder) => {
-
     // Signup action
     builder.addCase(userSignup.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(userSignup.rejected, (state, {payload}) => {
+    builder.addCase(userSignup.rejected, (state, { payload }) => {
       state.isLoading = false;
       state.errorMessage = payload.error;
     });
@@ -64,20 +76,20 @@ export const authReducer = createSlice({
       state.userInfo = payload.userInfo;
       state.successMessage = payload.message;
     });
-    
+
     // Login action
-     builder.addCase(userLogin.pending, (state) => {
-       state.isLoading = true;
-     });
-     builder.addCase(userLogin.rejected, (state, { payload }) => {
-       state.isLoading = false;
-       state.errorMessage = payload.error;
-     });
-     builder.addCase(userLogin.fulfilled, (state, { payload }) => {
-       state.isLoading = false;
-       state.userInfo = payload.userInfo;
-       state.successMessage = payload.message;
-     });
+    builder.addCase(userLogin.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(userLogin.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      state.errorMessage = payload.error;
+    });
+    builder.addCase(userLogin.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.userInfo = payload.userInfo;
+      state.successMessage = payload.message;
+    });
   },
 });
 

@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { messageClear, userLogin, userSignup } from "@component/app/Reducers/authReducer";
 import {toast} from "react-hot-toast";
+import { useRouter } from "next/router";
 
 
 const AccessForm = ({ feature, route, fields }) => {
-  const {isLoading, userInfo, successMessage, errorMessage} = useSelector((state) => state.auth);
+  const {isLoading, role, userInfo, successMessage, errorMessage} = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const router = useRouter();
 
 
   const handleFormSubmit = (event) => {
@@ -25,6 +27,7 @@ const AccessForm = ({ feature, route, fields }) => {
     if(successMessage){
         toast.success(successMessage);
         dispatch(messageClear());
+        router.push(`/${role}`);
       }
     if (errorMessage){
         toast.error(errorMessage);
