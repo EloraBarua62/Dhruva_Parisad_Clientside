@@ -6,15 +6,14 @@ body{
 
     .dashboard_design{
         width: 100%;
-        height: 100vh;
+        display: flex;
         
-        // @media (min-width: 768px) {
-        //     display: grid;
-        //     grid-template-columns: 1fr 3fr;
-        // }
-        // @media (min-width: 992px) {
-        //     display: grid;
-        //     grid-template-columns: 1fr 4fr;
-        // }
+        .sidebar_icon{
+            display: block;
+
+             @media (min-width: 576px) {
+                display: none;
+             }
+        }
     }
 }

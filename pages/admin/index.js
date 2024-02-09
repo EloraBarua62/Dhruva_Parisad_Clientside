@@ -5,6 +5,7 @@ import getNavigation from '@component/components/Dashboard/Navigation';
 import Sidebar from '@component/components/Dashboard/Sidebar/Sidebar';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { BiAlignLeft } from "react-icons/bi";
 
 export default function Home() {
   const [openSidebar, setOpenSidebar] = useState(false);
@@ -17,10 +18,14 @@ export default function Home() {
     const array = getNavigation(role);
     setNavigateMain([...array[0]]);
     setNavigateOther(array[1]);
+    console.log(role);
   }, [role]);
   return (
-    <div className='dashboard_design'>
+    <div className="dashboard_design">
       
+      <div className="sidebar_icon">
+        <BiAlignLeft onClick={() => setOpenSidebar(!openSidebar)}/>
+      </div>
       <Sidebar
         role={role}
         navigateMain={navigateMain}

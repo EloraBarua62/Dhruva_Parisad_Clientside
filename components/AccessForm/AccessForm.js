@@ -26,8 +26,9 @@ const AccessForm = ({ feature, route, fields }) => {
   useEffect(()=>{
     if(successMessage){
         toast.success(successMessage);
-        dispatch(messageClear());
         router.push(`/${role}`);
+        dispatch(messageClear());
+        
       }
     if (errorMessage){
         toast.error(errorMessage);

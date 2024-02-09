@@ -1,14 +1,18 @@
 @import "../../../styles/config";
 
 .sidebar_design {
-  width: 80%;
-  height: 100vh;
+  display: none;
+  height: 100%;
   padding: 16px;
   color: $brown-color;
   background-color: $deep-purple;
+  border: 0;
+  border-radius: 13px;
 
   @media (min-width: 576px) {
     width: 250px;
+    margin: 15px;
+    display: block;
   }
 
   // device: extra large
@@ -112,4 +116,69 @@
         }
     }
   }
+
+
+  // Navigation
+   .navigation_design{
+    margin-top: 60px;
+    margin-bottom: 40px;
+    
+    .navigation_heading {
+        font-size: $text-subhead;
+        margin: 0px;
+        margin-bottom: 20px;
+
+        @media (min-width: 1200px) {
+          font-size: 20px;
+        }
+      }
+
+    .navigation_fields{  
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .separate_field{
+      height: 48px;
+      background-color: $light-purple;
+      color: white;
+
+      border: 0;
+      border-radius: 13px;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      padding-left: 15px;      
+    }
+
+    .separate_field:hover{
+        background-color: $medium-purple;
+        color: $brown-color;
+        transition: ease-in-out;
+        transition-duration: .2s;
+    }
+
+    .separate_field:focus{
+        background-color: $medium-purple;
+        color: $brown-color;
+    }
+
+
 }
+
+  .logout_design{
+      width: 100%;
+      height: 48px;
+      background-color: $brown-color;
+      color: red;
+      border: 0;
+      border-radius: 13px;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      padding-left: 15px; 
+      margin-bottom: 40px;
+  }
+}
+
