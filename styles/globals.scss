@@ -7,6 +7,7 @@ body{
     .dashboard_design{
         width: 100%;
         display: flex;
+        position: relative;
         
         .sidebar_icon{
             display: block;
@@ -14,6 +15,15 @@ body{
              @media (min-width: 576px) {
                 display: none;
              }
+
+             .icon_design{
+               font-size: 25px;
+             }
+        }
+
+
+        .sidebar_open_property{
+           
         }
     }
 }

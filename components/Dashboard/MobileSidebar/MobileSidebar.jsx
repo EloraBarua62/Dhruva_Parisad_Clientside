@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import styles from './Sidebar.module.scss';
+import styles from './MobileSidebar.module.scss';
 import profile_pic from '../../../public/profile.png'
 import { RxCross2 } from "react-icons/rx";
 
-const Sidebar = ({
+const MobileSidebar = ({
   role,
   navigateMain,
   navigateOther,
@@ -18,8 +18,16 @@ const Sidebar = ({
       <div className={styles.sidebar_design}>
         {/* Heading */}
         <div className={styles.sidebar_title_design}>
+          <div>
             <h1 className={styles.sidebar_heading}>Dhruva Parisad</h1>
             <h1 className={styles.sidebar_subheading}>Admin Dashboard</h1>
+          </div>
+          <div className="sidebar_icon">
+            <RxCross2
+              className="icon_design"
+              onClick={() => setOpenSidebar(!openSidebar)}
+            />
+          </div>
         </div>
 
         {/* Admin Profile */}
@@ -85,8 +93,7 @@ const Sidebar = ({
 
         <button className={styles.logout_design}>Log Out</button>
       </div>
-
   );
 };
 
-export default Sidebar;
+export default MobileSidebar;

@@ -54,7 +54,7 @@ export const authReducer = createSlice({
     errorMessage: "",
     isLoading: false,
     userInfo: "",
-    role: returnRole(),
+    role: '',
   },
   reducers: {
     messageClear: (state) => {
@@ -89,6 +89,7 @@ export const authReducer = createSlice({
       state.isLoading = false;
       state.userInfo = payload.userInfo;
       state.successMessage = payload.message;
+      state.role = returnRole();
     });
   },
 });
