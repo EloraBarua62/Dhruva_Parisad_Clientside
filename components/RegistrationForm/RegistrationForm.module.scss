@@ -10,14 +10,14 @@
     .institute_name {
       font-size: $text-head;
       font-weight: 800;
-      color: $medium-purple;
+      color: $deep-green;
       margin: 0;
     }
 
     // institution name design
     .reg_no {
       font-size: $text-label;
-      color: $light-purple;
+      color: $deep-green;
       margin: 0;
     }
 
@@ -29,14 +29,14 @@
 
       h1 {
         font-size: $text-label;
-        color: $light-purple;
+        color: $deep-green;
         margin: 0;
       }
     }
 
     .exam_title {
       font-size: $text-body;
-      color: $medium-purple;
+      color: $medium-green;
     }
   }
 
@@ -91,7 +91,7 @@
       }
     }
 
-    .image_title{
+    .image_title {
       font-size: $text-body;
       font-weight: 500;
       margin: 0;
@@ -103,20 +103,19 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: column;   
+        flex-direction: column;
         border: 1px dashed black;
-        
+
         // margin-bottom: 20px;
         overflow: hidden;
         position: relative;
-        
-        
+
         .image_display {
           object-fit: cover;
           position: absolute;
         }
 
-        .icon_size{
+        .icon_size {
           font-size: 20px;
           color: #1da950;
         }

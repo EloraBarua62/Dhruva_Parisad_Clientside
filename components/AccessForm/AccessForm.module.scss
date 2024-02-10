@@ -3,16 +3,14 @@
 .access_form_design {
   width: 100%;
 
-
   // Form prompt design
   .form_design {
     width: 100%;
     margin: 0 auto;
     padding: 50px 38px;
-    background-color: $deep-purple;
+    background-color: $deep-green;
     border: 0 solid;
     border-radius: 5px;
-
 
     @media (min-width: 576px) {
       width: 350px;
@@ -24,10 +22,10 @@
       width: 450px;
     }
 
-    // Heading 
+    // Heading
     .heading_design {
       font-size: $text-subhead;
-      color: $light-purple;
+      color: $brown-color;
       margin-bottom: 25px;
     }
 
@@ -66,26 +64,25 @@
       }
     }
 
-
     // Submit button
     button {
       width: 126px;
       height: 32px;
       border: 0;
       border-radius: 5px;
-      background-color: $light-purple;
-      color: $brown-color;
+      background-color: $medium-green;
+      color: white;
       font-size: $text-body;
+      font-weight: 600;
       margin-top: 50px;
       margin-bottom: 50px;
     }
-    button:hover{
-        background-color: $brown-color;
-        color: $medium-purple;
-        transition: .5s;
+    button:hover {
+      background-color: $light-green;
+      color: $deep-green;
+      transition: 0.5s;
     }
   }
-
 
   // Lower section: Routing
   .routing_design {
@@ -102,7 +99,7 @@
     }
 
     .routing:hover {
-      color: $light-purple;
+      color: $light-green;
     }
   }
 }
