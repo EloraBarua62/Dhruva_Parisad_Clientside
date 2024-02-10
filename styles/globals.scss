@@ -5,12 +5,17 @@ body{
     background-color: $brown-color;
 
     .dashboard_design{
-        width: 100%;
+        // width: 100%;
         display: flex;
         position: relative;
         
         .sidebar_icon{
             display: block;
+            width: 20px;
+            height: 20px;
+            // position: absolute;
+            // top: 5px;
+            // left: 5px;
 
              @media (min-width: 576px) {
                 display: none;

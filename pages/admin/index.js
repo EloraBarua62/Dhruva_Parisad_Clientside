@@ -35,27 +35,21 @@ export default function Home() {
       )}
 
       {openSidebar ? (
-          <MobileSidebar
-            role={role}
-            navigateMain={navigateMain}
-            navigateOther={navigateOther}
-            currentComponent={currentComponent}
-            setCurrentComponent={setCurrentComponent}
-            openSidebar={openSidebar}
-            setOpenSidebar={setOpenSidebar}
-          />
-      ) : (
-        ''
-      )}
-      <Sidebar
-          role={role}
+        <MobileSidebar
           navigateMain={navigateMain}
           navigateOther={navigateOther}
-          currentComponent={currentComponent}
           setCurrentComponent={setCurrentComponent}
           openSidebar={openSidebar}
           setOpenSidebar={setOpenSidebar}
         />
+      ) : (
+        ""
+      )}
+      <Sidebar
+        navigateMain={navigateMain}
+        navigateOther={navigateOther}
+        setCurrentComponent={setCurrentComponent}
+      />
       <div>
         <Navbar />
         <CurrentState currentComponent={currentComponent}></CurrentState>

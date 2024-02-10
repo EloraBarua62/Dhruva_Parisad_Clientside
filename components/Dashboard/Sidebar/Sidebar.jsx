@@ -4,13 +4,9 @@ import profile_pic from '../../../public/profile.png'
 import { RxCross2 } from "react-icons/rx";
 
 const Sidebar = ({
-  role,
   navigateMain,
   navigateOther,
-  currentComponent,
   setCurrentComponent,
-  openSidebar,
-  setOpenSidebar,
 }) => {
   console.log(navigateMain);
   const admin_profile = "";

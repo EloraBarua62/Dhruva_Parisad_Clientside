@@ -4,10 +4,8 @@ import profile_pic from '../../../public/profile.png'
 import { RxCross2 } from "react-icons/rx";
 
 const MobileSidebar = ({
-  role,
   navigateMain,
   navigateOther,
-  currentComponent,
   setCurrentComponent,
   openSidebar,
   setOpenSidebar,

@@ -1,6 +1,5 @@
 import allNavigation from "./Navigation";
 
-
 const getNavigation = (role) => {
     const mainMenu = [], otherMenu = [];
 
