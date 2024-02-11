@@ -1,34 +1,172 @@
 @import "/styles/config";
-body{
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #E9EFC0;
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #e9efc0;
 
-    .dashboard_design{
-        // width: 100%;
-        display: flex;
-        position: relative;
-        
-        .sidebar_icon{
-            display: block;
-            width: 20px;
-            height: 20px;
-            // position: absolute;
-            // top: 5px;
-            // left: 5px;
+  .dashboard_design {
+    // width: 100%;
+    display: flex;
+    position: relative;
 
-             @media (min-width: 576px) {
-                display: none;
-             }
+    .sidebar_icon {
+      display: block;
+      width: 20px;
+      height: 20px;
+      // position: absolute;
+      // top: 5px;
+      // left: 5px;
 
-             .icon_design{
-               font-size: 25px;
-             }
-        }
+      @media (min-width: 576px) {
+        display: none;
+      }
 
-
-        .sidebar_open_property{
-           
-        }
+      .icon_design {
+        font-size: 25px;
+      }
     }
+
+    .odd_field_design {
+      background-color: $brown-color;
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 5px;
+
+      @media (min-width: 576px) {
+        gap: 10px;
+      }
+      @media (min-width: 1400px) {
+        gap: 20px;
+      }
+      .text_details {
+        width: 110px;      
+        padding: 10px 2px;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .single_details {
+        width: 110px;
+        
+        padding: 10px 2px;
+        text-align: center;
+      }
+
+      .subject_year_design {
+        display: flex;
+        flex-direction: column;
+
+        .subject_year_design_inner {
+          display: flex;
+          justify-content: space-between;
+          align-items: start;
+          gap: 5px;
+          @media (min-width: 576px) {
+            gap: 10px;
+          }
+          @media (min-width: 1400px) {
+            gap: 20px;
+          }
+
+          .child_box_design {
+            width: 110px;
+            
+            padding: 10px 2px;
+            text-align: center;
+          }
+        }
+      }
+
+      .image_field {
+        width: 110px;
+        
+        height: 50px;
+        position: relative;
+        // overflow: hidden;
+
+        .image_design {
+          width: 50px;
+          height: 50px;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      }
+    }
+
+    .even_field_design {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 5px;
+
+      @media (min-width: 576px) {
+        gap: 10px;
+      }
+      @media (min-width: 1400px) {
+        gap: 20px;
+      }
+      .text_details {
+        width: 110px;
+        
+        padding: 10px 2px;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .single_details {
+        width: 110px;
+        
+        padding: 10px 2px;
+        text-align: center;
+      }
+
+      .subject_year_design {
+        display: flex;
+        flex-direction: column;
+
+        .subject_year_design_inner {
+          display: flex;
+          justify-content: space-between;
+          align-items: start;
+          gap: 5px;
+
+          @media (min-width: 576px) {
+            gap: 10px;
+          }
+          @media (min-width: 1400px) {
+            gap: 20px;
+          }
+
+          .child_box_design {
+            width: 110px;
+            
+            padding: 10px 2px;
+            text-align: center;
+          }
+        }
+      }
+
+      .image_field {
+        width: 110px;
+        
+        height: 50px;
+        position: relative;
+        // overflow: hidden;
+
+        .image_design {
+          width: 50px;
+          height: 50px;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      }
+    }
+  }
 }

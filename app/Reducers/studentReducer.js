@@ -1,6 +1,6 @@
 import api from "@component/api/api";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { info } from "sass";
+
 
 export const studentRegistration = createAsyncThunk(
   "student/studentRegistration",
@@ -18,6 +18,22 @@ export const studentRegistration = createAsyncThunk(
   }
 );
 
+export const studentDetails = createAsyncThunk(
+  "student/studentDetails",
+  async (_,{ rejectWithValue, fulfillWithValue }) => {
+    console.log('elora barua')
+    try {
+      const { data } = await api.get("/student/details", {
+        withCredentials: true,
+      });
+      console.log(data)
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const studentReducer = createSlice({
     name: "student",
     initialState: {
@@ -25,6 +41,7 @@ export const studentReducer = createSlice({
     errorMessage: "",
     isLoading: false,
     studentInfo: [],
+    role: ''
   },
   reducers: {
     messageClear: (state) => {
@@ -42,6 +59,20 @@ export const studentReducer = createSlice({
       state.errorMessage = payload?.error;
     });
     builder.addCase(studentRegistration.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.successMessage = payload?.message;
+    });
+
+
+    // Details Fetching action
+    builder.addCase(studentDetails.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(studentDetails.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      state.errorMessage = payload?.error;
+    });
+    builder.addCase(studentDetails.fulfilled, (state, { payload }) => {
       state.isLoading = false;
       state.studentInfo = payload.studentInfo;
       state.successMessage = payload?.message;
