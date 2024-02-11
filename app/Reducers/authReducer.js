@@ -8,6 +8,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const userSignup = createAsyncThunk(
   "auth/userSignup",
   async (info, {rejectWithValue, fulfillWithValue}) => {
+    
     try {
       const {data} = await api.post("/user/signup" , info, {
         withCredentials: true,
