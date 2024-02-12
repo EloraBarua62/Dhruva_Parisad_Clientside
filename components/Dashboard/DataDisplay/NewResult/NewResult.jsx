@@ -2,16 +2,16 @@ import Image from 'next/image';
 import styles from './NewResult.module.scss';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { studentDetails } from '@component/app/Reducers/studentReducer';
+import { resultDisplay } from '@component/app/Reducers/resultReducer';
 
 const NewResult = () => {
-    const table_heading = ['Roll','Name','School ID','Subject','Year','Details'];
-    const { isLoading, studentInfo } = useSelector((state) => state.student);
+    const table_heading = ['Roll','Name','School ID','Subject','Year','Written','Practical','Total Marks','Grade','Details'];
+    const { isLoading, resultInfo } = useSelector((state) => state.result);
     const [detailsLength , setDetailsLength] = useState(-1);
     const [toogle, setToogle] = useState(false);
     const dispatch = useDispatch();
     useEffect(() => {
-      dispatch(studentDetails());
+      dispatch(resultDisplay());
     }, []); 
     
 
@@ -37,7 +37,7 @@ const NewResult = () => {
 
         {/* Table data */}
         <div>
-          {studentInfo.map((head, index) => (
+          {resultInfo.map((head, index) => (
             <div
               key={index}
               className={`${
@@ -45,11 +45,13 @@ const NewResult = () => {
               }`}
             >
               <div className="text_details">{head._id}</div>
-              <div className="single_details">{head.student_name}</div>
-              <div className="single_details">{head.school}</div>
+              <div className="single_details">
+                {head.resultInfo?.student_name}
+              </div>
+              <div className="single_details">{head.resultInfo?.school}</div>
               {detailsLength === index ? (
                 <div className="subject_year_design">
-                  {head.subjectYear.map((data, idx) => (
+                  {head.resultInfo?.subjectYear.map((data, idx) => (
                     <div key={idx} className="subject_year_design_inner">
                       <div className="child_box_design">{data.subject}</div>
                       <div className="child_box_design">{data.year}</div>
@@ -57,11 +59,15 @@ const NewResult = () => {
                   ))}
                 </div>
               ) : (
-                 <div className="subject_year_design">
-                <div className="subject_year_design_inner">
-                  <div className="child_box_design">{head.subjectYear[0].subject}</div>
-                  <div className="child_box_design">{head.subjectYear[0].year}</div>
-                </div>
+                <div className="subject_year_design">
+                  <div className="subject_year_design_inner">
+                    <div className="child_box_design">
+                      {head.resultInfo?.subjectYear[0].subject}
+                    </div>
+                    <div className="child_box_design">
+                      {head.resultInfo?.subjectYear[0].year}
+                    </div>
+                  </div>
                 </div>
               )}
 
@@ -69,7 +75,7 @@ const NewResult = () => {
                 className="single_details"
                 onClick={() => handleToogle(index)}
               >
-                {detailsLength === index? 'Close' : 'Open'}
+                {detailsLength === index ? "Close" : "Open"}
               </button>
             </div>
           ))}
