@@ -18,8 +18,10 @@ export const updateWrittenPracticalMarks = createAsyncThunk(
   "result/updateWrittenPracticalMarks",
   async(info, { rejectWithValue, fulfillWithValue }) => {
     console.log(info);
+    const id = info.id;
+    const keepMarks = info.keepMarks;
     try {
-        const { data } = await api.patch("result/result-update", {
+        const { data } = await api.patch(`result/result-update/${id}`,keepMarks, {
           withCredentials: true,
         });
         return fulfillWithValue(data);

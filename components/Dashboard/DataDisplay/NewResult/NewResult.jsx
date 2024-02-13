@@ -75,7 +75,7 @@ const NewResult = () => {
 
     if (keepMarks.length === idx + 1) {
       console.log(idx)
-      dispatch(updateWrittenPracticalMarks(keepMarks));
+      dispatch(updateWrittenPracticalMarks({id, keepMarks}));
     }
   };
 
