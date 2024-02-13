@@ -14,6 +14,21 @@ export const resultDisplay = createAsyncThunk("result/resultDisplay",
     }
 );
 
+export const updateWrittenPracticalMarks = createAsyncThunk(
+  "result/updateWrittenPracticalMarks",
+  async(info, { rejectWithValue, fulfillWithValue }) => {
+    console.log(info);
+    try {
+        const { data } = await api.patch("result/result-update", {
+          withCredentials: true,
+        });
+        return fulfillWithValue(data);
+    } catch (error) {
+        return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const resultReducer = createSlice({
   name: "result",
   initialState: {
@@ -38,6 +53,19 @@ export const resultReducer = createSlice({
         state.resultInfo = payload.resultInfo;
     });
     builder.addCase(resultDisplay.rejected , (state, {payload}) => {
+        state.isLoading = false;
+        state.errorMessage = payload.error;
+    });
+    
+    builder.addCase(updateWrittenPracticalMarks.pending , (state) => {
+        state.isLoading = true;
+    });
+    builder.addCase(updateWrittenPracticalMarks.fulfilled , (state, {payload}) => {
+        state.isLoading = false;
+        state.successMessage = payload.message;
+        state.resultInfo = payload.resultInfo;
+    });
+    builder.addCase(updateWrittenPracticalMarks.rejected , (state, {payload}) => {
         state.isLoading = false;
         state.errorMessage = payload.error;
     });

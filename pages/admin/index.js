@@ -16,7 +16,8 @@ export default function Home() {
   const { role } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    const array = getNavigation(role);
+    // const array = getNavigation(role);
+    const array = getNavigation();
     setNavigateMain([...array[0]]);
     setNavigateOther(array[1]);
     console.log(role);

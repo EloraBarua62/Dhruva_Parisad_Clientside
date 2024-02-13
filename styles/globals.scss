@@ -26,6 +26,7 @@ body {
       }
     }
 
+    // Display Odd indexed field in result
     .odd_field_design {
       background-color: $brown-color;
       display: flex;
@@ -40,7 +41,7 @@ body {
         gap: 20px;
       }
       .text_details {
-        width: 110px;      
+        width: 110px;
         padding: 10px 2px;
         text-align: center;
         overflow: hidden;
@@ -50,7 +51,7 @@ body {
 
       .single_details {
         width: 110px;
-        
+
         padding: 10px 2px;
         text-align: center;
       }
@@ -73,16 +74,21 @@ body {
 
           .child_box_design {
             width: 110px;
-            
+
             padding: 10px 2px;
             text-align: center;
+          }
+          .input_box_design {
+            width: 50px;
+            text-align: center;
+            background-color: transparent;
           }
         }
       }
 
       .image_field {
         width: 110px;
-        
+
         height: 50px;
         position: relative;
         // overflow: hidden;
@@ -95,13 +101,20 @@ body {
           left: 0;
         }
       }
+
+      .toogle_button_design {
+        background-color: transparent;
+        border: 0;
+      }
     }
 
+    // Display Even indexed field in result
     .even_field_design {
       display: flex;
       justify-content: space-between;
       align-items: start;
       gap: 5px;
+      background-color: #b5e197b9;
 
       @media (min-width: 576px) {
         gap: 10px;
@@ -111,7 +124,7 @@ body {
       }
       .text_details {
         width: 110px;
-        
+
         padding: 10px 2px;
         text-align: center;
         overflow: hidden;
@@ -121,7 +134,7 @@ body {
 
       .single_details {
         width: 110px;
-        
+
         padding: 10px 2px;
         text-align: center;
       }
@@ -145,16 +158,28 @@ body {
 
           .child_box_design {
             width: 110px;
-            
+
             padding: 10px 2px;
             text-align: center;
+          }
+           .input_box_design {
+            width: 40px;
+            text-align: center;
+            padding: 5px 2px;
+          }
+          .marks_edit_button{
+            color: $deep-green;
+            background-color: transparent;
+            border: 0;
+            font-size: 20px;
+            cursor: pointer;
           }
         }
       }
 
       .image_field {
         width: 110px;
-        
+
         height: 50px;
         position: relative;
         // overflow: hidden;
@@ -166,6 +191,21 @@ body {
           top: 0;
           left: 0;
         }
+      }
+
+      .toogle_button_design {
+        background-color: $deep-green;
+        border: 0;
+        border-radius: 5px;
+        font-size: $text-body;
+        text-align: center;
+        color: $brown-color;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 2px 5px;
+        margin-left: auto;
+        margin-top: 5px;
+        margin-right: 5px;
       }
     }
   }
