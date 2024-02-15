@@ -1,0 +1,124 @@
+@import "../../styles/config";
+
+.form_design {
+  width: 100%;
+  background-color: white;
+
+  @media (min-width: 576px) {
+    width: 350px;
+  }
+  @media (min-width: 992px) {
+    width: 400px;
+  }
+  @media (min-width: 1200px) {
+    width: 450px;
+  }
+
+  .heading_design {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    // institution name design
+    .institute_name {
+      font-size: $text-head;
+      font-weight: 800;
+      color: $deep-green;
+      margin: 0;
+    }
+
+    // institution name design
+    .reg_no {
+      font-size: $text-label;
+      color: $deep-green;
+      margin: 0;
+    }
+
+    .date_design {
+      width: 150px;
+      display: flex;
+      justify-content: space-between;
+      margin: auto;
+
+      h1 {
+        font-size: $text-label;
+        color: $deep-green;
+        margin: 0;
+      }
+    }
+
+    .exam_title {
+      font-size: $text-body;
+      color: $medium-green;
+    }
+  }
+
+  form {
+    margin: 30px;
+
+    .school_info_section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .field_design {
+        width: 100%;
+        label {
+          display: block;
+        }
+        select{
+          width: 100%;
+          border: 2px solid #4ade80;
+          border-radius: 3px;
+          background-color: white;
+          outline: none;
+          padding: 10px 0;
+        }
+        input{
+          width: 100%;
+          border: 2px solid #4ade80;
+          border-radius: 3px;
+          background-color: white;
+          outline: none;
+          padding: 10px 0;
+        }
+
+
+        textarea {
+          width: 100%;
+          border: 2px solid #4ade80;
+          border-radius: 3px;
+          background-color: white;
+          outline: none;
+          padding: 10px 0;
+        }
+      }
+
+      // Submit button
+      .button_design {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        button {
+          width: 126px;
+          height: 32px;
+          border: 0;
+          border-radius: 5px;
+          background-color: $deep-green;
+          color: white;
+          font-size: $text-body;
+          font-weight: 600;
+          margin-top: 50px;
+          margin-bottom: 50px;
+          cursor: pointer;
+        }
+        button:hover {
+          background-color: $light-green;
+          color: $deep-green;
+          transition: 0.5s;
+        }
+      }
+    }
+  }
+}

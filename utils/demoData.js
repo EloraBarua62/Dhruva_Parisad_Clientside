@@ -1,4 +1,4 @@
-const regFormField = [
+export const regFormField = [
   {
     name: "student_name",
     title: "Student’s Name",
@@ -31,4 +31,31 @@ const regFormField = [
   },
 ];
 
-export default regFormField;
+
+export const schoolFormField = [
+  {
+    name: "school_name",
+    title: "School Name",
+    type: "text",
+  },
+  {
+    name: "registration_no",
+    title: "Registration No",
+    type: "text",
+  },
+  {
+    name: "principal",
+    title: "Principal Name",
+    type: "text",
+  },
+  {
+    name: "email",
+    title: "Email Address",
+    type: "email",
+  },
+  {
+    name: "phone_no",
+    title: "Phone Number",
+    type: "text",
+  },
+];

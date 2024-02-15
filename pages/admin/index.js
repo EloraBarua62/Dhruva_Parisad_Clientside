@@ -8,12 +8,13 @@ import { useSelector } from "react-redux";
 import { BiAlignLeft } from "react-icons/bi";
 import MobileSidebar from "@component/components/Dashboard/MobileSidebar/MobileSidebar";
 
-export default function Home() {
-  const [openSidebar, setOpenSidebar] = useState(false);
-  const [currentComponent, setCurrentComponent] = useState(DashboardHome);
+export default function Home() { 
+  const { role } = useSelector((state) => state.auth);
   const [navigateMain, setNavigateMain] = useState([]);
   const [navigateOther, setNavigateOther] = useState([]);
-  const { role } = useSelector((state) => state.auth);
+  const [currentComponent, setCurrentComponent] = useState(DashboardHome);
+  const [openSidebar, setOpenSidebar] = useState(false);
+  
 
   useEffect(() => {
     // const array = getNavigation(role);
@@ -24,6 +25,8 @@ export default function Home() {
   }, [role]);
   return (
     <div className="dashboard_design">
+
+      {/* Drawer Icon */}
       {!openSidebar ? (
         <div className="sidebar_icon">
           <BiAlignLeft

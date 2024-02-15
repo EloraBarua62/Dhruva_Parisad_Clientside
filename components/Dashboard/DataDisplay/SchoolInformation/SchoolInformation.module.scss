@@ -1,0 +1,18 @@
+@import "../../../../styles/config";
+
+.schoolInfo_design {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  .school_table {
+  }
+
+  .school_registration_table {
+    background-color: $light-green;
+    border: 1px solid $deep-green;
+    border-radius: 5px;
+  }
+}
