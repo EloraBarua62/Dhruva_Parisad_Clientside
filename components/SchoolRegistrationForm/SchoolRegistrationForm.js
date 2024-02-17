@@ -1,6 +1,7 @@
 import { schoolFormField } from '@component/utils/demoData';
 import styles from './SchoolRegistrationForm.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
+import { schoolRegistration } from '@component/app/Reducers/schoolReducer';
 
 const SchoolRegistrationForm = () => {
   const { zoneInfo } = useSelector((state) => state.school);
@@ -32,7 +33,7 @@ const SchoolRegistrationForm = () => {
             email,
             phone_no
         }
-        dispatch()
+        dispatch(schoolRegistration(state));
         console.log(state);
         
         

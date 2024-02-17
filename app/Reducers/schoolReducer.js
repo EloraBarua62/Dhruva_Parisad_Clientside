@@ -91,6 +91,18 @@ export const schoolReducer = createSlice({
       state.zoneInfo = payload.zone_list;
       state.successMessage = payload?.message;
     });
+    // Details Fetching action
+    builder.addCase(schoolRegistration.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(schoolRegistration.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      state.errorMessage = payload?.error;
+    });
+    builder.addCase(schoolRegistration.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.successMessage = payload?.message;
+    });
   },
 });
 

@@ -59,3 +59,46 @@ export const schoolFormField = [
     type: "text",
   },
 ];
+
+export const schoolInformField = [
+  {
+    name: "school_name",
+    title: "School Name",
+    type: "text",
+  },
+  {
+    name: "zone",
+    title: "Zone",
+    type: "text",
+  },
+  {
+    name: "location",
+    title: "Location",
+    type: "text",
+  },
+  {
+    name: "registration_no",
+    title: "Registration No",
+    type: "text",
+  },
+  {
+    name: "school_code",
+    title: "School Code",
+    type: "number",
+  },
+  {
+    name: "principal",
+    title: "Principal Name",
+    type: "text",
+  },
+  {
+    name: "email",
+    title: "Email",
+    type: "email",
+  },
+  {
+    name: "phone_no",
+    title: "Phone Number",
+    type: "text",
+  },
+];
