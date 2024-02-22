@@ -33,10 +33,9 @@ export const schoolRegistration = createAsyncThunk(
 );
 export const enlistedSchools = createAsyncThunk(
   "school/enlistedSchools",
-  async (info, { rejectWithValue, fulfillWithValue }) => {
-    console.log(info);
+  async (_, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await api.get("/school/details", info, {
+      const { data } = await api.get("/school/details",{
         withCredentials: true,
       });
       
@@ -46,6 +45,23 @@ export const enlistedSchools = createAsyncThunk(
     }
   }
 );
+
+export const updateStatus = createAsyncThunk(
+  "school/updateStatus",
+  async (info, { rejectWithValue, fulfillWithValue }) => {
+    const id = info.id;
+    const status = info.status;
+    console.log(id, status)
+    try {
+      const { data } = await api.patch(`/school/update-status/${id}`,{status}, {
+        withCredentials: true,
+      });
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+); 
 
 export const schoolReducer = createSlice({
   name: "school",

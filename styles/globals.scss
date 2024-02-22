@@ -45,11 +45,12 @@ body {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        background-color: red;
       }
 
       .single_details {
         width: 110px;
-
+background-color: red;
         padding: 10px 2px;
         text-align: center;
       }
