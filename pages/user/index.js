@@ -13,6 +13,9 @@ const User = () => {
         <Link href={`/user/school_registration`}>
           school registration
         </Link>
+        <Link href={`/user/exam_registration`}>
+          exam registration
+        </Link>
       </div>
     );
 };

@@ -33,9 +33,10 @@ export const schoolRegistration = createAsyncThunk(
 );
 export const enlistedSchools = createAsyncThunk(
   "school/enlistedSchools",
-  async (_, { rejectWithValue, fulfillWithValue }) => {
+  async (zone, { rejectWithValue, fulfillWithValue }) => {
+    console.log(zone)
     try {
-      const { data } = await api.get("/school/details",{
+      const { data } = await api.get(`/school/details/${zone}`, {
         withCredentials: true,
       });
       

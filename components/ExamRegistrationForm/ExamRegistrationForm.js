@@ -8,22 +8,22 @@ import { studentRegistration } from "@component/app/Reducers/studentReducer";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { messageClear } from "@component/app/Reducers/authReducer";
-import { enlistedZone } from "@component/app/Reducers/schoolReducer";
+import { enlistedSchools, enlistedZone } from "@component/app/Reducers/schoolReducer";
 
 const ExamRegistrationForm = () => {
-  const { zoneInfo } = useSelector((state) => state.school);
+  const { zoneInfo, schoolInfo } = useSelector((state) => state.school);
   const { isLoading, successMessage, errorMessage } = useSelector(
     (state) => state.student
   );
   const dispatch = useDispatch();
   const router = useRouter();
   const currentYear = new Date().getFullYear();
-  const school_list = [
-    "Dhaka school",
-    "Chittagong school",
-    "Jashor school",
-    "Barishal school",
-  ];
+  // const school_list = [
+  //   "Dhaka school",
+  //   "Chittagong school",
+  //   "Jashor school",
+  //   "Barishal school",
+  // ];
   const subject_list = ["poem", "rack", "nock", "shak", "dance"];
   const year_list = ["primary", "first", "second", "third", "forth"];
   const [imageShow, setImageShow] = useState("");
@@ -103,6 +103,11 @@ const ExamRegistrationForm = () => {
     e.preventDefault();
   };
 
+  const handleZone = (e) => {
+    const zone = e.target.value;
+    dispatch(enlistedSchools(zone));
+  }
+
   useEffect(() => {
     if (successMessage) {
       toast.success(successMessage);
@@ -148,7 +153,7 @@ const ExamRegistrationForm = () => {
           <div className={styles.exam_info_section}>
             <div className={styles.field_design}>
               <label htmlFor="zone">Select Your Examination Zone</label>
-              <select name="zone" id="">
+              <select name="zone" id="" onChange={(e) => handleZone(e)}>
                 {zoneInfo.map((zone, index) => (
                   <option key={index} value={zone.name}>
                     {zone.name}
@@ -159,9 +164,9 @@ const ExamRegistrationForm = () => {
             <div className={styles.field_design}>
               <label htmlFor="school">Select Your Examination school</label>
               <select name="school" id="">
-                {school_list.map((school, index) => (
-                  <option key={index} value={school}>
-                    {school}
+                {schoolInfo?.map((school, index) => (
+                  <option key={index} value={school.name}>
+                    {school.name}
                   </option>
                 ))}
               </select>
