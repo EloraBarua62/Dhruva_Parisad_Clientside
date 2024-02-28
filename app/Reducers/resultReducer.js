@@ -18,13 +18,15 @@ export const updateWrittenPracticalMarks = createAsyncThunk(
   "result/updateWrittenPracticalMarks",
   async(info, { rejectWithValue, fulfillWithValue }) => {
     console.log(info);
+    const index = info.index;
     const id = info.id;
-    const keepMarks = info.keepMarks;
+    const writtenPractical = info.writtenPractical;
+    console.log(writtenPractical)
     try {
-        const { data } = await api.patch(`result/result-update/${id}`,keepMarks, {
+        const { data } = await api.patch(`result/result-update/${id}`,writtenPractical, {
           withCredentials: true,
         });
-        return fulfillWithValue(data);
+        return fulfillWithValue(index, writtenPractical);
     } catch (error) {
         return rejectWithValue(error.response.data);
     }
@@ -65,7 +67,17 @@ export const resultReducer = createSlice({
     builder.addCase(updateWrittenPracticalMarks.fulfilled , (state, {payload}) => {
         state.isLoading = false;
         state.successMessage = payload.message;
-        state.resultInfo = payload.resultInfo;
+        // state.resultInfo = payload.resultInfo;
+        const index = payload.index;
+        const writtenPractical = payload.writtenPractical;
+        console.log(index, writtenPractical)
+        let parentObj = { ...state.resultInfo[index] };
+        parentObj = { ...parentObj, writtenPractical: writtenPractical };
+        console.log(parentObj);
+        let parentArray = [...state.resultInfo];
+        parentArray[index] = parentObj;
+        state.resultInfo = parentArray;
+
     });
     builder.addCase(updateWrittenPracticalMarks.rejected , (state, {payload}) => {
         state.isLoading = false;

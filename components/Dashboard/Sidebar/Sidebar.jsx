@@ -8,7 +8,7 @@ const Sidebar = ({
   navigateOther,
   setCurrentComponent,
 }) => {
-  console.log(navigateMain);
+  
   const admin_profile = "";
   return (
       <div className={styles.sidebar_design}>

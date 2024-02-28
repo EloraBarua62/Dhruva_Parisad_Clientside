@@ -40,7 +40,7 @@ const NewStudentsDetails = () => {
                 index % 2 == 0 ? "even_field_design" : "odd_field_design"
               }`}
             >
-              <div className="text_details">{head._id}</div>
+              <div className="text_details">{head.roll}</div>
               <div className="single_details">{head.student_name}</div>
               <div className="single_details">{head.father_name}</div>
               <div className="single_details">{head.mother_name}</div>

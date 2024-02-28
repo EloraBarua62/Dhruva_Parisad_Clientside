@@ -2,7 +2,10 @@ import Image from "next/image";
 import styles from "./NewResult.module.scss";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { resultDisplay, updateWrittenPracticalMarks } from "@component/app/Reducers/resultReducer";
+import {
+  resultDisplay,
+  updateWrittenPracticalMarks,
+} from "@component/app/Reducers/resultReducer";
 import { MdEdit, MdOutlineDone } from "react-icons/md";
 
 const NewResult = () => {
@@ -20,8 +23,13 @@ const NewResult = () => {
   ];
   let { isLoading, resultInfo } = useSelector((state) => state.result);
   const [detailsLength, setDetailsLength] = useState(-1);
+  const [writtenPracticalState, setWrittenPracticalState] = useState([]);
+  const [editDoneFieldIdx, setEditDoneFieldIdx] = useState(-1);
+  const [editDoneSingleIdx, setEditDoneSingleIdx] = useState(-1);
+  const [toogleEditDoneButton, setToogleEditDoneButton] = useState(true);
   const [toogle, setToogle] = useState(false);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(resultDisplay());
   }, []);
@@ -30,54 +38,50 @@ const NewResult = () => {
     setToogle(!toogle);
     if (toogle) setDetailsLength(index);
     else setDetailsLength(-1);
-
-    // e.preventDefault();
   };
 
-  const handleMarksUpdate = (index, idx, id) => (event) => {
-    event.preventDefault();
-    console.log(index, idx, id);
-    let keepMarks = resultInfo[index].writtenPractical;
-    console.log(keepMarks);
-    const written = parseInt(event.target.written.value);
-    const practical = parseInt(event.target.practical.value);
-    const total = parseInt(written + practical);
-    const grade = 'A-';
-    const excellence = ['Written'];
-   
-    // const findIdx = keepMarks.findIndex((obj) => obj.id == idx);
-    // console.log(keepMarks[idx])
-    // {{ ...keepMarks[idx] , written, practical, total, grade, excellence}}
-   let obj = {...keepMarks[idx]};
-    obj = {...obj, written: written, practical: practical, total: total, grade: grade, excellence: excellence};
-    // keepMarks[idx].written = written;
-    // keepMarks[idx].practical = practical;
-    // keepMarks[idx].total = total;
-    // keepMarks[idx].grade = grade;
-    // keepMarks[idx].excellence = excellence;
+  const handleEditDoneButton = (index, idx) => {
+    setEditDoneFieldIdx(index);
+    setEditDoneSingleIdx(idx);
+    setToogleEditDoneButton(!toogleEditDoneButton);
+  };
 
-    console.log(obj);
+  // const [state, setState] = useState({
+  //   written: 0,
+  //   practical: 0,
+  //   total: 0,
+  //   grade: '',
+  //   excellence: [],
+  // })
+  const handleMarksEdit = (event,index, idx) => {
+    event.preventDefault();
+    let keepMarks;
+    if (writtenPracticalState.length === 0)
+      keepMarks = resultInfo[index].writtenPractical;
+    else keepMarks = writtenPracticalState;
+
+    // console.log(keepMarks);
+    // console.log(event.target)
+    // const written = event.target.written;
+    // const practical = event.target.practical;
+    // console.log(written, practical)
+    const value = parseInt(event.target.value);
+    const obj = { ...keepMarks[idx], [event.target.name]: value};
+    // obj = { ...obj, written: written, practical: practical };
     let array = [...keepMarks];
     array[idx] = obj;
     keepMarks = array;
+    setWrittenPracticalState([...keepMarks]);
     console.log(keepMarks);
-
-    let parentObj = { ...resultInfo[index] };
-    parentObj = {...parentObj, writtenPractical: keepMarks};
-    console.log(parentObj);
-
-    let parentArray = [...resultInfo];
-    parentArray[index] = parentObj;
-    resultInfo = parentArray;
-    console.log(resultInfo);
-
-
-
-    if (keepMarks.length === idx + 1) {
-      console.log(idx)
-      dispatch(updateWrittenPracticalMarks({id, keepMarks}));
-    }
   };
+
+  const handleMarksSubmit = (index, id) => (event) => {
+    event.preventDefault();
+    const writtenPractical = {writtenPractical: writtenPracticalState}
+    dispatch(updateWrittenPracticalMarks({index, id, writtenPractical}));
+    setWrittenPracticalState([]);
+  };
+
 
 
   return (
@@ -93,6 +97,7 @@ const NewResult = () => {
 
       {/* Table data */}
       <div>
+        {/* Displaying information of each student */}
         {resultInfo.map((head, index) => (
           <div
             key={index}
@@ -101,7 +106,7 @@ const NewResult = () => {
             }`}
           >
             {/* Field: Student Roll */}
-            <div className="text_details">{head._id}</div>
+            <div className="text_details">{head.studentInfo?.roll}</div>
 
             {/* Field: Student Name */}
             <div className="single_details">
@@ -137,36 +142,66 @@ const NewResult = () => {
             {/* Field: Subjects and Years */}
             {detailsLength === index ? (
               <div className="subject_year_design">
-                {head?.writtenPractical.map((data, idx) => (
-                  <>
-                    <form
-                      onSubmit={handleMarksUpdate(index, idx, head._id)}
-                      key={idx}
-                      className="subject_year_design_inner"
-                    >
+                {/* Result update form for single user */}
+                <form onSubmit={handleMarksSubmit(index, head._id)}>
+                  {head?.writtenPractical.map((data, idx) => (
+                    <div key={idx} className="subject_year_design_inner">
+                      {/* Field: Writtern marks */}
                       <input
                         type="number"
                         name="written"
                         className="input_box_design"
                         defaultValue={data.written}
+                        onChange={(e) => handleMarksEdit(e, index, idx)}
                       />
+
+                      {/* Field: Practical marks */}
                       <input
                         type="number"
                         name="practical"
                         className="input_box_design"
                         defaultValue={data.practical}
+                        onChange={(e) => handleMarksEdit(e, index, idx)}
                       />
-                      <button type="submit" className="marks_edit_button">
-                        <MdOutlineDone />
-                      </button>
+
+                      {/* Toggle button: Enable Marks Edition*/}
+                      {toogleEditDoneButton || editDoneSingleIdx !== idx ? (
+                        <button
+                          onClick={() => handleEditDoneButton(index, idx)}
+                          className="active_edit_button"
+                        >
+                          Edit
+                        </button>
+                      ) : (
+                        <button disabled="disabled">Edit</button>
+                      )}
+
+                      {/* Toggle button: Submit Marks*/}
+                      {/* {!toogleEditDoneButton && editDoneSingleIdx === idx ? (
+                        <button
+                          onClick={() => handleMarksEdit(index, idx)}
+                          className="marks_edit_button"
+                        >
+                          Done
+                        </button>
+                      ) : (
+                        <button disabled="disabled">Done</button>
+                      )} */}
+                      {/* <button type="submit" className="marks_edit_button">
+                        Done
+                      </button> */}
+
+                      {/* Displaying total score of written and practical  */}
                       <div className="child_box_design">
                         {data.written + data.practical}
                       </div>
+
+                      {/* Displaying final grade of written and practical  */}
                       <div className="child_box_design">{data.grade}</div>
-                      {/* <input type="submit" value="Update" /> */}
-                    </form>
-                  </>
-                ))}
+                    </div>
+                  ))}
+                  <input type="submit" value="Update" />
+                </form>
               </div>
             ) : (
               <div className="subject_year_design">

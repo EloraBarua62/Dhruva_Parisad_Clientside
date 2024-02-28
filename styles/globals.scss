@@ -82,6 +82,21 @@ background-color: red;
             text-align: center;
             background-color: transparent;
           }
+          .active_edit_button{
+            background-color: $deep-green;
+            color: $brown-color;
+            border: 0;
+            border-radius: 5px;
+            padding: 3px 4px;    
+            cursor: pointer;
+          }
+          .marks_edit_button {
+            color: $deep-green;
+            background-color: transparent;
+            border: 0;
+            font-size: 20px;
+            cursor: pointer;
+          }
         }
       }
 
@@ -170,6 +185,11 @@ background-color: red;
             width: 40px;
             text-align: center;
             padding: 5px 2px;
+          }
+          .active_edit_button{
+            background-color: $deep-green;
+            color: $brown-color;
+            cursor: pointer;
           }
           .marks_edit_button {
             color: $deep-green;

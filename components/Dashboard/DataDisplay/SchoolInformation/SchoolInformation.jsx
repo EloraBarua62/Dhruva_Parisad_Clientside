@@ -16,7 +16,7 @@ const SchoolInformation = () => {
   ];
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(enlistedSchools());
+    dispatch(enlistedSchools('all'));
   }, []);
 
   const hadleStatusChange = (e, id) => {
