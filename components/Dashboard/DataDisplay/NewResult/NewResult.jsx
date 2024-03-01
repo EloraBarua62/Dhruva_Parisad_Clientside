@@ -7,6 +7,7 @@ import {
   updateWrittenPracticalMarks,
 } from "@component/app/Reducers/resultReducer";
 import { MdEdit, MdOutlineDone } from "react-icons/md";
+import { ThreeDots } from "react-loader-spinner";
 
 const NewResult = () => {
   const table_heading = [
@@ -53,7 +54,7 @@ const NewResult = () => {
   //   grade: '',
   //   excellence: [],
   // })
-  const handleMarksEdit = (event,index, idx) => {
+  const handleMarksEdit = (event, index, idx) => {
     event.preventDefault();
     let keepMarks;
     if (writtenPracticalState.length === 0)
@@ -66,7 +67,7 @@ const NewResult = () => {
     // const practical = event.target.practical;
     // console.log(written, practical)
     const value = parseInt(event.target.value);
-    const obj = { ...keepMarks[idx], [event.target.name]: value};
+    const obj = { ...keepMarks[idx], [event.target.name]: value };
     // obj = { ...obj, written: written, practical: practical };
     let array = [...keepMarks];
     array[idx] = obj;
@@ -77,12 +78,10 @@ const NewResult = () => {
 
   const handleMarksSubmit = (index, id) => (event) => {
     event.preventDefault();
-    const writtenPractical = {writtenPractical: writtenPracticalState}
-    dispatch(updateWrittenPracticalMarks({index, id, writtenPractical}));
+    const writtenPractical = { writtenPractical: writtenPracticalState };
+    dispatch(updateWrittenPracticalMarks({ index, id, writtenPractical }));
     setWrittenPracticalState([]);
   };
-
-
 
   return (
     <div className={styles.newresult_design}>
@@ -200,7 +199,23 @@ const NewResult = () => {
                       <div className="child_box_design">{data.grade}</div>
                     </div>
                   ))}
-                  <input type="submit" value="Update" />
+                  <button type="submit" disabled={isLoading ? true : false}>
+                    {isLoading ? (
+                      <ThreeDots
+                        visible={true}
+                        height="80"
+                        width="80"
+                        color="#4fa94d"
+                        radius="9"
+                        ariaLabel="three-dots-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                      />
+                    ) : (
+                      "Update"
+                    )}
+                  </button>
+                  {/* <input type="submit" value="Update" /> */}
                 </form>
               </div>
             ) : (

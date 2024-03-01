@@ -111,8 +111,8 @@ const ExamRegistrationForm = () => {
   useEffect(() => {
     if (successMessage) {
       toast.success(successMessage);
-      router.push("/user");
       dispatch(messageClear());
+      router.push("/user");    
     }
     if (errorMessage) {
       toast.error(errorMessage);
