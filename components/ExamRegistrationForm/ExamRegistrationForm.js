@@ -7,31 +7,33 @@ import { useDispatch, useSelector } from "react-redux";
 import { studentRegistration } from "@component/app/Reducers/studentReducer";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
-import { messageClear } from "@component/app/Reducers/authReducer";
+import { messageClear} from "@component/app/Reducers/authReducer";
 import { enlistedSchools, enlistedZone } from "@component/app/Reducers/schoolReducer";
 
+
+
+
 const ExamRegistrationForm = () => {
+  // Import state variable
   const { zoneInfo, schoolInfo } = useSelector((state) => state.school);
   const { isLoading, successMessage, errorMessage } = useSelector(
     (state) => state.student
   );
+
+  // Import by-default functions
   const dispatch = useDispatch();
   const router = useRouter();
+
+  // Set Initial values for UI
   const currentYear = new Date().getFullYear();
-  // const school_list = [
-  //   "Dhaka school",
-  //   "Chittagong school",
-  //   "Jashor school",
-  //   "Barishal school",
-  // ];
   const subject_list = ["poem", "rack", "nock", "shak", "dance"];
   const year_list = ["primary", "first", "second", "third", "forth"];
   const [imageShow, setImageShow] = useState("");
   const [subjectYear, setSubjectYear] = useState([
     { subject: "poem", year: "primary" },
   ]);
-  
 
+  // Function: Add Image files
   const handleImage = (e) => {
     let files = e.target.files;
     if (files.length > 0) {
@@ -40,21 +42,23 @@ const ExamRegistrationForm = () => {
     }
   };
 
+  // Function: Add Multiple Subject and Year
   const handleSubjectYear = (e) => {
     setSubjectYear([...subjectYear, { subject: "poem", year: "primary" }]);
     console.log(subjectYear);
     e.preventDefault();
   };
 
+  // Function: Change Subject & year
   const handleChange = (e, index) => {
     const { name, value } = e.target;
     const onChangeValue = [...subjectYear];
     onChangeValue[index][name] = value;
     setSubjectYear(onChangeValue);
-    console.log(subjectYear);
     e.preventDefault();
   };
 
+  // Function: Delete Subject & year
   const handleDelete = (e, index) => {
     const deleteValue = [...subjectYear];
     deleteValue.splice(index, 1);
@@ -63,6 +67,7 @@ const ExamRegistrationForm = () => {
     e.preventDefault();
   };
 
+  // Function: Submit registration form
   const handleRegistrationForm = (e) => {
     const student_name = e.target.student_name.value;
     const father_name = e.target.father_name.value;
@@ -103,16 +108,17 @@ const ExamRegistrationForm = () => {
     e.preventDefault();
   };
 
+  // Function: Select Zone
   const handleZone = (e) => {
     const zone = e.target.value;
     dispatch(enlistedSchools(zone));
-  }
+  };
 
   useEffect(() => {
     if (successMessage) {
       toast.success(successMessage);
       dispatch(messageClear());
-      router.push("/user");    
+      router.push("/user");
     }
     if (errorMessage) {
       toast.error(errorMessage);
@@ -161,6 +167,8 @@ const ExamRegistrationForm = () => {
                 ))}
               </select>
             </div>
+
+            {/* Field: school name */}
             <div className={styles.field_design}>
               <label htmlFor="school">Select Your Examination school</label>
               <select name="school" id="">
@@ -172,8 +180,9 @@ const ExamRegistrationForm = () => {
               </select>
             </div>
 
+            {/* Field: Image add */}
             <div>
-              <h1 className={styles.image_title}>Add Your Image</h1>
+              <h1 className={styles.image_title}>Select Subjects & Years </h1>
               {subjectYear.map((data, index) => (
                 <div key={index}>
                   <select
@@ -239,6 +248,8 @@ const ExamRegistrationForm = () => {
             </div>
           </div>
         </div>
+
+        {/* File submission button */}
         <div className={styles.button_section}>
           <button className={styles.button_design} type="submit">
             Submit

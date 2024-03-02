@@ -1,0 +1,128 @@
+.form_design {
+  width: 100%;
+  background-color: white;
+}
+.form_design .heading_design {
+  text-align: center;
+}
+.form_design .heading_design .institute_name {
+  font-size: 18px;
+  font-weight: 800;
+  color: #4e944f;
+  margin: 0;
+}
+.form_design .heading_design .reg_no {
+  font-size: 13px;
+  color: #4e944f;
+  margin: 0;
+}
+.form_design .heading_design .date_design {
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+.form_design .heading_design .date_design h1 {
+  font-size: 13px;
+  color: #4e944f;
+  margin: 0;
+}
+.form_design .heading_design .exam_title {
+  font-size: 16px;
+  color: #83bd75;
+}
+.form_design form .registration_section {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: 10px;
+  gap: 20px;
+}
+.form_design form .registration_section .user_info_section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.form_design form .registration_section .user_info_section .field_design label {
+  display: block;
+}
+.form_design form .registration_section .user_info_section .field_design input {
+  width: 100%;
+  border: 2px solid #4ade80;
+  border-radius: 3px;
+  background-color: white;
+  outline: none;
+  padding: 10px 0;
+}
+.form_design form .registration_section .exam_info_section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.form_design form .registration_section .exam_info_section .field_design label {
+  display: block;
+}
+.form_design form .registration_section .exam_info_section .field_design select {
+  width: 100%;
+  border: 2px solid #4ade80;
+  border-radius: 3px;
+  background-color: white;
+  outline: none;
+  padding: 9px 0;
+}
+.form_design form .registration_section .image_title {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+.form_design form .registration_section .image_field_design .image_label {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px dashed black;
+  overflow: hidden;
+  position: relative;
+}
+.form_design form .registration_section .image_field_design .image_label .image_display {
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+}
+.form_design form .registration_section .image_field_design .image_label .icon_size {
+  font-size: 20px;
+  color: #1da950;
+}
+.form_design form .registration_section .image_field_design .image_label span {
+  font-size: 12px;
+}
+.form_design form .registration_section .image_field_design .image_file {
+  visibility: hidden;
+}
+.form_design form .button_section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.form_design form .button_section .button_design {
+  width: 126px;
+  height: 32px;
+  border: 0;
+  border-radius: 5px;
+  background-color: #4e944f;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  cursor: pointer;
+}
+.form_design form .button_section .button_design:hover {
+  background-color: #b4e197;
+  color: #4e944f;
+  transition: 0.5s;
+}/*# sourceMappingURL=ExamRegistrationForm.module.css.map */

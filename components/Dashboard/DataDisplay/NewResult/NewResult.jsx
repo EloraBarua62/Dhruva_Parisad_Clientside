@@ -105,7 +105,7 @@ const NewResult = () => {
             }`}
           >
             {/* Field: Student Roll */}
-            <div className="text_details">{head.studentInfo?.roll}</div>
+            <div className="text_details">{head.studentInfo.roll}</div>
 
             {/* Field: Student Name */}
             <div className="single_details">
@@ -163,33 +163,6 @@ const NewResult = () => {
                         onChange={(e) => handleMarksEdit(e, index, idx)}
                       />
 
-                      {/* Toggle button: Enable Marks Edition*/}
-                      {toogleEditDoneButton || editDoneSingleIdx !== idx ? (
-                        <button
-                          onClick={() => handleEditDoneButton(index, idx)}
-                          className="active_edit_button"
-                        >
-                          Edit
-                        </button>
-                      ) : (
-                        <button disabled="disabled">Edit</button>
-                      )}
-
-                      {/* Toggle button: Submit Marks*/}
-                      {/* {!toogleEditDoneButton && editDoneSingleIdx === idx ? (
-                        <button
-                          onClick={() => handleMarksEdit(index, idx)}
-                          className="marks_edit_button"
-                        >
-                          Done
-                        </button>
-                      ) : (
-                        <button disabled="disabled">Done</button>
-                      )} */}
-                      {/* <button type="submit" className="marks_edit_button">
-                        Done
-                      </button> */}
-
                       {/* Displaying total score of written and practical  */}
                       <div className="child_box_design">
                         {data.written + data.practical}
@@ -215,7 +188,6 @@ const NewResult = () => {
                       "Update"
                     )}
                   </button>
-                  {/* <input type="submit" value="Update" /> */}
                 </form>
               </div>
             ) : (

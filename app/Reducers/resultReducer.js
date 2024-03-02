@@ -17,7 +17,6 @@ export const resultDisplay = createAsyncThunk("result/resultDisplay",
 export const updateWrittenPracticalMarks = createAsyncThunk(
   "result/updateWrittenPracticalMarks",
   async(info, { rejectWithValue, fulfillWithValue }) => {
-    console.log(info);
     const index = info.index;
     const id = info.id;
     const writtenPractical = info.writtenPractical;
@@ -26,7 +25,7 @@ export const updateWrittenPracticalMarks = createAsyncThunk(
         const { data } = await api.patch(`result/result-update/${id}`,writtenPractical, {
           withCredentials: true,
         });
-        console.log(data)
+        
         return fulfillWithValue({index, data});
     } catch (error) {
         return rejectWithValue(error.response.data);
@@ -65,19 +64,18 @@ export const resultReducer = createSlice({
     builder.addCase(updateWrittenPracticalMarks.pending , (state) => {
         state.isLoading = true;
     });
-    builder.addCase(updateWrittenPracticalMarks.fulfilled , (state, {payload}) => {
-        
-        state.successMessage = payload.message;
-        // state.resultInfo = payload.resultInfo;
+    builder.addCase(updateWrittenPracticalMarks.fulfilled , (state, {payload}) => {      
         const index = payload.index;
         const writtenPractical = payload.data.updatedResult;
-        console.log(index, writtenPractical);
+
         let parentObj = { ...state.resultInfo[index] };
         parentObj = { ...parentObj, writtenPractical: writtenPractical };
-        console.log(parentObj);
         let parentArray = [...state.resultInfo];
         parentArray[index] = parentObj;
+        
+        // Set value to state variable
         state.resultInfo = parentArray;
+        state.successMessage = payload.message;
         state.isLoading = false;
 
     });
@@ -88,5 +86,5 @@ export const resultReducer = createSlice({
   }
 });
 
-export const {messageClear} = resultReducer.actions;
 export default resultReducer.reducer;
+export const messageClear = resultReducer.actions;

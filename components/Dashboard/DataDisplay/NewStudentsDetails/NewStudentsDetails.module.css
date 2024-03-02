@@ -1,0 +1,29 @@
+.newresult_design {
+  padding: 10px;
+}
+.newresult_design .heading_field_design {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 5px;
+  border-bottom: 2px solid #4e944f;
+  background-color: #83bd75;
+}
+@media (min-width: 576px) {
+  .newresult_design .heading_field_design {
+    gap: 10px;
+  }
+}
+@media (min-width: 1400px) {
+  .newresult_design .heading_field_design {
+    gap: 20px;
+  }
+}
+.newresult_design .heading_field_design .single_heading {
+  width: 110px;
+  padding: 10px 2px;
+  text-align: center;
+  margin-bottom: 5px;
+  border: 0;
+  border-radius: 5px;
+}/*# sourceMappingURL=NewStudentsDetails.module.css.map */
