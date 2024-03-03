@@ -44,7 +44,7 @@ export const studentReducer = createSlice({
     role: ''
   },
   reducers: {
-    messageClear: () => {
+    messageClear: (state) => {
       state.errorMessage = "";
       state.successMessage = "";
       console.log('state clear')

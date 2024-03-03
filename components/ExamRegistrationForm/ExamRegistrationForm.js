@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { studentRegistration } from "@component/app/Reducers/studentReducer";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
-import { messageClear} from "@component/app/Reducers/authReducer";
+import { messageClear} from "@component/app/Reducers/studentReducer";
 import { enlistedSchools, enlistedZone } from "@component/app/Reducers/schoolReducer";
 
 

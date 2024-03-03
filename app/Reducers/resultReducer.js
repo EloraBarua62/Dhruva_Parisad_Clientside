@@ -87,4 +87,4 @@ export const resultReducer = createSlice({
 });
 
 export default resultReducer.reducer;
-export const messageClear = resultReducer.actions;
+export const {messageClear} = resultReducer.actions;

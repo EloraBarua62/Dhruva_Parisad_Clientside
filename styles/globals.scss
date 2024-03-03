@@ -8,6 +8,7 @@ body {
   .dashboard_design {
     display: flex;
     position: relative;
+    
 
     // Drawer Icon
     .sidebar_icon {
@@ -26,7 +27,7 @@ body {
 
     // Display Odd indexed field in result
     .odd_field_design {
-      background-color: $brown-color;
+      background-color: #f9fad1;
       display: flex;
       justify-content: space-between;
       align-items: start;
@@ -45,12 +46,11 @@ body {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        background-color: red;
+        
       }
 
       .single_details {
         width: 110px;
-background-color: red;
         padding: 10px 2px;
         text-align: center;
       }
@@ -136,7 +136,7 @@ background-color: red;
       justify-content: space-between;
       align-items: start;
       gap: 5px;
-      background-color: #b5e197b9;
+      
 
       @media (min-width: 576px) {
         gap: 10px;

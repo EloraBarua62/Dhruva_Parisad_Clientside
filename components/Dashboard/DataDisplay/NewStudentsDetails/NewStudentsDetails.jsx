@@ -32,7 +32,7 @@ const NewStudentsDetails = () => {
             </div>
           ))}
         </div>
-        <div>
+        <div className={styles.info_field_design}>
           {studentInfo.map((head, index) => (
             <div
               key={index}
@@ -47,7 +47,7 @@ const NewStudentsDetails = () => {
               <div className="single_details">{head.zone}</div>
               <div className="single_details">{head.school}</div>
               <div className="image_field">
-              <Image
+                <Image
                   src={head.imageShow}
                   alt=""
                   fill="true"
