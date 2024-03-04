@@ -180,7 +180,7 @@ const ExamRegistrationForm = () => {
               </select>
             </div>
 
-            {/* Field: Image add */}
+            {/* Field: Subject year */}
             <div>
               <h1 className={styles.image_title}>Select Subjects & Years </h1>
               {subjectYear.map((data, index) => (

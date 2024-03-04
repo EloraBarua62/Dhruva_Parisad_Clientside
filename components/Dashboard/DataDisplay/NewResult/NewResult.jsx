@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "./NewResult.module.scss";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

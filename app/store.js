@@ -3,6 +3,7 @@ import authReducer from "./Reducers/authReducer";
 import studentReducer from "./Reducers/studentReducer";
 import resultReducer from "./Reducers/resultReducer";
 import schoolReducer from "./Reducers/schoolReducer";
+import newsReducer from "./Reducers/newsReducer";
 
 const store = configureStore({
     reducer:{
@@ -10,6 +11,7 @@ const store = configureStore({
         student: studentReducer,
         result: resultReducer,
         school: schoolReducer,
+        news: newsReducer,
     },
     middleware: getDefaultMiddleware => {
         return getDefaultMiddleware({

@@ -1,0 +1,39 @@
+@import "../../../../styles/config";
+
+.image_title {
+  font-size: $text-body;
+  font-weight: 500;
+  margin: 0;
+}
+.image_field_design {
+  .image_label {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px dashed black;
+
+    // margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+
+    .image_display {
+      object-fit: cover;
+      position: absolute;
+    }
+
+    .icon_size {
+      font-size: 20px;
+      color: #1da950;
+    }
+    span {
+      font-size: 12px;
+    }
+  }
+
+  .image_file {
+    visibility: hidden;
+  }
+}
