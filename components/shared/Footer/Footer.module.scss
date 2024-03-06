@@ -1,0 +1,131 @@
+@import "../../../styles/config";
+
+.footer_display {
+  width: 100%;
+  // height: 200px;
+  background-color: $deep-green;
+  color: $brown-color;
+  display: flex;
+  justify-content: center;
+
+  .footer_contents {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    // Title
+    .title_display {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      @media (min-width: 768px) {
+        align-items: start;
+      }
+
+      .title {
+        font-size: $text-head;
+        font-weight: 700;
+        margin: 20px 0;
+      }
+      .info {
+        font-size: $text-label;
+        margin: 0;
+      }
+    }
+
+    .info_section {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      .extra_contents {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // background-color: yellow;
+        width: 30%;
+
+        .heading {
+          font-size: $text-body;
+          margin: 20px 0;
+        }
+        .districts {
+          display: flex;
+          justify-content: space-between;
+          //   background-color: yellow;
+          gap: 10px;
+          width: 100%;
+
+          .district_name {
+            font-size: $text-label;
+            margin: 0 0 5px;
+            font-weight: 500;
+          }
+        }
+
+        .contact {
+          font-size: $text-label;
+          margin: 0 0 5px;
+          text-decoration: none;
+          color: $brown-color;
+        }
+      }
+    }
+    .subscribe_display {
+      width: 100%;
+    
+      .contents {
+        margin-left: auto;
+        margin-right: auto;
+       
+
+        @media (min-width: 768px) {
+          margin-right: 0;
+        }
+        .heading {
+          font-size: $text-body;
+          margin: 20px 0;
+          text-align: center;
+
+          
+        }
+
+        form {
+          display: flex;
+          justify-content: center;
+          // width: 100%;
+
+           @media (min-width: 768px) {
+          justify-content: end;
+        }
+
+          .email {
+            background-color: $brown-color;
+            outline: none;
+            padding: 5px;
+            border: 0;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+          }
+          .submit {
+            background-color: $light-green;
+            color: $deep-green;
+            outline: none;
+            padding: 8px;
+            border: 0;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            font-size: $text-label;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+}
