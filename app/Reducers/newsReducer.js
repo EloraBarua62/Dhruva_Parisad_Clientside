@@ -1,8 +1,10 @@
+import api from "@component/api/api";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const newsPublish = createAsyncThunk(
   "news/newsPublish",
   async (info, { rejectWithValue, fulfillWithValue }) => {
+    // console.log(info)
     try {
       const { data } = await api.post("/news/publish", info, {
         withCredentials: true,
@@ -14,13 +16,29 @@ export const newsPublish = createAsyncThunk(
   }
 );
 
+export const displayNews = createAsyncThunk(
+  "news/displayNews",
+  async (info, { rejectWithValue, fulfillWithValue }) => {
+    // console.log(info)
+    try {
+      const { data } = await api.get("/news/display", info, {
+        withCredentials: true,
+      });
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+
 export const newsReducer = createSlice({
   name: "news",
   initialState: {
     successMessage: "",
     errorMessage: "",
     isLoading: false,
-    newsInfo: "",
+    newsList: [],
   },
   reducers: {
     messageClear: (state) => {
@@ -29,6 +47,19 @@ export const newsReducer = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(displayNews.pending, (state)=> {
+        state.isLoading = true;
+    });
+    builder.addCase(displayNews.rejected, (state, {payload})=> {
+        state.errorMessage = payload.error;
+        state.isLoading = false;
+    });
+    builder.addCase(displayNews.fulfilled, (state, { payload }) => {
+      state.successMessage = payload.message;
+      state.newsList = payload.newsList;
+      state.isLoading = false;
+    });
+
     builder.addCase(newsPublish.pending, (state)=> {
         state.isLoading = true;
     });

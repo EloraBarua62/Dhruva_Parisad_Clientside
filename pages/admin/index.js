@@ -1,31 +1,38 @@
+import React, { useEffect, useState } from "react";
 import CurrentState from "@component/components/Dashboard/CurrentState/CurrentState";
 import DashboardHome from "@component/components/Dashboard/DataDisplay/DashboardHome/DashboardHome";
 import Navbar from "@component/components/Dashboard/Navbar/Navbar";
 import getNavigation from "@component/components/Dashboard/Navigation";
 import Sidebar from "@component/components/Dashboard/Sidebar/Sidebar";
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BiAlignLeft } from "react-icons/bi";
 import MobileSidebar from "@component/components/Dashboard/MobileSidebar/MobileSidebar";
+import {
+  enlistedSchools,
+  enlistedZone,
+} from "@component/app/Reducers/schoolReducer";
 
-export default function Home() { 
-  const { role } = useSelector((state) => state.auth);
+export default function Home() {
   const [navigateMain, setNavigateMain] = useState([]);
   const [navigateOther, setNavigateOther] = useState([]);
-  const [currentComponent, setCurrentComponent] = useState(DashboardHome);
   const [openSidebar, setOpenSidebar] = useState(false);
+  const [currentComponent, setCurrentComponent] = useState(DashboardHome);
+  const { role } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   
 
   useEffect(() => {
     // const array = getNavigation(role);
-    const array = getNavigation();
+const array = getNavigation();
+    console.log(array);
     setNavigateMain([...array[0]]);
-    setNavigateOther(array[1]);
-    console.log(role);
-  }, [role]);
+    setNavigateOther([...array[1]]);
+    // dispatch(enlistedZone());
+    // dispatch(enlistedSchools("all"));
+    // console.log(role);
+  }, []);
   return (
     <div className="dashboard_design">
-
       {/* Drawer Icon */}
       {!openSidebar ? (
         <div className="sidebar_icon">

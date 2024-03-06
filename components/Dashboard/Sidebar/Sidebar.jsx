@@ -2,6 +2,7 @@ import Image from 'next/image';
 import styles from './Sidebar.module.scss';
 import profile_pic from '../../../public/profile.png'
 import { RxCross2 } from "react-icons/rx";
+import { useRouter } from 'next/router';
 
 const Sidebar = ({
   navigateMain,
@@ -10,6 +11,12 @@ const Sidebar = ({
 }) => {
   
   const admin_profile = "";
+  const router = useRouter();
+  const handleLogout = () => {
+    document.cookie =
+      "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    router.push('/admin/login');
+  }
   return (
       <div className={styles.sidebar_design}>
         {/* Heading */}
@@ -79,7 +86,7 @@ const Sidebar = ({
           </div>
         </div>
 
-        <button className={styles.logout_design}>Log Out</button>
+        <button className={styles.logout_design} onClick={handleLogout}>Log Out</button>
       </div>
 
   );

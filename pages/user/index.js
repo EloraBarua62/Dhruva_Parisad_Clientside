@@ -7,15 +7,13 @@ const User = () => {
     const dispatch = useDispatch();
       useEffect(() => {
         dispatch(enlistedZone());
+        // dispatch(displayNews());
       }, []);
     return (
       <div>
-        <Link href={`/user/school_registration`}>
-          school registration
-        </Link>
-        <Link href={`/user/exam_registration`}>
-          exam registration
-        </Link>
+        banner
+        news 
+        schools
       </div>
     );
 };

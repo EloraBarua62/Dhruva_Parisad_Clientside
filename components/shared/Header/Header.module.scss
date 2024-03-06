@@ -1,0 +1,160 @@
+@import "../../../styles/config";
+
+.header_display {
+  width: 100%;
+  //   height: 56px;
+  background-color: $deep-green;
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  position: fixed;
+
+  .header_inner {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    // Name and logo design
+    .logo_design {
+      color: $brown-color;
+      text-decoration: none;
+      font-size: $text-head;
+      font-weight: 700;
+
+      @media (min-width: 768px) {
+        font-size: 28px;
+      }
+
+      @media (min-width: 1200px) {
+        font-size: 35px;
+      }
+    }
+
+    // All routes in large device
+    .all_routes_large_device {
+      display: none;
+
+      @media (min-width: 768px) {
+        display: flex;
+        gap: 15px;
+
+        .inactive {
+          color: $brown-color;
+          text-decoration: none;
+          font-size: 16px;
+          @media (min-width: 1200px) {
+            font-size: 18px;
+          }
+        }
+
+        .active {
+          color: $light_green;
+          text-decoration: none;
+          font-size: 16px;
+          @media (min-width: 1200px) {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+
+    // Small device navigation
+    .icon_display {
+      display: block;
+
+      @media (min-width: 768px) {
+        display: none;
+        background-color: red;
+
+        button {
+          .icon_design {
+            color: $brown-color;
+            font-weight: 600;
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .small_device_overlay {
+    position: fixed;
+    top: 32px;
+    left: 0px;
+    transition: 0.25s ease;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.131);
+    z-index: 30;
+
+    .all_routes_small_device {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      background-color: $light-green;
+      width: 250px;
+      z-index: 50;
+      padding: 20px;
+      
+
+      .inactive_small {
+        display: block;
+        background-color: $deep_green;
+        color: $brown-color;
+        text-decoration: none;
+        font-size: 16px;
+        // font-weight: 500;
+        padding: 10px;
+        border: 0;
+        border-radius: 5px;
+        @media (min-width: 768px) {
+          display: none;
+        }
+      }
+      .inactive_small:hover {
+        display: block;
+        background-color: $brown-color;
+        color: $deep-green;
+        text-decoration: none;
+        font-size: 16px;
+        transition: 0.3s ease-out;
+        padding: 10px;
+        border: 0;
+        border-radius: 5px;
+
+        
+
+        @media (min-width: 768px) {
+          display: none;
+        }
+      }
+     
+
+      .active_small {
+        display: block;
+        background-color: $brown-color;
+        color: $deep-green;
+        text-decoration: none;
+        font-size: 16px;
+        // font-weight: 500;
+         padding: 10px;
+        border: 0;
+        border-radius: 5px;
+        @media (min-width: 768px) {
+          display: none;
+        }
+      }
+
+      @media (min-width: 768px) {
+        display: none;
+      }
+    }
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+}

@@ -15,9 +15,6 @@ const SchoolInformation = () => {
     { title: "blocked", text: "Blocked" },
   ];
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(enlistedSchools('all'));
-  }, []);
 
   const hadleStatusChange = (e, id) => {
     const status = e.target.status.value;

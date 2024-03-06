@@ -1,3 +1,4 @@
+
 // Colour pallate
 $deep-green: #4e944f;
 $medium-green: #83bd75;
@@ -10,21 +11,53 @@ $text-body: 16px;
 $text-subhead: 18px;
 $text-head: 18px;
 
+// $breakpoints: ( 
+//   "md": "min-width: 768px",
+//   "lg": "min-width: 1200px",
+// );
+
+// @mixin breakpoint($user-value) {
+//   $my-map: map-get($breakpoints, $user-value);
+//   @if $my-map {
+//     @media (#{$my-map}) {
+//       @content;
+//     }
+//   }
+//   @else {
+//     @error "problem"
+//   }
+// }
+
+// body { 
+//   @include breakpoint(md) {
+//     $text-label: 14px;
+//     $text-body: 16px;
+//     $text-subhead: 28px;
+//     $text-head: 32px;
+//   }
+
+//   @include breakpoint(lg) {
+//     $text-label: 16px;
+//     $text-body: 18px;
+//     $text-subhead: 30px;
+//     $text-head: 35px;
+//   }
+// }
 // Text patter for Tablet
-@media (min-width: 768px) {
-  $text-label: 14px;
-  $text-body: 16px;
-  $text-subhead: 28px;
-  $text-head: 32px;
-}
+// @media (min-width: 768px) {
+//   $text-label: 14px;
+//   $text-body: 16px;
+//   $text-subhead: 28px;
+//   $text-head: 32px;
+// }
 
 // Text patter for Desktop
-@media (min-width: 1200px) {
-  $text-label: 16px;
-  $text-body: 18px;
-  $text-subhead: 30px;
-  $text-head: 35px;
-}
+// @media (min-width: 1200px) {
+//   $text-label: 16px;
+//   $text-body: 18px;
+//   $text-subhead: 30px;
+//   $text-head: 35px;
+// }
 
 // Width for prompt: Mobile
 $daynamic-width: 100%;
