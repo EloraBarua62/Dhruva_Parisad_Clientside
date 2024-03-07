@@ -10,11 +10,11 @@ const Header = () => {
   const pathname = usePathname();
   const [openHamburger, setOpenHamburger] = useState(false);
   const page_navigation = [
-    { name: "news", title: "News" },
-    { name: "exam_registration", title: "Exam Registration" },
-    { name: "school_registration", title: "School Registration" },
-    { name: "result", title: "Result" },
-    { name: "login", title: "Login" },
+    { name: "/user/news", title: "News" },
+    { name: "/user/exam_registration", title: "Exam Registration" },
+    { name: "/user/school_registration", title: "School Registration" },
+    { name: "/user/result", title: "Result" },
+    { name: "/admin/login", title: "Login" },
   ];
   return (
     <div className={styles.header_display}>
@@ -32,11 +32,11 @@ const Header = () => {
               <Link
                 key={index}
                 className={`link ${
-                  pathname === `/user/${page.name}`
+                  pathname === `${page.name}`
                     ? styles.active
                     : styles.inactive
                 }`}
-                href={`/user/${page.name}`}
+                href={`${page.name}`}
               >
                 {page.title}
               </Link>
@@ -69,11 +69,11 @@ const Header = () => {
               <Link
                 key={index}
                 className={`link ${
-                  pathname === `/user/${page.name}`
+                  pathname === `${page.name}`
                     ? styles.active_small
                     : styles.inactive_small
                 }`}
-                href={`/user/${page.name}`}
+                href={`${page.name}`}
               >
                 {page.title}
               </Link>

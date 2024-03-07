@@ -1,3 +1,12 @@
+import barath_long from '../public/barath.jpg'
+import barath_short from '../public/barath2.jpg'
+import kathak from '../public/kathak.webp'
+import sitar from '../public/sitar.jpg'
+import harmon from '../public/harmon.jpg'
+import tabla from '../public/tabla.jpg'
+import paint from "../public/paint.jpg"
+
+
 export const regFormField = [
   {
     name: "student_name",
@@ -102,3 +111,13 @@ export const schoolInformField = [
     type: "text",
   },
 ];
+
+export const banner_image = {
+  barath_long,
+  barath_short,
+  kathak,
+  harmon,
+  sitar,
+  tabla,
+  paint
+}
