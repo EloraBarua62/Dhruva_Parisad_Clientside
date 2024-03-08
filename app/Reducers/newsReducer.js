@@ -19,9 +19,9 @@ export const newsPublish = createAsyncThunk(
 export const displayNews = createAsyncThunk(
   "news/displayNews",
   async (info, { rejectWithValue, fulfillWithValue }) => {
-    // console.log(info)
+    console.log(info)
     try {
-      const { data } = await api.get("/news/display", info, {
+      const { data } = await api.get("/news/all-news"+'?'+ new URLSearchParams(info), {
         withCredentials: true,
       });
       return fulfillWithValue(data);

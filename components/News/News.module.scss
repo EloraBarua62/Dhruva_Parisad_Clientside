@@ -1,0 +1,180 @@
+@import "../../styles/config";
+
+.news_display {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+
+  @media (min-width: 576px) {
+    height: 350px;
+  }
+
+  @media (min-width: 768px) {
+    height: 400px;
+  }
+
+  .news_contents {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1;
+
+    @media (min-width: 576px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: 1fr 2fr;
+    }
+
+    .news_left_section {
+      width: 100%;
+      background-color: $brown-color;
+      border: 0;
+      border-radius: 10px;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+      // Image display
+      .image_section {
+        width: 100%;
+        height: 150px;
+        position: relative;
+        
+
+        .image_design {
+          object-fit: cover;
+          border: 0;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        }
+      }
+
+      // Details
+      .info_section {
+        width: 100%;
+
+        .status_section {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 5px;
+          @media (min-width: 576px) {
+            padding: 10px;
+          }
+          @media (min-width: 1024px) {
+            padding: 20px;
+          }
+
+          // Dration
+          .status_left {
+            width: 80px;
+            height: 30px;
+            background-color: $deep-green;
+            color: $brown-color;
+            font-size: $text-body;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 0;
+            border-radius: 30px;
+
+            @media (min-width: 768px) {
+              width: 100px;
+              height: 35px;
+            }
+          }
+
+          .status_right {
+            display: flex;
+            align-items: center;
+
+            // time and views
+            .extra_details {
+              font-size: $text-label;
+              font-weight: 400;
+              margin-right: 5px;
+              color: gray;
+
+              @media (min-width: 576px) {
+                $text-label: 14px;
+              }
+              @media (min-width: 1200px) {
+                $text-label: 16px;
+              }
+
+              // Info share
+              .icon_design {
+                font-size: $text-body;
+                font-weight: 400;
+                margin-left: 10px;
+
+                @media (min-width: 576px) {
+                  $text-body: 16px;
+                }
+                @media (min-width: 1200px) {
+                  $text-body: 18px;
+                }
+              }
+            }
+          }
+        }
+
+        .title {
+          font-size: $text-subhead;
+          color: $deep-green;
+          padding: 0 5px;
+          margin: 0;
+          @media (min-width: 576px) {
+            font-size: 24px;
+            padding: 0 10px;
+          }
+          @media (min-width: 1200px) {
+            font-size: 28px;
+            padding: 0 20px;
+          }
+        }
+
+        .imp_date_section {
+          width: 100%;
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          gap: 10px;
+
+          .imp_date {
+            font-size: $text-body;
+            margin: 0;
+            padding: 0 5px;
+            @media (min-width: 576px) {
+              padding: 3px 10px;
+            }
+            @media (min-width: 1200px) {
+              font-size: 20px;
+              padding: 5px 20px;
+            }
+          }
+        }
+
+        .description {
+          font-size: $text-body;
+          margin: 0;
+          padding: 5px;
+          @media (min-width: 576px) {
+            padding: 10px;
+          }
+          @media (min-width: 1200px) {
+            padding: 20px;
+            font-size: 18px;
+          }
+        }
+      }
+    }
+    .news_right_section {
+      width: 100%;
+    }
+  }
+}

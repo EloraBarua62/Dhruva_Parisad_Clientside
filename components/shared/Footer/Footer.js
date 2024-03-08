@@ -4,7 +4,7 @@ import styles from "./Footer.module.scss";
 
 const Footer = () => {
   return (
-    <footer className={styles.footer_display}>
+    <div className={styles.footer_display}>
       <Container>
         <div className={styles.footer_contents}>
           {/* Title display */}
@@ -47,7 +47,7 @@ const Footer = () => {
           </div>
         </div>
       </Container>
-    </footer>
+    </div>
   );
 };
 
