@@ -3,6 +3,7 @@ import Container from "../shared/Container/Container";
 import styles from "./News.module.scss";
 import { useState } from "react";
 import { FaShareAlt } from "react-icons/fa";
+import Link from "next/link";
 
 const News = ({ newsList }) => {
   console.log(newsList);
@@ -52,7 +53,7 @@ const News = ({ newsList }) => {
                   <p className={styles.extra_details}>{time[0]}.</p>
                   <p className={styles.extra_details}>0 views</p>
                   <FaShareAlt
-                    style={{ fontSize: "16px", color: "green" }}
+                    style={{ fontSize: "16px", color: "gray" }}
                     className={styles.icon_design}
                   />
                   {/* <div className={styles.share_design}>
@@ -111,7 +112,7 @@ const News = ({ newsList }) => {
                       </div>
 
                       <FaShareAlt
-                        style={{ fontSize: "16px", color: "green" }}
+                        style={{ fontSize: "16px", color: "gray" }}
                         className={styles.icon_design}
                       />
                       {/* <div className={styles.share_design}>
@@ -127,6 +128,7 @@ const News = ({ newsList }) => {
           </div>
         </div>
       </Container>
+      <Link href="/user/news" className={styles.load_more_button}>Load More News</Link>
     </div>
   );
 };
