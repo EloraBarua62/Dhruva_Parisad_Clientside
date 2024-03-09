@@ -15,7 +15,7 @@ const User = () => {
     const schools = ["A school", "B school",'C school','DF school','S school','FS school','ET school','HH school','QW school',];
       useEffect(() => {
         dispatch(enlistedZone());
-        const count = 3;
+        const count = 4;
         dispatch(displayNews({count}));
       }, []);
     return (

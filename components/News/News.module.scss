@@ -2,24 +2,26 @@
 
 .news_display {
   width: 100%;
-  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: white;
 
-  @media (min-width: 576px) {
-    height: 350px;
-  }
+  // @media (min-width: 576px) {
+  //   height: 350px;
+  // }
 
-  @media (min-width: 768px) {
-    height: 400px;
-  }
+  // @media (min-width: 768px) {
+  //   height: 400px;
+  // }
 
   .news_contents {
     width: 100%;
+    // height: 300px;
     display: grid;
     grid-template-columns: 1;
+    margin: 50px 0px;
+    gap: 10px;
 
     @media (min-width: 576px) {
       grid-template-columns: repeat(2, 1fr);
@@ -42,13 +44,12 @@
         width: 100%;
         height: 150px;
         position: relative;
-        
 
         .image_design {
           object-fit: cover;
           border: 0;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
         }
       }
 
@@ -68,7 +69,7 @@
             padding: 20px;
           }
 
-          // Dration
+          // Duration
           .status_left {
             width: 80px;
             height: 30px;
@@ -144,25 +145,37 @@
           justify-content: start;
           align-items: center;
           gap: 10px;
+          padding: 0 5px;
+          @media (min-width: 576px) {
+            padding: 3px 10px;
+          }
+          @media (min-width: 1200px) {
+            font-size: 20px;
+            padding: 5px 20px;
+          }
 
           .imp_date {
-            font-size: $text-body;
+            font-size: 14px;
+            font-weight: 600;
             margin: 0;
-            padding: 0 5px;
-            @media (min-width: 576px) {
-              padding: 3px 10px;
-            }
+
+            //   @media (min-width: 576px) {
+            //   font-size: 16px
+            // }
             @media (min-width: 1200px) {
-              font-size: 20px;
-              padding: 5px 20px;
+              font-size: 16px;
             }
           }
         }
 
-        .description {
-          font-size: $text-body;
-          margin: 0;
-          padding: 5px;
+        .description_content {
+          height: 40px;
+          font-size: 16px;
+          padding: 0 5px;
+          margin: 0 0 10px 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
           @media (min-width: 576px) {
             padding: 10px;
           }
@@ -171,10 +184,148 @@
             font-size: 18px;
           }
         }
+
+        .details_button {
+          background-color: rgb(2, 119, 123);
+          color: white;
+          font-size: $text-body;
+          border: 0;
+          border-radius: 5px;
+          padding: 5px 10px;
+          margin-top: 10px;
+          margin-left: 10px;
+          margin-bottom: 10px;
+
+          @media (min-width: 1200px) {
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            font-size: 18px;
+          }
+        }
       }
     }
     .news_right_section {
       width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+
+      @media (min-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .previous_news_section {
+        // border: 1px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $light-green;
+        border: 0;
+        border-radius: 10px;
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+        // Image display
+        .image_section {
+          width: 30%;
+          height: 100%;
+          position: relative;
+
+          .image_design {
+            object-fit: cover;
+            border: 0;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+          }
+        }
+
+        .info_section {
+          width: 70%;
+          padding: 10px;
+
+          // Duration
+          .status_left {
+            width: 70px;
+            height: 25px;
+            background-color: $deep-green;
+            color: $brown-color;
+            font-size: $text-label;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 0;
+            border-radius: 30px;
+
+            @media (min-width: 768px) {
+              width: 100px;
+              height: 35px;
+              padding: 0;
+            }
+            @media (min-width: 1024px) {
+              padding: 0;
+            }
+          }
+
+          // News title section
+          .title {
+            font-size: $text-subhead;
+            color: $deep-green;
+            padding: 5px 0;
+            margin: 0;
+            @media (min-width: 576px) {
+              font-size: 18px;
+            }
+            @media (min-width: 1200px) {
+              font-size: 28px;
+              // padding: 0 20px;
+            }
+          }
+
+          // News details
+          .status_section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .status_right {
+              display: flex;
+              gap: 10px;
+              // time and views
+              .extra_details {
+                font-size: $text-label;
+                font-weight: 400;
+                color: gray;
+                margin: 0;
+
+                @media (min-width: 576px) {
+                  $text-label: 14px;
+                }
+                @media (min-width: 1200px) {
+                  $text-label: 16px;
+                }
+              }
+
+              // Info share
+              .icon_design {
+                font-size: $text-body;
+                font-weight: 400;
+                margin-left: 10px;
+
+                @media (min-width: 576px) {
+                  $text-body: 16px;
+                }
+                @media (min-width: 1200px) {
+                  $text-body: 18px;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
