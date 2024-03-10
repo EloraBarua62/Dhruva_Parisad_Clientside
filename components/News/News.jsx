@@ -82,7 +82,7 @@ const News = ({ newsList }) => {
                 dignissimos temporibus soluta quibusdam iste!
               </div>
 
-              <button className={styles.details_button}>Details</button>
+              <Link href={`user/news/${newsList[0]?._id}`} className={styles.details_button}>Details</Link>
             </div>
           </div>
 

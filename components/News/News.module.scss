@@ -191,12 +191,13 @@
           background-color: rgb(2, 119, 123);
           color: white;
           font-size: $text-body;
+          text-decoration: none;
           border: 0;
           border-radius: 5px;
           padding: 5px 10px;
           margin-top: 10px;
           margin-left: 10px;
-          margin-bottom: 10px;
+          margin-bottom: 20px;
           cursor: pointer;
 
           @media (min-width: 1200px) {
