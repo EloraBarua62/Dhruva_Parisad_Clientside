@@ -7,7 +7,7 @@ import {toast} from "react-hot-toast";
 import { useRouter } from "next/router";
 
 
-const AccessForm = ({ feature, route, fields }) => {
+const AccessForm = ({ feature, route, request, fields }) => {
   const {isLoading, role, userInfo, successMessage, errorMessage} = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -26,7 +26,11 @@ const AccessForm = ({ feature, route, fields }) => {
   useEffect(()=>{
     if(successMessage){
         toast.success(successMessage);
-        router.push(`/${role}`);
+        if (role === "admin") 
+          router.push(`/${role}`);
+        else{
+          router.push("/user");
+        }
         dispatch(messageClear());
         
       }
@@ -56,9 +60,16 @@ const AccessForm = ({ feature, route, fields }) => {
 
         {/* Routing */}
         <div className={styles.routing_design}>
-          <Link href={`/admin/${route}`} className={styles.routing}>
-            New member?
+          {
+            request === "user" ? <Link href={`/user/${route}`} className={styles.routing}>
+              {
+                route === "signup" ? "New member?" : "Already have an account?"
+              }           
           </Link>
+          :
+          ''
+          }
+          
           <Link href={`/`} className={styles.routing}>
             Forget password
           </Link>

@@ -12,7 +12,7 @@ const NewResult = () => {
   const table_heading = [
     "Roll",
     "Name",
-    "School ID",
+    "School",
     "Subject",
     "Year",
     "Written",
@@ -94,7 +94,7 @@ const NewResult = () => {
       </div>
 
       {/* Table data */}
-      <div>
+      <div className={styles.info_field_design}>
         {/* Displaying information of each student */}
         {resultInfo.map((head, index) => (
           <div
@@ -137,7 +137,7 @@ const NewResult = () => {
               </div>
             )}
 
-            {/* Field: Subjects and Years */}
+            {/* Field: Written and Practical */}
             {detailsLength === index ? (
               <div className="subject_year_design">
                 {/* Result update form for single user */}
@@ -198,6 +198,13 @@ const NewResult = () => {
                   <div className="child_box_design">
                     {head?.writtenPractical[0].practical}
                   </div>
+                  <div className="child_box_design">
+                    {head?.writtenPractical[0].written +
+                      head?.writtenPractical[0].practical}
+                  </div>
+                  <div className="child_box_design">
+                    {head?.writtenPractical[0].grade}
+                  </div>
                 </div>
               </div>
             )}
@@ -226,12 +233,14 @@ const NewResult = () => {
             )} */}
 
             {/* Details checking button */}
-            <button
-              className="toogle_button_design"
-              onClick={() => handleToogle(index)}
-            >
-              {detailsLength === index ? "Close" : "Open"}
-            </button>
+            <div className="button_content">
+              <button
+                className="toogle_button_design"
+                onClick={() => handleToogle(index)}
+              >
+                {detailsLength === index ? "Close" : "Open"}
+              </button>
+            </div>
           </div>
         ))}
       </div>

@@ -14,7 +14,7 @@ const getNavigation = () => {
             if(i<4)
                 mainMenu.push(allNavigation[i]);
             else
-                otherMenu.push(allNavigation[i]);;
+                otherMenu.push(allNavigation[i]);
         
             
     }

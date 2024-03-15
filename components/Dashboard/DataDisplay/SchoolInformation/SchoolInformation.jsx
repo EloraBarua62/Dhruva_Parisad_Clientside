@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { enlistedSchools, updateStatus } from "@component/app/Reducers/schoolReducer";
 import { schoolInformField } from "@component/utils/demoData";
 import Image from "next/image";
+import { ThreeDots } from "react-loader-spinner";
 
 const SchoolInformation = () => {
-  const { schoolInfo } = useSelector((state) => state.school);
+  const { isLoading,schoolInfo } = useSelector((state) => state.school);
   const [selectStatus , setSelectStatus] = useState('all');
   let [schoolDetails, setSchoolDetails] = useState({});
   const statusOptions = [
@@ -15,6 +16,10 @@ const SchoolInformation = () => {
     { title: "blocked", text: "Blocked" },
   ];
   const dispatch = useDispatch();
+
+  useEffect(() => {
+      dispatch(enlistedSchools("all"));
+    }, []);
 
   const hadleStatusChange = (e, id) => {
     const status = e.target.status.value;
@@ -52,11 +57,11 @@ const SchoolInformation = () => {
                   index % 2 == 0 ? "even_field_design" : "odd_field_design"
                 }`}
               >
-                <div className="text_details">{head.school_code}</div>
-                <div className="text_details">{head.school_name}</div>
-                <div className="text_details">{head.zone}</div>
-                <div className="text_details">{head.principalInfo.name}</div>
-                <div className="text_details">{head.principalInfo.email}</div>
+                <div className="text_details">{head?.school_code}</div>
+                <div className="text_details">{head?.school_name}</div>
+                <div className="text_details">{head?.zone}</div>
+                <div className="text_details">{head?.principalInfo?.name}</div>
+                <div className="text_details">{head?.principalInfo?.email}</div>
                 <button onClick={() => handleSchoolDetails(head)}>
                   details
                 </button>
@@ -92,7 +97,22 @@ const SchoolInformation = () => {
                   )
               )}
             </select>
-            <input type="submit" value="Update" />
+            <button type="submit" disabled={isLoading ? true : false}>
+              {isLoading ? (
+                <ThreeDots
+                  visible={true}
+                  height="80"
+                  width="80"
+                  color="#4fa94d"
+                  radius="9"
+                  ariaLabel="three-dots-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                />
+              ) : (
+                "Update"
+              )}
+            </button>
           </form>
         </div>
       ) : (

@@ -57,7 +57,7 @@ export const updateStatus = createAsyncThunk(
       const { data } = await api.patch(`/school/update-status/${id}`,{status}, {
         withCredentials: true,
       });
-      return fulfillWithValue(data);
+      return fulfillWithValue({id,data});
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -119,6 +119,32 @@ export const schoolReducer = createSlice({
     builder.addCase(schoolRegistration.fulfilled, (state, { payload }) => {
       state.isLoading = false;
       state.successMessage = payload?.message;
+    });
+
+    // Details Fetching action
+    builder.addCase(updateStatus.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(updateStatus.rejected, (state, { payload }) => {
+      state.errorMessage = payload?.error;
+      state.isLoading = false;
+    });
+    builder.addCase(updateStatus.fulfilled, (state, { payload }) => {
+      let index = payload.id;
+      let parentArray = state.schoolInfo;
+      const size = parentArray.length;
+      console.log(payload.data.schoolInfo)
+      for(let i=0 ; i<size ; i++)
+      {
+        if(parentArray[i]?._id === index){
+          parentArray[i] = payload.data.schoolInfo;
+          break;
+        }
+      }
+      console.log(parentArray)
+      state.schoolInfo = parentArray;
+      state.successMessage = payload?.message;
+      state.isLoading = false;
     });
   },
 });

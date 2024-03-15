@@ -4,8 +4,8 @@ import styles from "./login.module.scss";
 
 const login = () => {
     const feature = "LOGIN";
-    const route = "";
-    const request = "admin"
+    const route = "signup";
+    const request = "user";
     const fields = [
       ["email", "Email"],
       ["password", "Password"],

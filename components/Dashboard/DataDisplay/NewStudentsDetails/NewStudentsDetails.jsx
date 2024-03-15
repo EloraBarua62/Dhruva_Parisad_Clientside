@@ -51,7 +51,7 @@ const NewStudentsDetails = () => {
                   src={head.imageShow}
                   alt=""
                   fill="true"
-                  className={styles.image_design}
+                  className="image_design"
                 />
               </div>
             </div>

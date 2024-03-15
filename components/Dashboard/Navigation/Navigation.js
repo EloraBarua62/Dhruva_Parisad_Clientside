@@ -58,4 +58,16 @@ const allNavigation = [
   }
 ];
 
+// export const page_navigation = [
+//   { name: "/user/news", title: "News", role: ["random",] },
+//   {
+//     name: "/user/exam_registration",
+//     title: "Exam Registration",
+//     role: "student",
+//   },
+//   { name: "/user/school_registration", title: "School Registration", role: "principal" },
+//   { name: "/user/result", title: "Result" },
+//   { name: "/admin/login", title: "Login" },
+// ];
+
 export default allNavigation;

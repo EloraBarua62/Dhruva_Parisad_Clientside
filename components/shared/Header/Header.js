@@ -5,16 +5,30 @@ import { useState } from "react";
 import Container from "../Container/Container";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const pathname = usePathname();
   const [openHamburger, setOpenHamburger] = useState(false);
+  const {role} = useSelector((state) => state.auth);
   const page_navigation = [
-    { name: "/user/news", title: "News" },
-    { name: "/user/exam_registration", title: "Exam Registration" },
-    { name: "/user/school_registration", title: "School Registration" },
-    { name: "/user/result", title: "Result" },
-    { name: "/admin/login", title: "Login" },
+    { name: "/user/news", title: "News", user_role: ["all"] },
+    {
+      name: "/user/exam_registration",
+      title: "Exam Registration",
+      user_role: ["student", "admin"],
+    },
+    {
+      name: "/user/school_registration",
+      title: "School Registration",
+      user_role: ["principal", "admin"],
+    },
+    {
+      name: "/user/result",
+      title: "Result",
+      user_role: ["student", "principal", "admin"],
+    },
+    { name: "/user/login", title: "Login", user_role: ["all"] },
   ];
   return (
     <div className={styles.header_display}>
@@ -28,19 +42,25 @@ const Header = () => {
           </div>
 
           <div className={styles.all_routes_large_device}>
-            {page_navigation.map((page, index) => (
-              <Link
-                key={index}
-                className={`link ${
-                  pathname === `${page.name}`
-                    ? styles.active
-                    : styles.inactive
-                }`}
-                href={`${page.name}`}
-              >
-                {page.title}
-              </Link>
-            ))}
+            {page_navigation.map((page, index) =>
+              page.user_role.map((privacy) => {
+                if ((role != "" && privacy == role) || privacy == "all") {
+                  return (
+                    <Link
+                      key={index}
+                      className={`link ${
+                        pathname === `${page.name}`
+                          ? styles.active
+                          : styles.inactive
+                      }`}
+                      href={`${page.name}`}
+                    >
+                      {page.title}
+                    </Link>
+                  );
+                }
+              })
+            )}
           </div>
           <div className={styles.icon_display}>
             {openHamburger ? (
@@ -65,19 +85,25 @@ const Header = () => {
       {openHamburger && (
         <div className={styles.small_device_overlay}>
           <div className={styles.all_routes_small_device}>
-            {page_navigation.map((page, index) => (
-              <Link
-                key={index}
-                className={`link ${
-                  pathname === `${page.name}`
-                    ? styles.active_small
-                    : styles.inactive_small
-                }`}
-                href={`${page.name}`}
-              >
-                {page.title}
-              </Link>
-            ))}
+            {page_navigation.map((page, index) =>
+              page.user_role.map((privacy) => {
+                if ((role != "" && privacy == role) || privacy == "all") {
+                  return (
+                    <Link
+                      key={index}
+                      className={`link ${
+                        pathname === `${page.name}`
+                          ? styles.active_small
+                          : styles.inactive_small
+                      }`}
+                      href={`${page.name}`}
+                    >
+                      {page.title}
+                    </Link>
+                  );
+                }
+              })
+            )} 
           </div>
         </div>
       )}
