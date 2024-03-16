@@ -32,25 +32,36 @@ const UpdateNews = () => {
   }, []);
 
   return (
-    <div>
-      <div>
+    <div className={styles.update_news_design}>
+      <div className={styles.all_news_contents}>
+        <div className={styles.left_section_heading}>Privious News</div>
         {newsList.map((single_news, index) => (
-          <div key={index}>
-            <h1>{single_news.news_title}</h1>
-            <p>{single_news.news_details}</p>
-            <h1>{single_news.createdAt - Date.now()}</h1>
+          <div key={index} className={styles.news_content}>
+            <div className={styles.title}>{single_news.news_title}</div>
+            <div className={styles.description}>{single_news.news_details}</div>
+            <div className={styles.time}>
+              Date: {single_news.updatedAt.substring(8, 10)}
+              {"."}
+              {single_news.updatedAt.substring(5, 7)}
+              {"."}
+              {single_news.updatedAt.substring(0, 4)}
+            </div>
           </div>
         ))}
       </div>
-      <div>
-        <h1>Publish New News</h1>
+      <div className={styles.update_news}>
+        <div className={styles.new_news}>Publish New News</div>
         <form onSubmit={handleNewsSubmission}>
-          <label htmlFor="news_title">Title</label>
+          <label className={styles.title_design} htmlFor="news_title">
+            Title
+          </label>
           <input name="news_title" id="" />
-          <label htmlFor="news_details">Describe</label>
+          <label className={styles.title_design} htmlFor="news_details">
+            Describe
+          </label>
           <textarea name="news_details" id="" cols="30" rows="10"></textarea>
           {/* Image */}
-          <h1 className={styles.image_title}>Add Your Image</h1>
+          <div className={styles.image_title}>Add Your Image</div>
           <div className={styles.image_field_design}>
             <label htmlFor="image" className={styles.image_label}>
               {imageShow ? (
@@ -79,7 +90,11 @@ const UpdateNews = () => {
             />
           </div>
 
-          <input type="submit" value="Submit" />
+          <input
+            className={styles.submit_button}
+            type="submit"
+            value="Submit"
+          />
         </form>
       </div>
     </div>
