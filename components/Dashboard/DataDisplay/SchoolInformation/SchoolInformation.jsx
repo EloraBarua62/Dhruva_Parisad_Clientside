@@ -5,6 +5,7 @@ import { enlistedSchools, updateStatus } from "@component/app/Reducers/schoolRed
 import { schoolInformField } from "@component/utils/demoData";
 import Image from "next/image";
 import { ThreeDots } from "react-loader-spinner";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 const SchoolInformation = () => {
   const { isLoading,schoolInfo } = useSelector((state) => state.school);
@@ -17,6 +18,14 @@ const SchoolInformation = () => {
   ];
   const dispatch = useDispatch();
 
+  const table_heading = [
+    "School Id",
+    "School Name",
+    "Zone",
+    "Principal Name",
+    "Email",
+    "Details",
+  ];
   useEffect(() => {
       dispatch(enlistedSchools("all"));
     }, []);
@@ -42,6 +51,14 @@ const SchoolInformation = () => {
             <option value="confirmed">Confirmed</option>
             <option value="blocked">Blocked</option>
           </select>
+        </div>
+
+        <div className={styles.heading_field_design}>
+          {table_heading.map((head, index) => (
+            <div key={index} className={styles.single_heading}>
+              {head}
+            </div>
+          ))}
         </div>
         <div>
           {schoolInfo
@@ -73,18 +90,26 @@ const SchoolInformation = () => {
       Object.keys(schoolDetails).length !== 0 &&
       schoolDetails.constructor === Object ? (
         <div className={styles.school_details}>
-          <div className="text_details">{schoolDetails.school_code}</div>
-          <div className="text_details">{schoolDetails.school_code}</div>
-          <div className="text_details">{schoolDetails.school_name}</div>
-          <div className="text_details">{schoolDetails.zone}</div>
-          <div className="text_details">
-            {schoolDetails.principalInfo?.name}
+          <div className={styles.heading_design}>
+            <div className={styles.school_head}>School Information</div>
+            <button onClick={() => setSchoolDetails({})}>
+              <IoMdCloseCircleOutline className={styles.button_design} />
+            </button>
           </div>
-          <div className="text_details">
-            {schoolDetails.principalInfo?.email}
+          <div className={styles.school_name}>
+            {schoolDetails.school_name}, {schoolDetails.zone}
           </div>
-          <div className="text_details">{schoolDetails.status}</div>
-          <h1>Change Status</h1>
+          <div className={styles.school_code}>
+            School Code: <span>{schoolDetails.school_code}</span>
+          </div>
+          <div className={styles.info}>
+            Principal Name: {schoolDetails.principalInfo?.name}
+          </div>
+          <div className={styles.info}>
+            Email: {schoolDetails.principalInfo?.email}
+          </div>
+          <div className={styles.info}>Status: {schoolDetails.status}</div>
+          <div className={styles.status}>Change Status</div>
           <form onSubmit={(e) => hadleStatusChange(e, schoolDetails._id)}>
             <label htmlFor="status">Select Status</label>
             <select name="status">
@@ -97,7 +122,11 @@ const SchoolInformation = () => {
                   )
               )}
             </select>
-            <button type="submit" disabled={isLoading ? true : false}>
+            <button
+              className={styles.submit_button}
+              type="submit"
+              disabled={isLoading ? true : false}
+            >
               {isLoading ? (
                 <ThreeDots
                   visible={true}

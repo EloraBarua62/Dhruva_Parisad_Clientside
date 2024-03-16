@@ -1,22 +1,134 @@
 @import "../../../../styles/config";
 
 .schoolInfo_design {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  width: 970px;
+  position: relative;
+  padding: 20px;
 
   .school_table {
     height: 100%;
+
+    .heading_field_design {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 5px;
+      border: 0px;
+      border-radius: 5px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      background-color: $medium-green;
+      margin-top: 20px;
+
+      @media (min-width: 576px) {
+        gap: 10px;
+      }
+      @media (min-width: 1400px) {
+        gap: 20px;
+      }
+
+      .single_heading {
+        max-width: 114px;
+        min-width: 114px;
+        padding: 10px 2px;
+        text-align: center;
+        margin-bottom: 5px;
+        border: 0;
+        border-radius: 5px;
+        font-weight: 600;
+        color: white;
+      }
+    }
   }
 
   .school_details {
+    position: absolute;
+    top: 20px;
+    right: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: $light-green;
-    border: 1px solid $deep-green;
-    border-radius: 5px;
+    background-color: #f9fad1;
+    border: 3px solid $deep-green;
+    border-radius: 10px;
+    padding: 25px;
+
+    .heading_design {
+      display: flex;
+      justify-content: space-between;
+      gap: 25px;
+      margin-bottom: 20px;
+
+      .school_head {
+        font-size: $text-body;
+        color: $deep-green;
+        @media (min-width: 768px) {
+          font-size: 20px;
+        }
+
+        @media (min-width: 1200px) {
+          font-size: 25px;
+        }
+      }
+
+      button {
+        // width: 50px;
+        border: 0;
+        background-color: transparent;
+
+        .button_design {
+          font-size: 25px;
+          color: $deep-green;
+        }
+      }
+    }
+
+    .school_name {
+      font-size: $text-body;
+      font-weight: 700;
+
+      @media (min-width: 1200px) {
+        font-size: 18px;
+      }
+    }
+
+    .school_code {
+      font-size: 15px;
+      margin-bottom: 20px;
+      color: gray;
+    }
+
+    .info {
+      font-size: $text-body;
+      padding: 2px 0;
+    }
+
+    .status {
+      font-size: $text-body;
+      font-weight: 700;
+      margin: 20px 0 10px 0;
+      color: $deep-green;
+
+      @media (min-width: 1200px) {
+        font-size: 18px;
+      }
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .submit_button {
+      background-color: $deep-green;
+      color: $brown-color;
+      border: 0;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      padding: 3px 5px;
+      margin-left: 5px;
+    }
   }
 }
