@@ -184,7 +184,7 @@ const ExamRegistrationForm = () => {
             <div>
               <h1 className={styles.image_title}>Select Subjects & Years </h1>
               {subjectYear.map((data, index) => (
-                <div key={index}>
+                <div key={index} className={styles.sub_year_content}>
                   <select
                     name="subject"
                     id=""
@@ -209,12 +209,20 @@ const ExamRegistrationForm = () => {
                       </option>
                     ))}
                   </select>
-                  <button onClick={(e) => handleDelete(e, index)}>
+                  <button
+                    className={styles.delete_button}
+                    onClick={(e) => handleDelete(e, index)}
+                  >
                     Delete
                   </button>
                 </div>
               ))}
-              <button onClick={handleSubjectYear}>Add More</button>
+              <button
+                onClick={handleSubjectYear}
+                className={styles.addition_button}
+              >
+                Add More
+              </button>
             </div>
 
             {/* Image */}

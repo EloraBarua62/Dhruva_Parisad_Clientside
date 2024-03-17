@@ -32,6 +32,7 @@ const News = ({ newsList }) => {
 
   return (
     <div className={styles.news_display}>
+      <h1 className={styles.heading}>News</h1>
       <Container>
         <div className={styles.news_contents}>
           <div className={styles.news_left_section}>
@@ -82,7 +83,12 @@ const News = ({ newsList }) => {
                 dignissimos temporibus soluta quibusdam iste!
               </div>
 
-              <Link href={`user/news/${newsList[0]?._id}`} className={styles.details_button}>Details</Link>
+              <Link
+                href={`user/news/${newsList[0]?._id}`}
+                className={styles.details_button}
+              >
+                Details
+              </Link>
             </div>
           </div>
 
@@ -128,7 +134,9 @@ const News = ({ newsList }) => {
           </div>
         </div>
       </Container>
-      <Link href="/user/news" className={styles.load_more_button}>Load More News</Link>
+      <Link href="/user/news" className={styles.load_more_button}>
+        Load More News
+      </Link>
     </div>
   );
 };

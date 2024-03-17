@@ -3,15 +3,26 @@
 .form_design {
   width: 100%;
   background-color: white;
+  padding: 50px;
+  border: 0;
+  border-radius: 10px;
 
   .heading_design {
     text-align: center;
     // institution name design
     .institute_name {
-      font-size: $text-head;
+      font-size: $text-subhead;
       font-weight: 800;
       color: $deep-green;
-      margin: 0;
+      margin: 0 0 10px 0;
+
+      @media (min-width: 768px) {
+        font-size: 28px;
+      }
+
+      @media (min-width: 1200px) {
+        font-size: 30px;
+      }
     }
 
     // institution name design
@@ -37,6 +48,7 @@
     .exam_title {
       font-size: $text-body;
       color: $medium-green;
+      margin-bottom: 20px;
     }
   }
 
@@ -97,6 +109,29 @@
         font-weight: 500;
         margin: 0;
       }
+
+      .sub_year_content {
+        .delete_button {
+          background-color: red;
+          border: 0;
+          border-radius: 5px;
+          padding: 5px;
+          color: white;
+          margin-left: 5px;
+          cursor: pointer;
+        }
+      }
+
+      .addition_button {
+        background-color: green;
+          border: 0;
+          border-radius: 5px;
+          padding: 5px;
+          color: white;
+         margin-top: 5px;
+          cursor: pointer;
+      }
+
       .image_field_design {
         .image_label {
           width: 100px;

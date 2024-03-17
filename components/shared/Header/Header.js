@@ -5,12 +5,14 @@ import { useState } from "react";
 import Container from "../Container/Container";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const pathname = usePathname();
   const [openHamburger, setOpenHamburger] = useState(false);
   const {role} = useSelector((state) => state.auth);
+  const router = useRouter();
   const page_navigation = [
     { name: "/user/news", title: "News", user_role: ["all"] },
     {
@@ -28,8 +30,14 @@ const Header = () => {
       title: "Result",
       user_role: ["student", "principal", "admin"],
     },
-    { name: "/user/login", title: "Login", user_role: ["all"] },
+    // { name: "/user/login", title: "Login", user_role: ["all"] },
   ];
+
+  const handleLogout = () => {
+    document.cookie =
+      "accessToken=; expires=Thu, 01 Jan 1971 00:00:00 UTC; path=/;";
+      router.push('/login');
+  }
   return (
     <div className={styles.header_display}>
       {/* Name and logo display */}
@@ -60,6 +68,18 @@ const Header = () => {
                   );
                 }
               })
+            )}
+            {role != "" ? (
+              <button onClick={handleLogout}>Log Out</button>
+            ) : (
+              <Link
+                className={`link ${
+                  pathname === "/user/login" ? styles.active : styles.inactive
+                }`}
+                href={"/user/login"}
+              >
+                Login
+              </Link>
             )}
           </div>
           <div className={styles.icon_display}>
@@ -103,7 +123,7 @@ const Header = () => {
                   );
                 }
               })
-            )} 
+            )}
           </div>
         </div>
       )}
