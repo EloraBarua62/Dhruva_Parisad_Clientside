@@ -1,5 +1,5 @@
 import styles from "./ExamRegistrationForm.module.scss";
-import {regFormField} from "../../utils/demoData";
+import { regFormField } from "../../utils/demoData";
 import Image from "next/image";
 import { CiImageOn } from "react-icons/ci";
 import { useEffect, useState } from "react";
@@ -7,11 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { studentRegistration } from "@component/app/Reducers/studentReducer";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
-import { messageClear} from "@component/app/Reducers/studentReducer";
-import { enlistedSchools, enlistedZone } from "@component/app/Reducers/schoolReducer";
-
-
-
+import { messageClear } from "@component/app/Reducers/studentReducer";
+import {
+  enlistedSchools,
+  enlistedZone,
+} from "@component/app/Reducers/schoolReducer";
 
 const ExamRegistrationForm = () => {
   // Import state variable
@@ -32,6 +32,7 @@ const ExamRegistrationForm = () => {
   const [subjectYear, setSubjectYear] = useState([
     { subject: "poem", year: "primary" },
   ]);
+  const [zoneValue, setZoneValue] = useState("Dhaka");
 
   // Function: Add Image files
   const handleImage = (e) => {
@@ -159,7 +160,11 @@ const ExamRegistrationForm = () => {
           <div className={styles.exam_info_section}>
             <div className={styles.field_design}>
               <label htmlFor="zone">Select Your Examination Zone</label>
-              <select name="zone" id="" onChange={(e) => handleZone(e)}>
+              <select
+                name="zone"
+                id=""
+                onChange={(e) => setZoneValue(e.target.value)}
+              >
                 {zoneInfo.map((zone, index) => (
                   <option key={index} value={zone.name}>
                     {zone.name}
@@ -172,11 +177,17 @@ const ExamRegistrationForm = () => {
             <div className={styles.field_design}>
               <label htmlFor="school">Select Your Examination school</label>
               <select name="school" id="">
-                {schoolInfo?.map((school, index) => (
-                  <option key={index} value={school.name}>
-                    {school.name}
-                  </option>
-                ))}
+                {schoolInfo
+                  .filter((each) => {
+                    if (zoneValue === each.zone) {
+                      return each;
+                    }
+                  })
+                  .map((school, index) => (
+                    <option key={index} value={school.name}>
+                      {school.name}
+                    </option>
+                  ))}
               </select>
             </div>
 

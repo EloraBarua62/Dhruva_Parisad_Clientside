@@ -1,7 +1,8 @@
 import { schoolFormField } from '@component/utils/demoData';
 import styles from './SchoolRegistrationForm.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { schoolRegistration } from '@component/app/Reducers/schoolReducer';
+import { enlistedZone, schoolRegistration } from '@component/app/Reducers/schoolReducer';
+import { useEffect } from 'react';
 
 const SchoolRegistrationForm = () => {
   // Import state variable
@@ -9,6 +10,7 @@ const SchoolRegistrationForm = () => {
 
   // Import by-default functions
   const dispatch = useDispatch();
+
 
   // Set Initial values for UI
   const currentYear = new Date().getFullYear();
@@ -41,6 +43,8 @@ const SchoolRegistrationForm = () => {
     dispatch(schoolRegistration(state));
     console.log(state);
   };
+
+  
   return (
     <div className={styles.form_design}>
       {/* Heading */}

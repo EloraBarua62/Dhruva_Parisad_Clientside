@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 export default function App({ Component, pageProps }) {
   const [role, setRole] = useState("");
 
-  useLayoutEffect(() => {
+  useEffect(() => {
       const token_string = document.cookie;
       // const expire_date = document.cookie.expires;
       // console.log(expire_date)
@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }) {
         setRole(decodeToken.role);
       }   
     console.log(role);
-  },[]);
+  },[role]);
 
   return (
     <Provider store={store}>

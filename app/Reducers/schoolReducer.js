@@ -105,7 +105,8 @@ export const schoolReducer = createSlice({
     });
     builder.addCase(enlistedZone.fulfilled, (state, { payload }) => {
       state.isLoading = false;
-      state.zoneInfo = payload.zone_list;
+      state.zoneInfo = payload?.zone_list;
+      state.schoolInfo = payload?.schoolInfo || [];
       state.successMessage = payload?.message;
     });
     // Details Fetching action

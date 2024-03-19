@@ -70,12 +70,12 @@ export const authReducer = createSlice({
     });
     builder.addCase(userSignup.rejected, (state, { payload }) => {
       state.isLoading = false;
-      state.errorMessage = payload.error;
+      state.errorMessage = payload?.error;
     });
     builder.addCase(userSignup.fulfilled, (state, { payload }) => {
       state.isLoading = false;
-      state.userInfo = payload.userInfo;
-      state.successMessage = payload.message;
+      state.userInfo = payload?.userInfo;
+      state.successMessage = payload?.message;
     });
 
     // Login action
@@ -84,12 +84,12 @@ export const authReducer = createSlice({
     });
     builder.addCase(userLogin.rejected, (state, { payload }) => {
       state.isLoading = false;
-      state.errorMessage = payload.error;
+      state.errorMessage = payload?.error;
     });
     builder.addCase(userLogin.fulfilled, (state, { payload }) => {
       state.isLoading = false;
-      state.userInfo = payload.userInfo;
-      state.successMessage = payload.message;
+      state.userInfo = payload?.userInfo;
+      state.successMessage = payload?.message;
       state.role = returnRole();
     });
   },

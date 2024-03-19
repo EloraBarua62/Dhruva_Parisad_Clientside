@@ -36,7 +36,7 @@ const Header = () => {
   const handleLogout = () => {
     document.cookie =
       "accessToken=; expires=Thu, 01 Jan 1971 00:00:00 UTC; path=/;";
-      router.push('/login');
+      router.push('/user/login');
   }
   return (
     <div className={styles.header_display}>

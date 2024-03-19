@@ -11,6 +11,8 @@ const News = ({ newsList }) => {
   const date = new Date().getDate();
   const month = new Date().getMonth();
   const time = [];
+  
+  
   newsList.map((news) => {
     let value;
     if (year - parseInt(news.updatedAt.substring(0, 4)) > 0) {

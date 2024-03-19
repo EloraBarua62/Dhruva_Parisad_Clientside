@@ -19,18 +19,26 @@ export const newsPublish = createAsyncThunk(
 export const displayNews = createAsyncThunk(
   "news/displayNews",
   async (info, { rejectWithValue, fulfillWithValue }) => {
-    console.log(info)
+    console.log(info);
     try {
-      const { data } = await api.get("/news/all-news"+'?'+ new URLSearchParams(info), {
-        withCredentials: true,
-      });
-      return fulfillWithValue(data);
+      const {count} = info;
+      if (info?.count == 4) {
+        const data = await api.get(`/news/all-news?count=${count}`, {
+          withCredentials: true,
+        });
+        return fulfillWithValue(data);
+      } 
+      else {
+        const data = await api.get(`/news/all-news`, {
+          withCredentials: true,
+        });
+        return fulfillWithValue(data);
+      }     
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
   }
 );
-
 
 export const newsReducer = createSlice({
   name: "news",
@@ -47,31 +55,32 @@ export const newsReducer = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(displayNews.pending, (state)=> {
-        state.isLoading = true;
+    builder.addCase(displayNews.pending, (state) => {
+      state.isLoading = true;
     });
-    builder.addCase(displayNews.rejected, (state, {payload})=> {
-        state.errorMessage = payload.error;
-        state.isLoading = false;
+    builder.addCase(displayNews.rejected, (state, { payload }) => {
+      state.errorMessage = payload?.error;
+      state.isLoading = false;
     });
     builder.addCase(displayNews.fulfilled, (state, { payload }) => {
-      state.successMessage = payload.message;
-      state.newsList = payload.newsList;
+      console.log(payload)
+      state.successMessage = payload?.message;
+      state.newsList = payload?.data?.newsList;
       state.isLoading = false;
     });
 
-    builder.addCase(newsPublish.pending, (state)=> {
-        state.isLoading = true;
+    builder.addCase(newsPublish.pending, (state) => {
+      state.isLoading = true;
     });
-    builder.addCase(newsPublish.rejected, (state, {payload})=> {
-        state.errorMessage = payload.error;
-        state.isLoading = false;
-    });
-    builder.addCase(newsPublish.fulfilled, (state, { payload }) => {
-      state.successMessage = payload.message;
+    builder.addCase(newsPublish.rejected, (state, { payload }) => {
+      state.errorMessage = payload?.error;
       state.isLoading = false;
     });
-  }
+    builder.addCase(newsPublish.fulfilled, (state, { payload }) => {
+      state.successMessage = payload?.message;
+      state.isLoading = false;
+    });
+  },
 });
 
 export const { messageClear } = newsReducer.actions;

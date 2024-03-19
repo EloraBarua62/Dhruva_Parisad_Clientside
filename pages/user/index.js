@@ -1,15 +1,18 @@
 import { displayNews } from "@component/app/Reducers/newsReducer";
+import { enlistedZone } from "@component/app/Reducers/schoolReducer";
 import Banner from "@component/components/Banner/Banner";
 import News from "@component/components/News/News";
 import Container from "@component/components/shared/Container/Container";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import Marquee from "react-fast-marquee";
+import { ThreeDots } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 
 const User = () => {
   const dispatch = useDispatch();
-  const { newsList } = useSelector((state) => state.news);
+  const { newsList, isLoading } = useSelector((state) => state.news);
+  const { zone } = useSelector((state) => state.school);
 
   const schools = [
     "A school",
@@ -27,13 +30,27 @@ const User = () => {
     dispatch(displayNews({ count }));
   }, []);
 
+
   return (
     <div className="user_page">
       {/* Banner section with responsive */}
       <Banner />
 
       {/* News display */}
-      <News newsList={newsList} />
+      {isLoading ? (
+        <ThreeDots
+          visible={true}
+          height="80"
+          width="80"
+          color="#4fa94d"
+          radius="9"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      ) : (
+        <News newsList={newsList} />
+      )}
 
       {/* School Display section with responsive */}
       <div className="school_display">
