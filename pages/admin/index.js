@@ -62,7 +62,6 @@ const array = getNavigation();
         setCurrentComponent={setCurrentComponent}
       />
       <div>
-        <Navbar />
         <CurrentState currentComponent={currentComponent}></CurrentState>
       </div>
     </div>

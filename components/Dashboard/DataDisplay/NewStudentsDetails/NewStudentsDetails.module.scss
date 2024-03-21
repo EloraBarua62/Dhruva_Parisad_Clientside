@@ -3,6 +3,7 @@
 .newresult_design {
   padding: 10px;
   width: 1000px;
+  position: relative;
 
   .heading_field_design {
     width: 100%;
@@ -37,7 +38,82 @@
   }
 
   .info_field_design{
-    border-bottom: 1px solid $deep-green;
-     
+    border-bottom: 1px solid $deep-green;    
+  }
+
+  .student_details {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f9fad1;
+    border: 3px solid $deep-green;
+    border-radius: 10px;
+    padding: 25px;
+
+    .heading_design {
+      display: flex;
+      justify-content: space-between;
+      gap: 25px;
+      margin-bottom: 20px;
+
+      .school_head {
+        font-size: $text-body;
+        color: $deep-green;
+        @media (min-width: 768px) {
+          font-size: 20px;
+        }
+
+        @media (min-width: 1200px) {
+          font-size: 25px;
+        }
+      }
+
+      button {
+        // width: 50px;
+        border: 0;
+        background-color: transparent;
+
+        .button_design {
+          font-size: 25px;
+          color: $deep-green;
+        }
+      }
+    }
+
+    .school_name {
+      font-size: $text-body;
+      font-weight: 700;
+      margin-bottom: 10px;
+
+      @media (min-width: 1200px) {
+        font-size: 18px;
+      }
+    }
+
+    form{
+      width: 100%;
+      .input_field_design{
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        outline: none;
+        border: 1px solid $deep-green;
+        border-radius: 5px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+      }
+    }
+
+    .submit_button {
+      background-color: $deep-green;
+      color: $brown-color;
+      border: 0;
+      border-radius: 5px;
+      padding: 3px 10px;
+      margin-left: 5px;
+    }
   }
 }

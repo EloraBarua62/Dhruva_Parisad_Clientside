@@ -5,7 +5,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const studentRegistration = createAsyncThunk(
   "student/studentRegistration",
   async (info, { rejectWithValue, fulfillWithValue }) => {
-    console.log(info);
     try {
       const { data } = await api.post("/student/registration", info, {
         withCredentials: true,
@@ -18,15 +17,30 @@ export const studentRegistration = createAsyncThunk(
   }
 );
 
+export const updateInfo = createAsyncThunk(
+  "student/updateInfo",
+  async (info, { rejectWithValue, fulfillWithValue }) => {
+    const id = info._id;
+    console.log(id, info)
+    try {
+      const { data } = await api.patch(`/student/update-info/${id}`, info, {
+        withCredentials: true,
+      });
+      console.log(data)
+      return fulfillWithValue({id, info, data});
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const studentDetails = createAsyncThunk(
   "student/studentDetails",
   async (_,{ rejectWithValue, fulfillWithValue }) => {
-    console.log('elora barua')
     try {
       const { data } = await api.get("/student/details", {
         withCredentials: true,
       });
-      console.log(data)
       return fulfillWithValue(data);
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -77,6 +91,28 @@ export const studentReducer = createSlice({
       state.isLoading = false;
       state.studentInfo = payload.studentInfo;
       state.successMessage = payload?.message;
+    });
+
+    // Details Fetching action
+    builder.addCase(updateInfo.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(updateInfo.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      state.errorMessage = payload?.error;
+    });
+    builder.addCase(updateInfo.fulfilled, (state, { payload }) => {
+      let parentArray = state.studentInfo;
+      const id = payload.id;
+      for(let i=0 ; i < parentArray.length ; i++){
+        if(parentArray[i]._id === id){
+          parentArray[i] = payload.info;
+          break;
+        }
+      }
+      state.studentInfo = parentArray;
+      state.successMessage = payload?.message;
+      state.isLoading = false;
     });
 }
 })

@@ -1,12 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './NewStudentsDetails.module.scss';
-import { useEffect } from 'react';
-import { studentDetails } from '@component/app/Reducers/studentReducer';
+import { useEffect, useState } from 'react';
+import { studentDetails, updateInfo } from '@component/app/Reducers/studentReducer';
 import Image from 'next/image';
+import { ThreeDots } from 'react-loader-spinner';
+import { IoMdCloseCircleOutline } from 'react-icons/io';
+import { enlistedZone } from '@component/app/Reducers/schoolReducer';
 
 const NewStudentsDetails = () => {
     const { isLoading, studentInfo} =
       useSelector((state) => state.student);
+
+    const { zoneInfo, schoolInfo } = useSelector((state) => state.school);
+    const [updateStudentInfo, setUpdateStudentInfo] = useState({});
+    const [zoneValue, setZoneValue] = useState("Dhaka");
     const dispatch = useDispatch(); 
     const table_heading = [
       "Roll",
@@ -16,7 +23,43 @@ const NewStudentsDetails = () => {
       "Zone",
       "School Name",
       "Image",
+      "Details"
     ];
+
+    const [state, setState] = useState({
+      student_name: "",
+      father_name: "",
+      mother_name: "",
+      phone_no: "",
+    });
+
+    const handleUpdateInfo = (info) => (e) => {
+      e.preventDefault();
+      const student_name = state.student_name;
+      const father_name = state.father_name;
+      const mother_name = state.mother_name;
+      const phone_no = state.phone_no;
+      const data = {...info,student_name, father_name, mother_name, phone_no};
+      dispatch(updateInfo(data));
+      setState({
+        student_name: "",
+        father_name: "",
+        mother_name: "",
+        phone_no: "",
+      });
+      console.log(data)
+    };
+
+    const handleStudentDetails = (student) => {
+      // dispatch(enlistedZone());
+      setState({
+        student_name: student.student_name,
+        father_name: student.father_name,
+        mother_name: student.mother_name,
+        phone_no: student.phone_no
+      })
+      setUpdateStudentInfo(student);
+    };
 
     useEffect(() => {
         dispatch(studentDetails());
@@ -54,9 +97,176 @@ const NewStudentsDetails = () => {
                   className="image_design"
                 />
               </div>
+              <button onClick={() => handleStudentDetails(head)}>Update</button>
             </div>
           ))}
         </div>
+
+        {updateStudentInfo &&
+        Object.keys(updateStudentInfo).length !== 0 &&
+        updateStudentInfo.constructor === Object ? (
+          <div className={styles.student_details}>
+            <div className={styles.heading_design}>
+              <div className={styles.student_head}>Student Information</div>
+              <button onClick={() => setUpdateStudentInfo({})}>
+                <IoMdCloseCircleOutline className={styles.button_design} />
+              </button>
+            </div>
+            <div className={styles.school_name}>
+              {updateStudentInfo.school}, {updateStudentInfo.zone}
+            </div>
+            <form onSubmit={handleUpdateInfo(updateStudentInfo)}>
+              <input
+                type="text"
+                className={styles.input_field_design}
+                name="name"
+                defaultValue={updateStudentInfo.student_name}
+                onChange={(e) =>
+                  setState({
+                    ...state,
+                    student_name: e.target.value,
+                  })
+                }
+              />
+              <input
+                type="text"
+                className={styles.input_field_design}
+                name="father_name"
+                defaultValue={updateStudentInfo.father_name}
+                onChange={(e) =>
+                  setState({
+                    ...state,
+                    father_name: e.target.value,
+                  })
+                }
+              />
+              <input
+                type="text"
+                className={styles.input_field_design}
+                name="mother_name"
+                defaultValue={updateStudentInfo.mother_name}
+                onChange={(e) =>
+                  setState({
+                    ...state,
+                    mother_name: e.target.value,
+                  })
+                }
+              />
+              <input
+                type="text"
+                className={styles.input_field_design}
+                name="phone_no"
+                defaultValue={updateStudentInfo.phone_no}
+                onChange={(e) =>
+                  setState({
+                    ...state,
+                    phone_no: e.target.value,
+                  })
+                }
+              />
+              {/* <div className={styles.field_design}>
+                <label htmlFor="zone">Select Your Examination Zone</label>
+                <select
+                  name="zone"
+                  id=""
+                  onChange={(e) => setZoneValue(e.target.value)}
+                >
+                  {zoneInfo.map((zone, index) => (
+                    <option key={index} value={zone.name}>
+                      {zone.name}
+                    </option>
+                  ))}
+                </select>
+              </div> */}
+
+              {/* Field: school name */}
+              {/* <div className={styles.field_design}>
+                <label htmlFor="school">Select Your Examination school</label>
+                <select name="school" id="">
+                  {schoolInfo
+                    .filter((each) => {
+                      if (zoneValue === each.zone) {
+                        return each;
+                      }
+                    })
+                    .map((school, index) => (
+                      <option key={index} value={school.name}>
+                        {school.name}
+                      </option>
+                    ))}
+                </select>
+              </div> */}
+
+              {/* Field: Subject year */}
+              {/* <div>
+                <h1 className={styles.image_title}>Select Subjects & Years </h1>
+                {subjectYear.map((data, index) => (
+                  <div key={index} className={styles.sub_year_content}>
+                    <select
+                      name="subject"
+                      id=""
+                      value={data.subject}
+                      onChange={(e) => handleChange(e, index)}
+                    >
+                      {subject_list.map((subject, i) => (
+                        <option key={i} value={subject}>
+                          {subject}
+                        </option>
+                      ))}
+                    </select>
+                    <select
+                      name="year"
+                      id=""
+                      value={data.year}
+                      onChange={(e) => handleChange(e, index)}
+                    >
+                      {year_list.map((year, idx) => (
+                        <option key={idx} value={year}>
+                          {year}
+                        </option>
+                      ))}
+                    </select>
+                    <button
+                      className={styles.delete_button}
+                      onClick={(e) => handleDelete(e, index)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ))}
+                <button
+                  onClick={handleSubjectYear}
+                  className={styles.addition_button}
+                >
+                  Add More
+                </button>
+              </div> */}
+
+              <button
+                className={styles.submit_button}
+                type="submit"
+                disabled={isLoading ? true : false}
+              >
+                {isLoading ? (
+                  <ThreeDots
+                    visible={true}
+                    height="80"
+                    width="80"
+                    color="#4fa94d"
+                    radius="9"
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                  />
+                ) : (
+                  "Update"
+                )}
+              </button>
+            </form>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
 };
