@@ -12,15 +12,14 @@ const AccessForm = ({ feature, route, request, fields }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    const name = event.target.name.value || "";
+    const name = event.target.name.value || "" ;
     const email = event.target.email.value;
-    const password = event.target.password.value;
+    const password = event.target.password?.value || 0 ;
+    const role = request;
     
-    name === "" ? dispatch(userLogin({email,password})) : dispatch(userSignup({name, email, password }));
-    
+    name === "" ? dispatch(userLogin({email,password})) : dispatch(userSignup({name, email, role, password }));  
   };
 
   useEffect(()=>{
@@ -31,8 +30,7 @@ const AccessForm = ({ feature, route, request, fields }) => {
         else{
           router.push("/user");
         }
-        dispatch(messageClear());
-        
+        dispatch(messageClear());       
       }
     if (errorMessage){
         toast.error(errorMessage);
@@ -60,16 +58,14 @@ const AccessForm = ({ feature, route, request, fields }) => {
 
         {/* Routing */}
         <div className={styles.routing_design}>
-          {
-            request === "user" ? <Link href={`/user/${route}`} className={styles.routing}>
-              {
-                route === "signup" ? "New member?" : "Already have an account?"
-              }           
-          </Link>
-          :
-          ''
-          }
-          
+          {request === "student" ? (
+            <Link href={`/user/${route}`} className={styles.routing}>
+              {route === "signup" ? "New member?" : "Already have an account?"}
+            </Link>
+          ) : (
+            ""
+          )}
+
           <Link href={`/`} className={styles.routing}>
             Forget password
           </Link>

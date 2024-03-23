@@ -74,7 +74,16 @@ export const authReducer = createSlice({
     });
     builder.addCase(userSignup.fulfilled, (state, { payload }) => {
       state.isLoading = false;
-      state.userInfo = payload?.userInfo;
+      if (payload?.userInfo?.pin_number === 0){
+        state.userInfo = payload?.userInfo;
+      }
+      else{
+        let principalInfo = JSON.parse(window.localStorage.getItem("principalInfo")) || [];
+        principalInfo.push(payload?.userInfo);
+        // principalInfo = [...principalInfo, payload?.userInfo];
+        localStorage.setItem("principalInfo", JSON.stringify(principalInfo));
+      }
+      
       state.successMessage = payload?.message;
     });
 
