@@ -2,72 +2,45 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './AdminPanel.module.scss';
 import { messageClear, userSignup } from '@component/app/Reducers/authReducer';
 import { ThreeDots } from 'react-loader-spinner';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const AdminPanel = () => {
 
-    const { isLoading, successMessage, errorMessage } = useSelector(
-      (state) => state.auth
-    );
-    const fields = [
-      ["name", "Name"],
-      ["email", "Email"],
-    ];
-    const dispatch = useDispatch();
+  const [principalInfo, setPrincipalInfo] = useState([]);
 
-    const handleFormSubmit = (event) => {
-      event.preventDefault();
-      const name = event.target.name.value;
-      const email = event.target.email.value;
-      const role = "principal";
-
-      dispatch(userSignup({name, email, role}));
-    };
-
-    useEffect(() => {
-      if (successMessage) {
-        toast.success(successMessage);
-        dispatch(messageClear());
-      }
-      if (errorMessage) {
-        toast.error(errorMessage);
-        dispatch(messageClear());
-      }
-    }, [successMessage, errorMessage, dispatch]);
+  useEffect(()=>{
+    const listInfo = JSON.parse(window.localStorage.getItem("principalInfo"));
+    setPrincipalInfo(listInfo);
+  },[])
+  
+  const table_heading = [
+    "Name",
+    "Email",
+    "Password",
+  ];
     return (
       <div className={styles.admin_panel_design}>
-        <div className={styles.all_user}></div>
-        <div className={styles.principal_account_create}>
-          <h1 className={styles.title}>New Principal Account</h1>
-          <form onSubmit={handleFormSubmit}>
-            {fields.map((field, index) => (
-              <div key={index} className={styles.field_design}>
-                <input name={field[0]} type="text" required />
-                <label htmlFor={field[0]}>{field[1]}</label>
-              </div>
-            ))}
-
-            <button
-              className={styles.submit_button}
-              type="submit"
-              disabled={isLoading ? true : false}
+        <h1>Principal Information</h1>
+        <div className={styles.heading_field_design}>
+          {table_heading.map((head, index) => (
+            <div key={index} className={styles.single_heading}>
+              {head}
+            </div>
+          ))}
+        </div>
+        <div className={styles.info_field_design}>
+          {principalInfo.map((head, index) => (
+            <div
+              key={index}
+              className={`${
+                index % 2 == 0 ? "even_field_design" : "odd_field_design"
+              }`}
             >
-              {isLoading ? (
-                <ThreeDots
-                  visible={true}
-                  height="80"
-                  width="80"
-                  color="#4fa94d"
-                  radius="9"
-                  ariaLabel="three-dots-loading"
-                  wrapperStyle={{}}
-                  wrapperClass=""
-                />
-              ) : (
-                "Submit"
-              )}
-            </button>
-          </form>
+              <div className="text_details">{head.name}</div>
+              <div className="single_details">{head.email}</div>
+              <div className="single_details">{head.pin_number}</div>
+            </div>
+          ))}
         </div>
       </div>
     );
