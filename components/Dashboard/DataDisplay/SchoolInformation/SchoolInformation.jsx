@@ -8,7 +8,7 @@ import { ThreeDots } from "react-loader-spinner";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
 const SchoolInformation = () => {
-  const { isLoading,schoolInfo } = useSelector((state) => state.school);
+  const { isLoading, schoolInfo } = useSelector((state) => state.school);
   const [selectStatus , setSelectStatus] = useState('all');
   let [schoolDetails, setSchoolDetails] = useState({});
   const statusOptions = [

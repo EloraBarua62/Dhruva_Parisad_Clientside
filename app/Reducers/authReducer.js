@@ -62,6 +62,11 @@ export const authReducer = createSlice({
       state.errorMessage = "";
       state.successMessage = "";
     },
+    logOut: (state) => {
+      state.role = "";
+      document.cookie =
+        "accessToken=; expires=Thu, 01 Jan 1971 00:00:00 UTC; path=/;";
+    }
   },
   extraReducers: (builder) => {
     // Signup action
@@ -104,5 +109,5 @@ export const authReducer = createSlice({
   },
 });
 
-export const { messageClear } = authReducer.actions;
+export const { messageClear, logOut } = authReducer.actions;
 export default authReducer.reducer;

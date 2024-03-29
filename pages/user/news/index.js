@@ -30,20 +30,7 @@ const NewsPage = () => {
                     {news.updatedAt.substring(0, 4)}
                   </p>
                   <p className={styles.details}>
-                    {news.news_details} Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Doloribus ullam, labore itaque officiis
-                    nesciunt obcaecati molestiae odio earum ipsa debitis vel
-                    excepturi. Soluta sequi veniam corrupti mollitia eaque
-                    repudiandae a. Eaque sed a pariatur alias nam dicta,
-                    perspiciatis quas numquam molestias, commodi, similique
-                    culpa illo optio et veritatis aspernatur! Deserunt quasi
-                    porro laboriosam illo. Quasi earum maiores perspiciatis
-                    neque error nesciunt in dolorum enim! Similique, corporis
-                    quis. Sapiente excepturi obcaecati facilis in aliquid culpa
-                    cumque quia, non explicabo nemo. Ipsa quod ad sint
-                    distinctio asperiores magni corrupti consequatur cupiditate
-                    at nihil, veniam ullam ut reiciendis quas molestias nulla,
-                    inventore cumque?
+                    {news.news_details} 
                   </p>
                   <Link
                     href={`/user/news/${newsList[index]?._id}`}

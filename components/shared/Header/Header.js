@@ -7,11 +7,13 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import { logOut } from "@component/app/Reducers/authReducer";
 
 const Header = () => {
   const pathname = usePathname();
   const [openHamburger, setOpenHamburger] = useState(false);
   const {role} = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const router = useRouter();
   const page_navigation = [
     { name: "/user/news", title: "News", user_role: ["all"] },
@@ -34,9 +36,12 @@ const Header = () => {
   ];
 
   const handleLogout = () => {
-    document.cookie =
-      "accessToken=; expires=Thu, 01 Jan 1971 00:00:00 UTC; path=/;";
-      router.push('/user/login');
+    // role = "";
+    // document.cookie =
+    //   "accessToken=; expires=Thu, 01 Jan 1971 00:00:00 UTC; path=/;";
+
+    dispatch(logOut());
+    router.push('/user/login');
   }
   return (
     <div className={styles.header_display}>
@@ -70,7 +75,9 @@ const Header = () => {
               })
             )}
             {role != "" ? (
-              <button onClick={handleLogout}>Log Out</button>
+              <button className={styles.logout_button} onClick={handleLogout}>
+                Log Out
+              </button>
             ) : (
               <Link
                 className={`link ${
@@ -123,6 +130,20 @@ const Header = () => {
                   );
                 }
               })
+            )}
+            {role != "" ? (
+              <button className={styles.inactive_small} onClick={handleLogout}>
+                Log Out
+              </button>
+            ) : (
+              <Link
+                className={`link ${
+                  pathname === "/user/login" ? styles.active_small : styles.inactive_small
+                }`}
+                href={"/user/login"}
+              >
+                Login
+              </Link>
             )}
           </div>
         </div>

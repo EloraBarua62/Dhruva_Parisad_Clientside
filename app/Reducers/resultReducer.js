@@ -14,6 +14,22 @@ export const resultDisplay = createAsyncThunk("result/resultDisplay",
     }
 );
 
+export const specificResultDisplay = createAsyncThunk(
+  "result/specificResultDisplay",
+  async (info, { rejectWithValue, fulfillWithValue }) => {
+    const code = parseInt(info.school_code);
+    
+    try {
+      const { data } = await api.get(`result/specific-display/${code}`, {
+        withCredentials: true,
+      });
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const updateWrittenPracticalMarks = createAsyncThunk(
   "result/updateWrittenPracticalMarks",
   async(info, { rejectWithValue, fulfillWithValue }) => {
@@ -59,6 +75,20 @@ export const resultReducer = createSlice({
     builder.addCase(resultDisplay.rejected , (state, {payload}) => {
         state.isLoading = false;
         state.errorMessage = payload.error;
+    });
+
+    builder.addCase(specificResultDisplay.pending , (state) => {
+        state.isLoading = true;
+    });
+    builder.addCase(specificResultDisplay.fulfilled , (state, {payload}) => {       
+        state.successMessage = payload.message;       
+        state.resultInfo = payload?.resultInfo;
+        state.isLoading = false;
+    });
+    builder.addCase(specificResultDisplay.rejected , (state, {payload}) => {    
+         state.resultInfo = [];
+        state.errorMessage = payload?.error;
+        state.isLoading = false;
     });
     
     builder.addCase(updateWrittenPracticalMarks.pending , (state) => {

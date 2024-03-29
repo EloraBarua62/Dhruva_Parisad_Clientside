@@ -28,7 +28,8 @@ const ExamRegistrationForm = () => {
   const currentYear = new Date().getFullYear();
   const subject_list = ["poem", "rack", "nock", "shak", "dance"];
   const year_list = ["primary", "first", "second", "third", "forth"];
-  const [imageShow, setImageShow] = useState("");
+  const [imageDisplay, setImageDisplay] = useState("");
+  const [imageShow, setImageShow] = useState('');
   const [subjectYear, setSubjectYear] = useState([
     { subject: "poem", year: "primary" },
   ]);
@@ -38,8 +39,8 @@ const ExamRegistrationForm = () => {
   const handleImage = (e) => {
     let files = e.target.files;
     if (files.length > 0) {
-      setImageShow(URL.createObjectURL(files[0]));
-      // setState({ ...state, image: files[0] });
+      setImageDisplay(URL.createObjectURL(files[0]));
+      setImageShow(files[0]);
     }
   };
 
@@ -78,34 +79,39 @@ const ExamRegistrationForm = () => {
     const email = e.target.email.value;
     const zone = e.target.zone.value;
     const school = e.target.school.value;
-    const state = {
-      student_name,
-      father_name,
-      mother_name,
-      birth_date,
-      phone_no,
-      email,
-      zone,
-      school,
-      imageShow,
-      subjectYear,
-    };
 
-    console.log(state);
-    dispatch(
-      studentRegistration({
-        student_name,
-        father_name,
-        mother_name,
-        birth_date,
-        phone_no,
-        email,
-        zone,
-        school,
-        imageShow,
-        subjectYear,
-      })
-    );
+    const formData = new FormData();
+    formData.append('student_name', student_name);
+    formData.append('father_name', father_name);
+    formData.append('mother_name', mother_name);
+    formData.append('birth_date', birth_date);
+    formData.append('phone_no', phone_no);
+    formData.append('email', email);
+    formData.append('zone', zone);
+    formData.append('school', school);
+    formData.append('imageShow', imageShow);
+    formData.append("subjectYear", JSON.stringify(subjectYear));
+    // subjectYear.forEach(each => {formData.append("subjectYear[]", each)})
+    // for (let i = 0; i < subjectYear.length; i++) {
+    //   console.log(subjectYear[i])
+    //   formData.append("subjectYear", subjectYear[i]);
+    // }
+    
+    // const state = {
+    //   student_name,
+    //   father_name,
+    //   mother_name,
+    //   birth_date,
+    //   phone_no,
+    //   email,
+    //   zone,
+    //   school,
+    //   imageDisplay,
+    //   subjectYear,
+    // };
+
+    console.log(subjectYear);
+    dispatch(studentRegistration(formData));
     e.preventDefault();
   };
 
@@ -240,9 +246,9 @@ const ExamRegistrationForm = () => {
             <h1 className={styles.image_title}>Add Your Image</h1>
             <div className={styles.image_field_design}>
               <label htmlFor="image" className={styles.image_label}>
-                {imageShow ? (
+                {imageDisplay ? (
                   <Image
-                    src={imageShow}
+                    src={imageDisplay}
                     alt=""
                     fill={true}
                     className={styles.image_display}

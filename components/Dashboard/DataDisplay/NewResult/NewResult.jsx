@@ -209,28 +209,6 @@ const NewResult = () => {
               </div>
             )}
 
-            {/* Field: Subjects and Years */}
-            {/* {detailsLength === index ? (
-              <div className="subject_year_design">
-                {head.writtenPractical?.subjectYear.map((data, idx) => (
-                  <div key={idx} className="subject_year_design_inner">
-                    <div className="child_box_design">{data.subject}</div>
-                    <div className="child_box_design">{data.year}</div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="subject_year_design">
-                <div className="subject_year_design_inner">
-                  <div className="child_box_design">
-                    {head.studentInfo?.subjectYear[0].subject}
-                  </div>
-                  <div className="child_box_design">
-                    {head.studentInfo?.subjectYear[0].year}
-                  </div>
-                </div>
-              </div>
-            )} */}
 
             {/* Details checking button */}
             <div className="button_content">

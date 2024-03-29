@@ -70,19 +70,7 @@ const News = ({ newsList }) => {
                 <div className={styles.imp_date}>Start: 12.12.2024 </div>
               </div>
               <div className={styles.description_content}>
-                {newsList[0]?.news_details} Lorem ipsum dolor sit amet
-                consectetur, adipisicing elit. Recusandae quo quia corporis
-                ipsum? Soluta illum ipsum deserunt. Assumenda dolorum iure
-                minus? Quaerat maxime praesentium quidem veniam possimus
-                necessitatibus? Sequi perferendis error blanditiis saepe labore
-                a minus porro tempora explicabo harum dignissimos voluptates ex
-                quia omnis, obcaecati sint asperiores dicta temporibus alias!
-                Minus odio tempora fugiat maiores nam obcaecati sint, aspernatur
-                nobis officia id ullam labore, omnis perferendis aut corrupti
-                totam quis quasi exercitationem facere, commodi vero ipsum.
-                Fugiat saepe a, numquam eos quam dicta unde nihil eveniet
-                deserunt officiis rem quos cupiditate cum, quisquam ipsum,
-                dignissimos temporibus soluta quibusdam iste!
+                {newsList[0]?.news_details}
               </div>
 
               <Link
