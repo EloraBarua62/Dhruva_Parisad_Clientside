@@ -14,13 +14,29 @@ export const resultDisplay = createAsyncThunk("result/resultDisplay",
     }
 );
 
-export const specificResultDisplay = createAsyncThunk(
-  "result/specificResultDisplay",
+
+export const specificSchoolResult = createAsyncThunk(
+  "result/specificSchoolResult",
   async (info, { rejectWithValue, fulfillWithValue }) => {
     const code = parseInt(info.school_code);
+
+    try {
+      const { data } = await api.get(`result/school-display/${code}`, {
+        withCredentials: true,
+      });
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+export const specificStudentResult = createAsyncThunk(
+  "result/specificResultDisplay",
+  async (info, { rejectWithValue, fulfillWithValue }) => {
+    const roll = parseInt(info.roll);
     
     try {
-      const { data } = await api.get(`result/specific-display/${code}`, {
+      const { data } = await api.get(`result/student-display/${roll}`, {
         withCredentials: true,
       });
       return fulfillWithValue(data);
@@ -56,6 +72,7 @@ export const resultReducer = createSlice({
     errorMessage: "",
     isLoading: false,
     resultInfo: [],
+    studentResultInfo: {}
   },
   reducers: {
     messageClear: (state) => {
@@ -64,6 +81,8 @@ export const resultReducer = createSlice({
     }
   },
   extraReducers: (builder) => {
+
+    // Role: Admin
     builder.addCase(resultDisplay.pending , (state) => {
         state.isLoading = true;
     });
@@ -77,20 +96,39 @@ export const resultReducer = createSlice({
         state.errorMessage = payload.error;
     });
 
-    builder.addCase(specificResultDisplay.pending , (state) => {
+
+    // Role: Principal
+    builder.addCase(specificSchoolResult.pending , (state) => {
         state.isLoading = true;
     });
-    builder.addCase(specificResultDisplay.fulfilled , (state, {payload}) => {       
+    builder.addCase(specificSchoolResult.fulfilled , (state, {payload}) => {       
         state.successMessage = payload.message;       
         state.resultInfo = payload?.resultInfo;
         state.isLoading = false;
     });
-    builder.addCase(specificResultDisplay.rejected , (state, {payload}) => {    
+    builder.addCase(specificSchoolResult.rejected , (state, {payload}) => {    
          state.resultInfo = [];
         state.errorMessage = payload?.error;
         state.isLoading = false;
     });
+
     
+    // Role: Student
+    builder.addCase(specificStudentResult.pending , (state) => {
+        state.isLoading = true;
+    });
+    builder.addCase(specificStudentResult.fulfilled , (state, {payload}) => {       
+        state.successMessage = payload?.message;       
+        state.studentResultInfo = payload?.studentResultInfo;
+        state.isLoading = false;
+    });
+    builder.addCase(specificStudentResult.rejected , (state, {payload}) => {    
+        state.studentResultInfo = {};
+        state.errorMessage = payload?.error;
+        state.isLoading = false;
+    });
+    
+
     builder.addCase(updateWrittenPracticalMarks.pending , (state) => {
         state.isLoading = true;
     });

@@ -30,7 +30,12 @@ const Header = () => {
     {
       name: "/user/result",
       title: "Result",
-      user_role: ["student", "principal", "admin"],
+      user_role: ["principal", "admin"],
+    },
+    {
+      name: "/user/student_result",
+      title: "Result",
+      user_role: ["student", "admin"],
     },
     // { name: "/user/login", title: "Login", user_role: ["all"] },
   ];

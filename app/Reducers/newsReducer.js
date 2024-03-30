@@ -22,18 +22,14 @@ export const displayNews = createAsyncThunk(
     console.log(info);
     try {
       const {count} = info;
-      if (info?.count == 4) {
-        const data = await api.get(`/news/all-news?count=${count}`, {
-          withCredentials: true,
-        });
-        return fulfillWithValue(data);
-      } 
-      else {
-        const data = await api.get(`/news/all-news`, {
-          withCredentials: true,
-        });
-        return fulfillWithValue(data);
-      }     
+      console.log(typeof(count))
+
+      const data = await api.get(`/news/all-news?count=${count}`, {
+        withCredentials: true,
+      });        
+      
+      console.log(data)  
+      return fulfillWithValue(data);  
     } catch (error) {
       return rejectWithValue(error.response.data);
     }

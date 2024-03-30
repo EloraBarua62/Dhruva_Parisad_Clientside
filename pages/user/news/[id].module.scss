@@ -11,6 +11,7 @@
     width: 100%;
     .targeted_news_content {
       width: 100%;
+
       .news_details_section {
         display: grid;
         grid-template-columns: 1;
@@ -22,7 +23,7 @@
 
           .title {
             font-size: $text-subhead;
-            margin: 0;
+            // margin: 0;
 
             @media (min-width: 576px) {
               font-size: 24px;
@@ -106,7 +107,7 @@
         margin: 50px 0px;
         gap: 10px;
         background-color: $light-green;
-        padding: 10px;
+        padding: 20px;
         border: 0;
         border-radius: 10px;
         box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
@@ -114,7 +115,7 @@
         .info_section {
           .title {
             font-size: $text-subhead;
-            margin: 0;
+            // margin: 0;
 
             @media (min-width: 576px) {
               font-size: 24px;
@@ -126,7 +127,7 @@
 
           .time {
             font-size: $text-label;
-            margin: 0;
+            // margin: 0;
             color: gray;
 
             @media (min-width: 768px) {

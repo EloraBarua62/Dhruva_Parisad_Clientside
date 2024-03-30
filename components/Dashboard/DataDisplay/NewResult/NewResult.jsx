@@ -12,7 +12,7 @@ const NewResult = () => {
   const table_heading = [
     "Roll",
     "Name",
-    "School",
+    "School Code",
     "Subject",
     "Year",
     "Written",
@@ -112,7 +112,7 @@ const NewResult = () => {
             </div>
 
             {/* Field: School ID */}
-            <div className="single_details">{head.studentInfo?.school}</div>
+            <div className="single_details">{head.studentInfo?.school_code}</div>
 
             {/* Field: Subjects and Years */}
             {detailsLength === index ? (

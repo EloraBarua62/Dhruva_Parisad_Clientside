@@ -1,10 +1,9 @@
-import { specificResultDisplay } from "@component/app/Reducers/resultReducer";
 import styles from "./result.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@component/components/shared/Container/Container";
 import { toast } from "react-hot-toast";
 import {
-  messageClear,
+  messageClear, specificSchoolResult,
 } from "@component/app/Reducers/resultReducer";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -32,7 +31,7 @@ const Result = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const school_code = event.target.school_code.value;
-    dispatch(specificResultDisplay({ school_code }));
+    dispatch(specificSchoolResult({ school_code }));
   };
 
   const handleToogle = (index) => {
@@ -55,12 +54,18 @@ const Result = () => {
   return (
     <div className={styles.result_design}>
       <Container>
-        <div>
+        <div className={styles.result_content}>
           <h1>Enter School Code</h1>
           <form onSubmit={handleSubmit}>
-            <label htmlFor="school_code">School Id</label>
-            <input type="number" name="school_code" id="" />
-            <input type="submit" value="Submit" />
+            <div className={styles.field_design}>
+              <label htmlFor="school_code">School Id</label>
+              <input type="number" name="school_code" id="" />
+            </div>
+            <div className={styles.button_section}>
+              <button className={styles.button_design} type="submit">
+                Search
+              </button>
+            </div>
           </form>
 
           {resultInfo.length > 0 ? (

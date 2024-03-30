@@ -38,7 +38,7 @@
       .info_section {
         .title {
           font-size: $text-subhead;
-          margin: 0;
+          // margin: 0;
 
           @media (min-width: 576px) {
             font-size: 24px;
@@ -50,7 +50,7 @@
 
         .time {
           font-size: $text-label;
-          margin: 0;
+          // margin: 0;
           color: gray;
 
           @media (min-width: 768px) {

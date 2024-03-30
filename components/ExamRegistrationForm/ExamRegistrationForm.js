@@ -91,24 +91,6 @@ const ExamRegistrationForm = () => {
     formData.append('school', school);
     formData.append('imageShow', imageShow);
     formData.append("subjectYear", JSON.stringify(subjectYear));
-    // subjectYear.forEach(each => {formData.append("subjectYear[]", each)})
-    // for (let i = 0; i < subjectYear.length; i++) {
-    //   console.log(subjectYear[i])
-    //   formData.append("subjectYear", subjectYear[i]);
-    // }
-    
-    // const state = {
-    //   student_name,
-    //   father_name,
-    //   mother_name,
-    //   birth_date,
-    //   phone_no,
-    //   email,
-    //   zone,
-    //   school,
-    //   imageDisplay,
-    //   subjectYear,
-    // };
 
     console.log(subjectYear);
     dispatch(studentRegistration(formData));

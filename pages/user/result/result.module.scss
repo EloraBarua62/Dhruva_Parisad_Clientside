@@ -7,53 +7,111 @@
   justify-content: center;
   align-items: center;
 
-  form {
-    width: 300px;
-    margin-top: 100px;
-
-    input {
-      display: block;
-    }
-  }
-
-  .newresult_design {
-    padding: 10px;
+  .result_content {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    .heading_field_design {
+    h1{
+      font-size: $text-head;
+      font-weight: 800;
+      color: $deep-green;
+      // margin: 0 0 10px 0;
+
+      @media (min-width: 768px) {
+        font-size: 28px;
+      }
+      @media (min-width: 1200px) {
+        font-size: 30px;
+      }
+    }
+
+    form {
+      width: 300px;
+
+      .field_design {
+          
+          label {
+            display: block;
+            margin-bottom: 10px;
+          }
+          input {
+            width: 100%;
+            border: 2px solid #4ade80;
+            border-radius: 3px;
+            background-color: white;
+            outline: none;
+            padding: 10px 0;
+          }
+        }
+
+        // Submit button
+    .button_section {
       width: 100%;
       display: flex;
-      justify-content: space-between;
-      align-items: start;
-      gap: 5px;
-      border: 0px;
-      border-radius: 5px;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      background-color: $medium-green;
-
-      @media (min-width: 576px) {
-        gap: 10px;
-      }
-      @media (min-width: 1400px) {
-        gap: 20px;
-      }
-
-      .single_heading {
-        max-width: 110px;
-        min-width: 110px;
-        padding: 10px 2px;
-        text-align: center;
-        margin-bottom: 5px;
+      justify-content: center;
+      .button_design {
+        width: 126px;
+        height: 32px;
         border: 0;
         border-radius: 5px;
-        font-weight: 600;
+        background-color: $deep-green;
         color: white;
+        font-size: $text-body;
+        font-weight: 600;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        cursor: pointer;
+      }
+      .button_design:hover {
+        background-color: $light-green;
+        color: $deep-green;
+        transition: 0.5s;
       }
     }
+    }
 
-    .info_field_design {
-      border-bottom: 1px solid $deep-green;
+    .newresult_design {
+      padding: 10px;
+      width: 100%;
+
+      .heading_field_design {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        gap: 5px;
+        border: 0px;
+        border-radius: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: $medium-green;
+
+        @media (min-width: 576px) {
+          gap: 10px;
+        }
+        @media (min-width: 1400px) {
+          gap: 20px;
+        }
+
+        .single_heading {
+          max-width: 110px;
+          min-width: 110px;
+          padding: 10px 2px;
+          text-align: center;
+          margin-bottom: 5px;
+          border: 0;
+          border-radius: 5px;
+          font-weight: 600;
+          color: white;
+        }
+      }
+
+      .info_field_design {
+        border-bottom: 1px solid $deep-green;
+      }
     }
   }
 }

@@ -66,13 +66,16 @@ const News = ({ newsList }) => {
               </div>
               <p className={styles.title}>{newsList[0]?.news_title}</p>
               <div className={styles.imp_date_section}>
-                <div className={styles.imp_date}>Start: 12.12.2023</div>
-                <div className={styles.imp_date}>Start: 12.12.2024 </div>
+                <div className={styles.imp_date}>
+                  Date: {newsList[0]?.imp_date}
+                </div>
               </div>
               <div className={styles.description_content}>
                 {newsList[0]?.news_details}
               </div>
-
+              <strong className={styles.imp_date}>
+                N.B: {newsList[0]?.imp_msg}
+              </strong>
               <Link
                 href={`user/news/${newsList[0]?._id}`}
                 className={styles.details_button}
