@@ -1,0 +1,30 @@
+@import "../../styles/config";
+
+.heading_design {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  background-color: $deep-green;
+}
+.table_cell_design {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  border-bottom: 1px solid $deep-green;
+}
+
+.parent_image {
+  max-width: 110px;
+  min-width: 110px;
+  height: 50px;
+  position: relative;
+  background-color: green;
+
+  .image_design {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}

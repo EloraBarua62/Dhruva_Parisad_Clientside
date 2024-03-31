@@ -17,7 +17,8 @@ import jsPDFInvoiceTemplate, {
   OutputType,
   jsPDF,
 } from "jspdf-invoice-template";
-
+import { PDFViewer } from "@react-pdf/renderer";
+import PdfDocument from "../PdfDocument/PdfDocument";
 
 const ExamRegistrationForm = () => {
   // Import state variable
@@ -35,7 +36,6 @@ const ExamRegistrationForm = () => {
   const day = new Date().getDay();
   let currentBanglaYear = currentYear - 594;
   if (month >= 3 && day >= 15) ++currentBanglaYear;
-
 
   const subject_list = ["poem", "rack", "nock", "shak", "dance"];
   const year_list = ["primary", "first", "second", "third", "forth"];
@@ -109,165 +109,85 @@ const ExamRegistrationForm = () => {
   };
 
   // PDF generator
-  const generatePdf = (info, date) => {
-    console.log(info, date)    
-    // var props = {
-    //   outputType: OutputType.Save,
-    //   returnJsPDFDocObject: true,
-    //   fileName: "Examination Admit Card",
-    //   orientationLandscape: false,
-    //   compress: true,
-    //   logo: {
-    //     src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/logo.png",
-    //     type: "PNG", //optional, when src= data:uri (nodejs case)
-    //     width: 53.33, //aspect ratio = width/height
-    //     height: 26.66,
-    //     margin: {
-    //       top: 0, //negative or positive num, from the current position
-    //       left: 0, //negative or positive num, from the current position
-    //     },
-    //   },
-    //   business: {
-    //     name: info.student_name,
-    //     address: "0923",
-    //     // address: `${currentBanglaYear} BS`,
-    //     // address: `${currentYear} BS`,
-    //   },
-    //   contact: {
-    //     label: "This admit card is issued for:",
-    //     name: `Student Name: ${info.student_name}`,
-    //     address: `Father's Name: ${info.father_name}`,
-    //     // address: `Mother's Name: ${info.mother_name}`,
-    //     // address: `Roll no: ${info.roll}`,
-    //     // address: `Exam Center: ${info.school}`,
-    //     // address: `Exam Date: ${date.exam_date}`,
-    //   },
-    //   invoice: {
-    //     label: "Photo",
-    //     num: 19,
-    //     src: info.imageShow,
-    //     type: "PNG", //optional, when src= data:uri (nodejs case)
-    //     width: 53.33, //aspect ratio = width/height
-    //     height: 26.66,
-    //     margin: {
-    //       top: 0, //negative or positive num, from the current position
-    //       left: 0, //negative or positive num, from the current position
-    //     },
-    //     headerBorder: true,
-    //     tableBodyBorder: true,
-    //     header: [
-    //       {
-    //         title: "No",
-    //         style: {
-    //           width: 30,
-    //         },
-    //       },
-    //       {
-    //         title: "Subject",
-    //         style: {
-    //           width: 30,
-    //         },
-    //       },
-    //       {
-    //         title: "Year",
-    //         style: {
-    //           width: 30,
-    //         },
-    //       },
-    //     ],
-    //     table: Array.from(Array(info.subjectYear.length), (sub_year, index) => [
-    //       index + 1,
-    //       sub_year?.subject,
-    //       sub_year?.year,
-    //     ]),
-    //   },
-    //   footer: {
-    //     text: "Please bring the admit card on examination day.",
-    //   },
-    //   pageEnable: true,
-    //   pageLabel: "Page ",
-    // };
+  // const generatePdf = (info, date) => {
+  //   console.log(info, date);
 
-    // var pdfObject = jsPDFInvoiceTemplate(props);
-    // console.log(pdfObject)
+  //   var props = {
+  //     outputType: OutputType.Save,
+  //     returnJsPDFDocObject: true,
+  //     fileName: "Examination Admit Card",
+  //     orientationLandscape: false,
+  //     compress: true,
+  //     logo: {
+  //       src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/logo.png",
+  //       type: "PNG", //optional, when src= data:uri (nodejs case)
+  //       width: 53.33, //aspect ratio = width/height
+  //       height: 26.66,
+  //       margin: {
+  //         top: 0, //negative or positive num, from the current position
+  //         left: 0, //negative or positive num, from the current position
+  //       },
+  //     },
+  //     business: {
+  //       name: info.student_name,
+  //       address: "0923",
+  //       phone: date.exam_date,
+  //     },
+  //     contact: {
+  //       label: "This admit card is issued for:",
+  //       name: info.student_name,
+  //       address: info.father_name,
+  //       phone: info.mother_name,
+  //       num: info.roll,
+  //       otherInfo: info.school,
+  //     },
+  //     // invoice: {
+  //     //   label: "Photo",
+  //     //   // src: info.imageShow,
+  //     //   // type: "PNG", //optional, when src= data:uri (nodejs case)
+  //     //   // width: 53.33, //aspect ratio = width/height
+  //     //   // height: 26.66,
+  //     //   // margin: {
+  //     //   //   top: 0, //negative or positive num, from the current position
+  //     //   //   left: 0, //negative or positive num, from the current position
+  //     //   // },
+  //     //   headerBorder: false,
+  //     //   tableBodyBorder: false,
+  //     //   header: [
+  //     //     {
+  //     //       title: "#",
+  //     //       style: {
+  //     //         width: 10,
+  //     //       },
+  //     //     },
+  //     //     {
+  //     //       title: "Subject",
+  //     //       style: {
+  //     //         width: 30,
+  //     //       },
+  //     //     },
+  //     //     {
+  //     //       title: "Year",
+  //     //       style: {
+  //     //         width: 30,
+  //     //       },
+  //     //     },
+  //     //   ],
+  //     //   table: Array.from(Array(4), (sub_year, index) => [
+  //     //     index + 1,
+  //     //     sub_year?.subject,
+  //     //     sub_year?.year,
+  //     //   ]),
+  //     // },
+  //     footer: {
+  //       text: "Please bring the admit card on examination day.",
+  //     },
+  //     pageEnable: true,
+  //     pageLabel: "Page ",
+  //   };
 
-
-    var props = {
-      outputType: OutputType.Save,
-      returnJsPDFDocObject: true,
-      fileName: "Examination Admit Card",
-      orientationLandscape: false,
-      compress: true,
-      logo: {
-        src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/logo.png",
-        type: "PNG", //optional, when src= data:uri (nodejs case)
-        width: 53.33, //aspect ratio = width/height
-        height: 26.66,
-        margin: {
-          top: 0, //negative or positive num, from the current position
-          left: 0, //negative or positive num, from the current position
-        },
-      },
-      business: {
-        name: info.student_name,
-        address: "0923",
-        phone: date.exam_date,
-      },
-      contact: {
-        label: "This admit card is issued for:",
-        name: info.student_name,
-        address: info.father_name,
-        phone: info.mother_name,
-        num: info.roll,
-        otherInfo: info.school,
-      },
-      // invoice: {
-      //   label: "Photo",
-      //   // src: info.imageShow,
-      //   // type: "PNG", //optional, when src= data:uri (nodejs case)
-      //   // width: 53.33, //aspect ratio = width/height
-      //   // height: 26.66,
-      //   // margin: {
-      //   //   top: 0, //negative or positive num, from the current position
-      //   //   left: 0, //negative or positive num, from the current position
-      //   // },
-      //   headerBorder: false,
-      //   tableBodyBorder: false,
-      //   header: [
-      //     {
-      //       title: "#",
-      //       style: {
-      //         width: 10,
-      //       },
-      //     },
-      //     {
-      //       title: "Subject",
-      //       style: {
-      //         width: 30,
-      //       },
-      //     },
-      //     {
-      //       title: "Year",
-      //       style: {
-      //         width: 30,
-      //       },
-      //     },
-      //   ],
-      //   table: Array.from(Array(4), (sub_year, index) => [
-      //     index + 1,
-      //     sub_year?.subject,
-      //     sub_year?.year,
-      //   ]),
-      // },
-      footer: {
-        text: "Please bring the admit card on examination day.",
-      },
-      pageEnable: true,
-      pageLabel: "Page ",
-    };
-
-    const pdfObject = jsPDFInvoiceTemplate(props);
-  };
+  //   const pdfObject = jsPDFInvoiceTemplate(props);
+  // };
 
   useEffect(() => {
     if (successMessage) {
@@ -282,6 +202,16 @@ const ExamRegistrationForm = () => {
 
   return (
     <div className={styles.form_design}>
+      {(studentDetail &&
+      Object.keys(studentDetail).length !== 0 &&
+      studentDetail.constructor === Object) ? (
+        <PDFViewer width={"100%"} height={"700px"}>
+          <PdfDocument studentDetail={studentDetail} exam_date={exam_date}/>
+        </PDFViewer>
+      ) : (
+        ""
+      )}
+
       {/* Heading */}
       <div className={styles.heading_design}>
         <h1 className={styles.institute_name}>Dhruva Parisad</h1>
@@ -440,16 +370,6 @@ const ExamRegistrationForm = () => {
           wrapperStyle={{}}
           wrapperClass=""
         />
-      )}
-
-      {studentDetail &&
-      Object.keys(studentDetail).length !== 0 &&
-      studentDetail.constructor === Object ? (
-        <div>
-          <button onClick={()=>generatePdf(studentDetail,exam_date)}>Download Admit Card</button>
-        </div>
-      ) : (
-        ""
       )}
     </div>
   );
