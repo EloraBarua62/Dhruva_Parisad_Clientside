@@ -12,13 +12,18 @@ import {
   enlistedSchools,
   enlistedZone,
 } from "@component/app/Reducers/schoolReducer";
+import { ThreeDots } from "react-loader-spinner";
+import jsPDFInvoiceTemplate, {
+  OutputType,
+  jsPDF,
+} from "jspdf-invoice-template";
+
 
 const ExamRegistrationForm = () => {
   // Import state variable
   const { zoneInfo, schoolInfo } = useSelector((state) => state.school);
-  const { isLoading, successMessage, errorMessage } = useSelector(
-    (state) => state.student
-  );
+  const { isLoading, successMessage, errorMessage, studentDetail, exam_date } =
+    useSelector((state) => state.student);
 
   // Import by-default functions
   const dispatch = useDispatch();
@@ -26,10 +31,16 @@ const ExamRegistrationForm = () => {
 
   // Set Initial values for UI
   const currentYear = new Date().getFullYear();
+  const month = new Date().getMonth();
+  const day = new Date().getDay();
+  let currentBanglaYear = currentYear - 594;
+  if (month >= 3 && day >= 15) ++currentBanglaYear;
+
+
   const subject_list = ["poem", "rack", "nock", "shak", "dance"];
   const year_list = ["primary", "first", "second", "third", "forth"];
   const [imageDisplay, setImageDisplay] = useState("");
-  const [imageShow, setImageShow] = useState('');
+  const [imageShow, setImageShow] = useState("");
   const [subjectYear, setSubjectYear] = useState([
     { subject: "poem", year: "primary" },
   ]);
@@ -81,15 +92,15 @@ const ExamRegistrationForm = () => {
     const school = e.target.school.value;
 
     const formData = new FormData();
-    formData.append('student_name', student_name);
-    formData.append('father_name', father_name);
-    formData.append('mother_name', mother_name);
-    formData.append('birth_date', birth_date);
-    formData.append('phone_no', phone_no);
-    formData.append('email', email);
-    formData.append('zone', zone);
-    formData.append('school', school);
-    formData.append('imageShow', imageShow);
+    formData.append("student_name", student_name);
+    formData.append("father_name", father_name);
+    formData.append("mother_name", mother_name);
+    formData.append("birth_date", birth_date);
+    formData.append("phone_no", phone_no);
+    formData.append("email", email);
+    formData.append("zone", zone);
+    formData.append("school", school);
+    formData.append("imageShow", imageShow);
     formData.append("subjectYear", JSON.stringify(subjectYear));
 
     console.log(subjectYear);
@@ -97,17 +108,171 @@ const ExamRegistrationForm = () => {
     e.preventDefault();
   };
 
-  // Function: Select Zone
-  const handleZone = (e) => {
-    const zone = e.target.value;
-    dispatch(enlistedSchools(zone));
+  // PDF generator
+  const generatePdf = (info, date) => {
+    console.log(info, date)    
+    // var props = {
+    //   outputType: OutputType.Save,
+    //   returnJsPDFDocObject: true,
+    //   fileName: "Examination Admit Card",
+    //   orientationLandscape: false,
+    //   compress: true,
+    //   logo: {
+    //     src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/logo.png",
+    //     type: "PNG", //optional, when src= data:uri (nodejs case)
+    //     width: 53.33, //aspect ratio = width/height
+    //     height: 26.66,
+    //     margin: {
+    //       top: 0, //negative or positive num, from the current position
+    //       left: 0, //negative or positive num, from the current position
+    //     },
+    //   },
+    //   business: {
+    //     name: info.student_name,
+    //     address: "0923",
+    //     // address: `${currentBanglaYear} BS`,
+    //     // address: `${currentYear} BS`,
+    //   },
+    //   contact: {
+    //     label: "This admit card is issued for:",
+    //     name: `Student Name: ${info.student_name}`,
+    //     address: `Father's Name: ${info.father_name}`,
+    //     // address: `Mother's Name: ${info.mother_name}`,
+    //     // address: `Roll no: ${info.roll}`,
+    //     // address: `Exam Center: ${info.school}`,
+    //     // address: `Exam Date: ${date.exam_date}`,
+    //   },
+    //   invoice: {
+    //     label: "Photo",
+    //     num: 19,
+    //     src: info.imageShow,
+    //     type: "PNG", //optional, when src= data:uri (nodejs case)
+    //     width: 53.33, //aspect ratio = width/height
+    //     height: 26.66,
+    //     margin: {
+    //       top: 0, //negative or positive num, from the current position
+    //       left: 0, //negative or positive num, from the current position
+    //     },
+    //     headerBorder: true,
+    //     tableBodyBorder: true,
+    //     header: [
+    //       {
+    //         title: "No",
+    //         style: {
+    //           width: 30,
+    //         },
+    //       },
+    //       {
+    //         title: "Subject",
+    //         style: {
+    //           width: 30,
+    //         },
+    //       },
+    //       {
+    //         title: "Year",
+    //         style: {
+    //           width: 30,
+    //         },
+    //       },
+    //     ],
+    //     table: Array.from(Array(info.subjectYear.length), (sub_year, index) => [
+    //       index + 1,
+    //       sub_year?.subject,
+    //       sub_year?.year,
+    //     ]),
+    //   },
+    //   footer: {
+    //     text: "Please bring the admit card on examination day.",
+    //   },
+    //   pageEnable: true,
+    //   pageLabel: "Page ",
+    // };
+
+    // var pdfObject = jsPDFInvoiceTemplate(props);
+    // console.log(pdfObject)
+
+
+    var props = {
+      outputType: OutputType.Save,
+      returnJsPDFDocObject: true,
+      fileName: "Examination Admit Card",
+      orientationLandscape: false,
+      compress: true,
+      logo: {
+        src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/logo.png",
+        type: "PNG", //optional, when src= data:uri (nodejs case)
+        width: 53.33, //aspect ratio = width/height
+        height: 26.66,
+        margin: {
+          top: 0, //negative or positive num, from the current position
+          left: 0, //negative or positive num, from the current position
+        },
+      },
+      business: {
+        name: info.student_name,
+        address: "0923",
+        phone: date.exam_date,
+      },
+      contact: {
+        label: "This admit card is issued for:",
+        name: info.student_name,
+        address: info.father_name,
+        phone: info.mother_name,
+        num: info.roll,
+        otherInfo: info.school,
+      },
+      // invoice: {
+      //   label: "Photo",
+      //   // src: info.imageShow,
+      //   // type: "PNG", //optional, when src= data:uri (nodejs case)
+      //   // width: 53.33, //aspect ratio = width/height
+      //   // height: 26.66,
+      //   // margin: {
+      //   //   top: 0, //negative or positive num, from the current position
+      //   //   left: 0, //negative or positive num, from the current position
+      //   // },
+      //   headerBorder: false,
+      //   tableBodyBorder: false,
+      //   header: [
+      //     {
+      //       title: "#",
+      //       style: {
+      //         width: 10,
+      //       },
+      //     },
+      //     {
+      //       title: "Subject",
+      //       style: {
+      //         width: 30,
+      //       },
+      //     },
+      //     {
+      //       title: "Year",
+      //       style: {
+      //         width: 30,
+      //       },
+      //     },
+      //   ],
+      //   table: Array.from(Array(4), (sub_year, index) => [
+      //     index + 1,
+      //     sub_year?.subject,
+      //     sub_year?.year,
+      //   ]),
+      // },
+      footer: {
+        text: "Please bring the admit card on examination day.",
+      },
+      pageEnable: true,
+      pageLabel: "Page ",
+    };
+
+    const pdfObject = jsPDFInvoiceTemplate(props);
   };
 
   useEffect(() => {
     if (successMessage) {
       toast.success(successMessage);
       dispatch(messageClear());
-      router.push("/user");
     }
     if (errorMessage) {
       toast.error(errorMessage);
@@ -122,7 +287,7 @@ const ExamRegistrationForm = () => {
         <h1 className={styles.institute_name}>Dhruva Parisad</h1>
         <h1 className={styles.reg_no}>Registration No: 0923</h1>
         <div className={styles.date_design}>
-          <h1>1430 BS</h1>
+          <h1>{currentBanglaYear} BS</h1>
           <h1>{currentYear} AD</h1>
         </div>
 
@@ -263,6 +428,29 @@ const ExamRegistrationForm = () => {
           </button>
         </div>
       </form>
+
+      {isLoading && (
+        <ThreeDots
+          visible={true}
+          height="80"
+          width="80"
+          color="#4fa94d"
+          radius="9"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      )}
+
+      {studentDetail &&
+      Object.keys(studentDetail).length !== 0 &&
+      studentDetail.constructor === Object ? (
+        <div>
+          <button onClick={()=>generatePdf(studentDetail,exam_date)}>Download Admit Card</button>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

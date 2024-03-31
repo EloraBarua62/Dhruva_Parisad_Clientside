@@ -9,7 +9,6 @@ export const studentRegistration = createAsyncThunk(
       const { data } = await api.post("/student/registration", info, {
         withCredentials: true,
       });
-      console.log(data)
       return fulfillWithValue(data);
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -49,35 +48,41 @@ export const studentDetails = createAsyncThunk(
 );
 
 export const studentReducer = createSlice({
-    name: "student",
-    initialState: {
+  name: "student",
+  initialState: {
     successMessage: "",
     errorMessage: "",
     isLoading: false,
     studentInfo: [],
-    role: ''
+    role: "",
+    studentDetail: {},
+    exam_date: ""
   },
   reducers: {
     messageClear: (state) => {
       state.errorMessage = "";
       state.successMessage = "";
-      console.log('state clear')
+      console.log("state clear");
     },
   },
   extraReducers: (builder) => {
     // Registration action
     builder.addCase(studentRegistration.pending, (state) => {
+      state.studentDetail= {},
       state.isLoading = true;
     });
-    builder.addCase(studentRegistration.rejected, (state, { payload }) => {
-      state.isLoading = false;
+    builder.addCase(studentRegistration.rejected, (state, { payload }) => {    
       state.errorMessage = payload?.error;
+      state.studentDetail = {},
+      state.exam_date = "",
+      state.isLoading = false;
     });
     builder.addCase(studentRegistration.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
+      state.studentDetail = payload?.studentDetail;
+      state.exam_date = payload?.exam_date;
       state.successMessage = payload?.message;
+      state.isLoading = false;
     });
-
 
     // Details Fetching action
     builder.addCase(studentDetails.pending, (state) => {
@@ -104,8 +109,8 @@ export const studentReducer = createSlice({
     builder.addCase(updateInfo.fulfilled, (state, { payload }) => {
       let parentArray = state.studentInfo;
       const id = payload.id;
-      for(let i=0 ; i < parentArray.length ; i++){
-        if(parentArray[i]._id === id){
+      for (let i = 0; i < parentArray.length; i++) {
+        if (parentArray[i]._id === id) {
           parentArray[i] = payload.info;
           break;
         }
@@ -114,8 +119,8 @@ export const studentReducer = createSlice({
       state.successMessage = payload?.message;
       state.isLoading = false;
     });
-}
-})
+  },
+});
 
 
 export const { messageClear } = studentReducer.actions;
