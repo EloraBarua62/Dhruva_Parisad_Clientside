@@ -2,10 +2,11 @@
 
 .result_design {
   width: 100%;
-  height: 100vh;
+  // height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  
 
   .result_content {
     width: 100%;
@@ -13,8 +14,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 100px 0 50px;
+    padding-left: 2px;
+    // padding-right: 2px;
 
-    h1{
+    h1 {
       font-size: $text-head;
       font-weight: 800;
       color: $deep-green;
@@ -29,53 +33,56 @@
     }
 
     form {
-      width: 300px;
+      max-width: 300px;
 
       .field_design {
-          
-          label {
-            display: block;
-            margin-bottom: 10px;
-          }
-          input {
-            width: 100%;
-            border: 2px solid #4ade80;
-            border-radius: 3px;
-            background-color: white;
-            outline: none;
-            padding: 10px 0;
-          }
+        label {
+          display: block;
+          margin-bottom: 10px;
         }
+        input {
+          width: 100%;
+          border: 2px solid #4ade80;
+          border-radius: 3px;
+          background-color: white;
+          outline: none;
+          padding: 10px 5px;
+        }
+      }
 
-        // Submit button
-    .button_section {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      .button_design {
-        width: 126px;
-        height: 32px;
-        border: 0;
-        border-radius: 5px;
-        background-color: $deep-green;
-        color: white;
-        font-size: $text-body;
-        font-weight: 600;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        cursor: pointer;
+      // Submit button
+      .button_section {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        .button_design {
+          width: 126px;
+          height: 32px;
+          border: 0;
+          border-radius: 5px;
+          background-color: $deep-green;
+          color: white;
+          font-size: $text-body;
+          font-weight: 600;
+          margin-top: 20px;
+          margin-bottom: 50px;
+          cursor: pointer;
+        }
+        .button_design:hover {
+          background-color: $light-green;
+          color: $deep-green;
+          transition: 0.5s;
+        }
       }
-      .button_design:hover {
-        background-color: $light-green;
-        color: $deep-green;
-        transition: 0.5s;
-      }
-    }
     }
 
     .newresult_design {
-      padding: 10px;
+      // padding: 10px;
+      // margin: 10px;
       width: 100%;
+      overflow-x: auto;
+      border: 1px solid $deep-green;
+      border-radius: 10px;
 
       .heading_field_design {
         width: 100%;
@@ -87,7 +94,6 @@
         border-radius: 5px;
         padding-top: 5px;
         padding-bottom: 5px;
-        background-color: $medium-green;
 
         @media (min-width: 576px) {
           gap: 10px;
@@ -105,12 +111,240 @@
           border: 0;
           border-radius: 5px;
           font-weight: 600;
-          color: white;
+          color: $deep-green;
         }
       }
 
       .info_field_design {
-        border-bottom: 1px solid $deep-green;
+        width: 100%;
+
+        // Display Odd indexed field in result
+        .odd_field_design {
+          width: 100%;
+          // background-color: #f9fad1;
+          display: flex;
+          justify-content: space-between;
+          align-items: start;
+          gap: 5px;
+
+          @media (min-width: 576px) {
+            gap: 10px;
+          }
+          @media (min-width: 1400px) {
+            gap: 20px;
+          }
+          .text_details {
+            max-width: 110px;
+            min-width: 110px;
+            padding: 20px 2px;
+            text-align: center;
+          }
+
+          .single_details {
+            max-width: 110px;
+            min-width: 110px;
+            padding: 20px 2px;
+            text-align: center;
+          }
+
+          // New Result Page: Design for details
+          .subject_year_design {
+            padding: 10px 2px;
+            display: flex;
+            flex-direction: column;
+
+            .subject_year_design_inner {
+              display: flex;
+              justify-content: space-between;
+              align-items: start;
+              gap: 5px;
+              @media (min-width: 576px) {
+                gap: 10px;
+              }
+              @media (min-width: 1400px) {
+                gap: 20px;
+              }
+
+              .child_box_design {
+                max-width: 110px;
+                min-width: 110px;
+                padding: 10px 2px;
+                text-align: center;
+    
+              }
+              .input_box_design {
+                max-width: 110px;
+                min-width: 110px;
+                padding: 10px 2px;
+                text-align: center;
+    
+
+              }
+              .active_edit_button {
+                background-color: $deep-green;
+                color: $brown-color;
+                cursor: pointer;
+              }
+              .marks_edit_button {
+                color: $deep-green;
+                background-color: transparent;
+                border: 0;
+                font-size: 20px;
+                cursor: pointer;
+              }
+            }
+          }
+
+          .image_field {
+            max-width: 110px;
+            min-width: 110px;
+            height: 50px;
+            position: relative;
+
+            .image_design {
+              width: 50px;
+              height: 50px;
+              position: absolute;
+              top: 0;
+              left: 0;
+            }
+          }
+
+          .button_content {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .toogle_button_design {
+              background-color: $deep-green;
+              border: 0;
+              border-radius: 5px;
+              font-size: $text-body;
+              text-align: center;
+              color: $brown-color;
+              font-weight: 600;
+              cursor: pointer;
+              padding: 2px 5px;
+              margin-top: 20px;
+              margin-left: 20px;
+            }
+          }
+        }
+
+        // Display Even indexed field in result
+        .even_field_design {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: start;
+          gap: 5px;
+
+          @media (min-width: 576px) {
+            gap: 10px;
+          }
+          @media (min-width: 1400px) {
+            gap: 20px;
+          }
+          .text_details {
+            max-width: 110px;
+            min-width: 110px;
+            padding: 20px 2px;
+            text-align: center;
+            // overflow: hidden;
+            // text-overflow: ellipsis;
+            // white-space: nowrap;
+          }
+
+          .single_details {
+            max-width: 110px;
+            min-width: 110px;
+            padding: 20px 2px;
+            text-align: center;
+          }
+
+          .subject_year_design {
+            padding: 10px 2px;
+            display: flex;
+            flex-direction: column;
+
+            .subject_year_design_inner {
+              display: flex;
+              justify-content: space-between;
+              align-items: start;
+              gap: 5px;
+
+              @media (min-width: 576px) {
+                gap: 10px;
+              }
+              @media (min-width: 1400px) {
+                gap: 20px;
+              }
+
+              .child_box_design {
+                max-width: 110px;
+                min-width: 110px;
+                padding: 10px 2px;
+                text-align: center;
+              }
+              .input_box_design {
+                max-width: 110px;
+                min-width: 110px;
+                padding: 10px 2px;
+                text-align: center;
+                // padding: 5px 2px;
+              }
+              .active_edit_button {
+                background-color: $deep-green;
+                color: $brown-color;
+                cursor: pointer;
+              }
+              .marks_edit_button {
+                color: $deep-green;
+                background-color: transparent;
+                border: 0;
+                font-size: 20px;
+                cursor: pointer;
+              }
+            }
+          }
+
+          .image_field {
+            max-width: 110px;
+            min-width: 110px;
+            height: 50px;
+            position: relative;
+
+            .image_design {
+              width: 50px;
+              height: 50px;
+              position: absolute;
+              top: 0;
+              left: 0;
+            }
+          }
+
+          .button_content {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .toogle_button_design {
+              background-color: $deep-green;
+              border: 0;
+              border-radius: 5px;
+              font-size: $text-body;
+              text-align: center;
+              color: $brown-color;
+              font-weight: 600;
+              cursor: pointer;
+              padding: 2px 5px;
+              margin-top: 20px;
+              margin-left: 20px;
+            }
+          }
+        }
       }
     }
   }

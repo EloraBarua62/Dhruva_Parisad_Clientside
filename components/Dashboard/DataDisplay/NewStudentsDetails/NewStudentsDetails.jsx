@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { ThreeDots } from 'react-loader-spinner';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 import { enlistedZone } from '@component/app/Reducers/schoolReducer';
+import Pagination from '../../Pagination/Pagination';
 
 const NewStudentsDetails = () => {
     const { isLoading, studentInfo} =
@@ -14,6 +15,9 @@ const NewStudentsDetails = () => {
     const { zoneInfo, schoolInfo } = useSelector((state) => state.school);
     const [updateStudentInfo, setUpdateStudentInfo] = useState({});
     const [zoneValue, setZoneValue] = useState("Dhaka");
+
+    const [parPage, setParPage] = useState(13);
+    const [currentPage, setCurrentPage] = useState(1);
     const dispatch = useDispatch(); 
     const table_heading = [
       "Roll",
@@ -62,11 +66,26 @@ const NewStudentsDetails = () => {
     };
 
     useEffect(() => {
-        dispatch(studentDetails());
+      const obj = {
+        parPage: parseInt(parPage),
+        page: parseInt(currentPage),
+      };
+        dispatch(studentDetails(obj));
     },[]) 
 
     return (
       <div className={styles.newresult_design}>
+        {/* Pagination */}
+        <div className={styles.pagination}>
+          <div>Page no</div>
+          <Pagination
+            pageNumber={currentPage}
+            setPageNumber={setCurrentPage}
+            totalItem={totalData}
+            parPage={parPage}
+            showItem={4}
+          />
+        </div>
         {/* Table heading */}
         <div className={styles.heading_field_design}>
           {table_heading.map((head, index) => (

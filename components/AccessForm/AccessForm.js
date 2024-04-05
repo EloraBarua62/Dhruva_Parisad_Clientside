@@ -25,7 +25,7 @@ const AccessForm = ({ feature, route, request, fields }) => {
   useEffect(()=>{
     if(successMessage){
         toast.success(successMessage);
-        if (role === "admin") 
+        if (role === "admin" && router.pathname === "/admin/login" ) 
           router.push(`/${role}`);
         else{
           router.push("/user");

@@ -1,17 +1,24 @@
 import api from "@component/api/api";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const resultDisplay = createAsyncThunk("result/resultDisplay", 
-    async(_, {rejectWithValue, fulfillWithValue}) => {
-        try {
-            const { data } = await api.get("result/display", {
-                withCredentials: true,
-            });
-            return fulfillWithValue(data);
-        } catch (error) {
-            return rejectWithValue(error.response.data);
+export const resultDisplay = createAsyncThunk(
+  "result/resultDisplay",
+  async (
+    { parPage, page },
+    { rejectWithValue, fulfillWithValue }
+  ) => {
+    try {
+      const { data } = await api.get(
+        `result/display?page=${page}&&parPage=${parPage}`,
+        {
+          withCredentials: true,
         }
+      );
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
     }
+  }
 );
 
 
@@ -72,7 +79,8 @@ export const resultReducer = createSlice({
     errorMessage: "",
     isLoading: false,
     resultInfo: [],
-    studentResultInfo: {}
+    studentResultInfo: {},
+    totalData: 1000
   },
   reducers: {
     messageClear: (state) => {
@@ -89,6 +97,7 @@ export const resultReducer = createSlice({
     builder.addCase(resultDisplay.fulfilled , (state, {payload}) => {
         state.isLoading = false;
         state.successMessage = payload.message;
+        state.totalData = payload?.totalData || 1000,
         state.resultInfo = payload.resultInfo;
     });
     builder.addCase(resultDisplay.rejected , (state, {payload}) => {

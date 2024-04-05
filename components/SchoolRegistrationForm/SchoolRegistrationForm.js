@@ -1,16 +1,21 @@
 import { schoolFormField } from '@component/utils/demoData';
 import styles from './SchoolRegistrationForm.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { enlistedZone, schoolRegistration } from '@component/app/Reducers/schoolReducer';
+import { messageClear, schoolRegistration } from '@component/app/Reducers/schoolReducer';
 import { useEffect } from 'react';
+import { ThreeDots } from 'react-loader-spinner';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/router';
 
 const SchoolRegistrationForm = () => {
   // Import state variable
   const { zoneInfo } = useSelector((state) => state.school);
+  const { isLoading, successMessage, errorMessage } =
+    useSelector((state) => state.school);
 
   // Import by-default functions
   const dispatch = useDispatch();
-
+  const router = useRouter();
 
   // Set Initial values for UI
   const currentYear = new Date().getFullYear();
@@ -19,8 +24,7 @@ const SchoolRegistrationForm = () => {
   let currentBanglaYear = currentYear - 594;
   if (month >= 3 && day >= 15) ++currentBanglaYear;
 
-
-  
+ 
   const handleRegistrationForm = (e) => {
     e.preventDefault();
     const school_name = e.target.school_name.value;
@@ -41,9 +45,19 @@ const SchoolRegistrationForm = () => {
       phone_no,
     };
     dispatch(schoolRegistration(state));
-    console.log(state);
   };
 
+  useEffect(() => {
+    if (successMessage) {
+      toast.success(successMessage);
+      dispatch(messageClear());
+      router.push("/user");
+    }
+    if (errorMessage) {
+      toast.error(errorMessage);
+      dispatch(messageClear());
+    }
+  }, [successMessage, errorMessage, dispatch,router]);
   
   return (
     <div className={styles.form_design}>
@@ -91,6 +105,18 @@ const SchoolRegistrationForm = () => {
           </div>
         </div>
       </form>
+      {isLoading && (
+        <ThreeDots
+          visible={true}
+          height="80"
+          width="80"
+          color="#4fa94d"
+          radius="9"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      )}
     </div>
   );
 };

@@ -20,6 +20,8 @@ import jsPDFInvoiceTemplate, {
 import { PDFViewer } from "@react-pdf/renderer";
 import PdfDocument from "../PdfDocument/PdfDocument";
 
+
+
 const ExamRegistrationForm = () => {
   // Import state variable
   const { zoneInfo, schoolInfo } = useSelector((state) => state.school);
@@ -28,7 +30,6 @@ const ExamRegistrationForm = () => {
 
   // Import by-default functions
   const dispatch = useDispatch();
-  const router = useRouter();
 
   // Set Initial values for UI
   const currentYear = new Date().getFullYear();
@@ -198,7 +199,7 @@ const ExamRegistrationForm = () => {
       toast.error(errorMessage);
       dispatch(messageClear());
     }
-  }, [successMessage, errorMessage, dispatch, router]);
+  }, [successMessage, errorMessage, dispatch]);
 
   return (
     <div className={styles.form_design}>

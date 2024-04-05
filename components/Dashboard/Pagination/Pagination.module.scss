@@ -1,0 +1,60 @@
+@import "../../../styles/config";
+
+.arrow_pagination_set {
+  display: flex;
+  gap: 5px;
+}
+
+.arrow {
+  width: 25px;
+  height: 25px;
+  color: $deep-green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // background-color: yellow;
+}
+
+.pagination {
+  display: flex;
+  gap: 10px;
+
+  // .arrow {
+  //   width: 25px;
+  //   height: 25px;
+  //   color: $deep-green;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
+
+  .active_page {
+    width: 25px;
+    height: 25px;
+    background-color: $light-green;
+    color: $brown-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px solid;
+    border-radius: 4px;
+  }
+
+  .inactive_page {
+    width: 25px;
+    height: 25px;
+    background-color: $brown-color;
+    color: $deep-green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px solid;
+    border-radius: 4px;
+  }
+
+  .inactive_page:hover {
+    background-color: $medium-green;
+    color: $brown-color;
+  }
+}
+

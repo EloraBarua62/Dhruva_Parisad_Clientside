@@ -1,14 +1,34 @@
 @import "../../../styles/config";
 
 .newspage_display {
-  width: 100%;
+  // width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 50px 0;
 
+
+  .main_content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+  .heading {
+    font-size: $text-subhead;
+    font-family: "Bree Serif", serif;
+    color: $deep-green;
+    text-decoration: underline;
+    @media (min-width: 768px) {
+      font-size: 28px;
+    }
+
+    @media (min-width: 1200px) {
+      font-size: 30px;
+    }
+  }
+
   .newspage_contents {
-    width: 100%;
+    // width: 100%;
     display: grid;
     grid-template-columns: 1;
     gap: 10px;
@@ -21,7 +41,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 25px;
     }
-    @media (min-width: 1440px) {
+    @media (min-width: 1024px) {
       grid-template-columns: repeat(4, 1fr);
       gap: 30px;
     }
@@ -61,6 +81,19 @@
           }
         }
 
+        .details {
+          font-size: 16px;
+          margin: 20px 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          max-width: 200px;
+
+          @media (min-width: 1200px) {
+            font-size: 18px;
+          }
+        }
+
         .details_button {
           background-color: $deep-green;
           color: $brown-color;
@@ -85,4 +118,5 @@ box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
       }
     }
   }
+}
 }

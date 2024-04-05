@@ -81,47 +81,54 @@ export const schoolReducer = createSlice({
     },
   },
   extraReducers: (builder) => {
+    
     // Fetch enlisted school 
     builder.addCase(enlistedSchools.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(enlistedSchools.rejected, (state, { payload }) => {
-      state.isLoading = false;
+    builder.addCase(enlistedSchools.rejected, (state, { payload }) => {    
       state.errorMessage = payload?.error;
+      state.isLoading = false;
     });
     builder.addCase(enlistedSchools.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
-      state.successMessage = payload?.message;
+      // state.successMessage = payload?.message;
       state.schoolInfo = payload?.schoolInfo;
+      state.isLoading = false;
     });
 
+    
+    
     // Details Fetching action
     builder.addCase(enlistedZone.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(enlistedZone.rejected, (state, { payload }) => {
-      state.isLoading = false;
       state.errorMessage = payload?.error;
+      state.isLoading = false;
     });
     builder.addCase(enlistedZone.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
       state.zoneInfo = payload?.zone_list;
       state.schoolInfo = payload?.schoolInfo || [];
-      state.successMessage = payload?.message;
+      // state.successMessage = payload?.message;
+      state.isLoading = false;
     });
+    
+    
+    
     // Details Fetching action
     builder.addCase(schoolRegistration.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(schoolRegistration.rejected, (state, { payload }) => {
-      state.isLoading = false;
       state.errorMessage = payload?.error;
+      state.isLoading = false;
     });
     builder.addCase(schoolRegistration.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
       state.successMessage = payload?.message;
+      state.isLoading = false;
     });
 
+    
     // Details Fetching action
     builder.addCase(updateStatus.pending, (state) => {
       state.isLoading = true;
@@ -142,7 +149,6 @@ export const schoolReducer = createSlice({
           break;
         }
       }
-      console.log(parentArray)
       state.schoolInfo = parentArray;
       state.successMessage = payload?.message;
       state.isLoading = false;

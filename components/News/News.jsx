@@ -9,19 +9,21 @@ const News = ({ newsList }) => {
   console.log(newsList);
   const year = new Date().getFullYear();
   const date = new Date().getDate();
-  const month = new Date().getMonth();
+  const month = new Date().getMonth() + 1;
   const time = [];
   
   
   newsList.map((news) => {
     let value;
+
     if (year - parseInt(news.updatedAt.substring(0, 4)) > 0) {
       value = year - parseInt(news.updatedAt.substring(0, 4));
-      if (value == 1) time.push(value + " year ago");
+      if (value == 1) time.push("Last year");
       else time.push(value + " years ago");
     } else if (month - parseInt(news.updatedAt.substring(5, 7)) > 0) {
       value = month - parseInt(news.updatedAt.substring(5, 7));
-      if (value == 1) time.push(value + " month ago");
+      console.log(value)
+      if (value == 1) time.push("Last month");
       else time.push(value + " months ago");
     } else if (date - parseInt(news.updatedAt.substring(8, 10)) > 0) {
       value = date - parseInt(news.updatedAt.substring(8, 10));
@@ -53,12 +55,12 @@ const News = ({ newsList }) => {
               <div className={styles.status_section}>
                 <div className={styles.status_left}>Current</div>
                 <div className={styles.status_right}>
-                  <p className={styles.extra_details}>{time[0]}.</p>
-                  <p className={styles.extra_details}>0 views</p>
-                  <FaShareAlt
+                  <p className={styles.extra_details}>Post: {time[0]}.</p>
+                  {/* <p className={styles.extra_details}>0 views</p> */}
+                  {/* <FaShareAlt
                     style={{ fontSize: "16px", color: "gray" }}
                     className={styles.icon_design}
-                  />
+                  /> */}
                   {/* <div className={styles.share_design}>
                       <FaShareAlt className={styles.icon_design} />
                     </div> */}
@@ -73,7 +75,7 @@ const News = ({ newsList }) => {
               <div className={styles.description_content}>
                 {newsList[0]?.news_details}
               </div>
-              <strong className={styles.imp_date}>
+              <strong>
                 N.B: {newsList[0]?.imp_msg}
               </strong>
               <Link
@@ -106,14 +108,14 @@ const News = ({ newsList }) => {
 
                     <div className={styles.status_section}>
                       <div className={styles.status_right}>
-                        <p className={styles.extra_details}>{time[index]}.</p>
-                        <p className={styles.extra_details}>0 views</p>
+                        <p className={styles.extra_details}>Post: {time[index]}.</p>
+                        {/* <p className={styles.extra_details}>0 views</p> */}
                       </div>
 
-                      <FaShareAlt
+                      {/* <FaShareAlt
                         style={{ fontSize: "16px", color: "gray" }}
                         className={styles.icon_design}
-                      />
+                      /> */}
                       {/* <div className={styles.share_design}>
                       <FaShareAlt className={styles.icon_design} />
                     </div> */}

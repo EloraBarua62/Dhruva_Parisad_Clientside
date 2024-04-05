@@ -3,6 +3,13 @@
 .newresult_design {
   padding: 10px;
   width: 1250px;
+
+  .pagination{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+  }
  
   .heading_field_design {
     width: 100%;

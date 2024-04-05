@@ -18,7 +18,6 @@ const Result = () => {
   const table_heading = [
     "Roll",
     "Name",
-    "School",
     "Subject",
     "Year",
     "Written",
@@ -86,97 +85,89 @@ const Result = () => {
                   <div
                     key={index}
                     className={`${
-                      index % 2 == 0 ? "even_field_design" : "odd_field_design"
+                      index % 2 == 0
+                        ? `${styles.even_field_design}`
+                        : `${ styles.odd_field_design }`
                     }`}
                   >
                     {/* Field: Student Roll */}
-                    <div className="text_details">{head.studentInfo.roll}</div>
-
+                    <div className={styles.text_details}>{head.studentInfo.roll}</div>
                     {/* Field: Student Name */}
-                    <div className="single_details">
+                    <div className={styles.single_details}>
                       {head.studentInfo?.student_name}
                     </div>
-
-                    {/* Field: School ID */}
-                    <div className="single_details">
-                      {head.studentInfo?.school}
-                    </div>
-
+                
                     {/* Field: Subjects and Years */}
                     {detailsLength === index ? (
-                      <div className="subject_year_design">
+                      <div className={styles.subject_year_design}>
                         {head.studentInfo?.subjectYear.map((data, idx) => (
-                          <div key={idx} className="subject_year_design_inner">
-                            <div className="child_box_design">
+                          <div key={idx} className={styles.subject_year_design_inner}>
+                            <div className={styles.child_box_design}>
                               {data.subject}
                             </div>
-                            <div className="child_box_design">{data.year}</div>
+                            <div className={styles.child_box_design}>{data.year}</div>
                           </div>
                         ))}
                       </div>
                     ) : (
-                      <div className="subject_year_design">
-                        <div className="subject_year_design_inner">
-                          <div className="child_box_design">
+                      <div className={styles.subject_year_design}>
+                        <div className={styles.subject_year_design_inner}>
+                          <div className={styles.child_box_design}>
                             {head.studentInfo?.subjectYear[0].subject}
                           </div>
-                          <div className="child_box_design">
+                          <div className={styles.child_box_design}>
                             {head.studentInfo?.subjectYear[0].year}
                           </div>
                         </div>
                       </div>
                     )}
-
                     {/* Field: Written and Practical */}
                     {detailsLength === index ? (
-                      <div className="subject_year_design">
+                      <div className={styles.subject_year_design}>
                         {/* Result update form for single user */}
-                        <div>
                           {head?.writtenPractical.map((data, idx) => (
                             <div
                               key={idx}
-                              className="subject_year_design_inner"
+                              className={styles.subject_year_design_inner}
                             >
-                              <div>{data.written}</div>
-                              <div>{data.practical}</div>
+                              <div className={styles.child_box_design}>{data.written}</div>
+                              <div className={styles.child_box_design}>{data.practical}</div>
 
                               {/* Displaying total score of written and practical  */}
-                              <div className="child_box_design">
+                              <div className={styles.child_box_design}>
                                 {data.written + data.practical}
                               </div>
 
                               {/* Displaying final grade of written and practical  */}
-                              <div className="child_box_design">
+                              <div className={styles.child_box_design}>
                                 {data.grade}
                               </div>
                             </div>
                           ))}
-                        </div>
                       </div>
                     ) : (
-                      <div className="subject_year_design">
-                        <div className="subject_year_design_inner">
-                          <div className="child_box_design">
+                      <div className={styles.subject_year_design}>
+                        <div className={styles.subject_year_design_inner}>
+                          <div className={styles.child_box_design}>
                             {head?.writtenPractical[0].written}
                           </div>
-                          <div className="child_box_design">
+                          <div className={styles.child_box_design}>
                             {head?.writtenPractical[0].practical}
                           </div>
-                          <div className="child_box_design">
+                          <div className={styles.child_box_design}>
                             {head?.writtenPractical[0].written +
                               head?.writtenPractical[0].practical}
                           </div>
-                          <div className="child_box_design">
+                          <div className={styles.child_box_design}>
                             {head?.writtenPractical[0].grade}
                           </div>
                         </div>
                       </div>
                     )}
-
                     {/* Details checking button */}
-                    <div className="button_content">
+                  <div className={styles.button_content}>
                       <button
-                        className="toogle_button_design"
+                        className={styles.toogle_button_design}
                         onClick={() => handleToogle(index)}
                       >
                         {detailsLength === index ? "Close" : "Open"}

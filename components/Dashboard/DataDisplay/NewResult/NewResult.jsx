@@ -7,6 +7,7 @@ import {
 } from "@component/app/Reducers/resultReducer";
 import { MdEdit, MdOutlineDone } from "react-icons/md";
 import { ThreeDots } from "react-loader-spinner";
+import Pagination from "../../Pagination/Pagination";
 
 const NewResult = () => {
   const table_heading = [
@@ -21,18 +22,26 @@ const NewResult = () => {
     "Grade",
     "Details",
   ];
-  let { isLoading, resultInfo } = useSelector((state) => state.result);
+
+  let { isLoading, resultInfo, totalData } = useSelector((state) => state.result);
   const [detailsLength, setDetailsLength] = useState(-1);
   const [writtenPracticalState, setWrittenPracticalState] = useState([]);
   const [editDoneFieldIdx, setEditDoneFieldIdx] = useState(-1);
   const [editDoneSingleIdx, setEditDoneSingleIdx] = useState(-1);
   const [toogleEditDoneButton, setToogleEditDoneButton] = useState(true);
   const [toogle, setToogle] = useState(false);
+
+   const [parPage, setParPage] = useState(13);
+   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(resultDisplay());
-  }, []);
+    const obj = {
+      parPage: parseInt(parPage),
+      page: parseInt(currentPage),
+    };
+    dispatch(resultDisplay(obj));
+  }, [currentPage, parPage, dispatch]);
 
   const handleToogle = (index) => {
     setToogle(!toogle);
@@ -84,6 +93,18 @@ const NewResult = () => {
 
   return (
     <div className={styles.newresult_design}>
+      {/* Pagination */}
+      <div className={styles.pagination}>
+        <div>Page no</div>
+        <Pagination
+          pageNumber={currentPage}
+          setPageNumber={setCurrentPage}
+          totalItem={totalData}
+          parPage={parPage}
+          showItem={4}
+        />
+      </div>
+
       {/* Table heading */}
       <div className={styles.heading_field_design}>
         {table_heading.map((head, index) => (
@@ -112,7 +133,9 @@ const NewResult = () => {
             </div>
 
             {/* Field: School ID */}
-            <div className="single_details">{head.studentInfo?.school_code}</div>
+            <div className="single_details">
+              {head.studentInfo?.school_code}
+            </div>
 
             {/* Field: Subjects and Years */}
             {detailsLength === index ? (
@@ -208,7 +231,6 @@ const NewResult = () => {
                 </div>
               </div>
             )}
-
 
             {/* Details checking button */}
             <div className="button_content">
