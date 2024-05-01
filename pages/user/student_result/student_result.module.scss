@@ -96,7 +96,6 @@
       margin-top: 50px;
       padding-left: 10px;
       overflow-x: scroll;
-      
 
       .other_info {
         width: 800px;
@@ -105,12 +104,12 @@
         border: 0;
         border-radius: 10px;
 
-         @media (min-width: 1024px) {
+         @media (min-width: 996px) {
           width: 100%;
         }
 
         .title {
-        font-size: $text-body;
+        font-size: $text-head;
         font-weight: 600;
         color: $deep-green;
         margin-top: 20px;
