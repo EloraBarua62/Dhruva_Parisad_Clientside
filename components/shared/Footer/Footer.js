@@ -9,8 +9,8 @@ const Footer = () => {
         <div className={styles.footer_contents}>
           {/* Title display */}
           <div className={styles.title_display}>
-            <h1 className={styles.title}>Dhrubo Parishad</h1>
-            <h1 className={styles.info}>Since 1998</h1>
+            <div className={styles.title}>Dhrubo Parishad</div>
+            <div className={styles.info}>Since 1998</div>
           </div>
 
           <div className={styles.info_section}>

@@ -92,15 +92,22 @@
     }
 
     .student_info {
+      width: 100%;
       margin-top: 50px;
+      padding-left: 10px;
+      overflow-x: scroll;
       
 
       .other_info {
-        width: 100%;
+        width: 800px;
         padding: 20px;
         background-color: $light-green;
         border: 0;
         border-radius: 10px;
+
+         @media (min-width: 1024px) {
+          width: 100%;
+        }
 
         .title {
         font-size: $text-body;

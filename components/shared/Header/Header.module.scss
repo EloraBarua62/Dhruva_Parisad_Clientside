@@ -18,19 +18,39 @@
     align-items: center;
 
     // Name and logo design
-    .logo_design {
-      color: $brown-color;
-      text-decoration: none;
-      font-size: $text-head;
-      font-weight: 700;
-      font-family: "Bree Serif", serif;
+    .logo_section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      
+      .logo_div {
+        width: 50px;
+        height: 50px;
+        position: relative;
 
-      @media (min-width: 768px) {
-        font-size: 28px;
+        .logo_design {
+          width: 100%;
+          border: 0px solid;
+          border-radius: 50px;
+          object-fit: cover;
+        }
       }
 
-      @media (min-width: 1200px) {
-        font-size: 35px;
+      .logo_name_design {
+        color: $brown-color;
+        text-decoration: none;
+        font-size: $text-head;
+        font-weight: 700;
+        font-family: "Bree Serif", serif;
+
+        @media (min-width: 768px) {
+          font-size: 28px;
+        }
+
+        @media (min-width: 1200px) {
+          font-size: 35px;
+        }
       }
     }
 
@@ -96,7 +116,7 @@
 
   .small_device_overlay {
     position: fixed;
-    top: 32px;
+    top: 60px;
     left: 0px;
     transition: 0.25s ease;
     width: 100%;

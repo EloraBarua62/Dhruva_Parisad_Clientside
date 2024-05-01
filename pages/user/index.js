@@ -15,15 +15,16 @@ const User = () => {
   const { zone } = useSelector((state) => state.school);
 
   const schools = [
-    "A school",
-    "B school",
-    "C school",
-    "DF school",
-    "S school",
-    "FS school",
-    "ET school",
-    "HH school",
-    "QW school",
+    "Saptorshi Shongeet School",
+    "Muktassori Shongeet School",
+    "Kolotan Shongeet School",
+    "Srishtee Shongeet Nikaton",
+    "Shottenshen Shongeet Academy",
+    "Shaptashur Shongeet School",
+    "Ektara Shongeet Academy",
+    "Srijoni Shongeet Academy",
+    "Banda Shongeet School",
+    "Mukto-Shangskriti School",
   ];
   useEffect(() => {
     const count = 4;

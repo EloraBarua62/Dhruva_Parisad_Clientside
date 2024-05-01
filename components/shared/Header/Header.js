@@ -8,6 +8,8 @@ import { IoCloseSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { logOut } from "@component/app/Reducers/authReducer";
+import Image from "next/image";
+import logo from '../../../public/logo.jpeg'
 
 const Header = () => {
   const pathname = usePathname();
@@ -53,8 +55,16 @@ const Header = () => {
       {/* Name and logo display */}
       <Container>
         <div className={styles.header_inner}>
-          <div>
-            <Link className={styles.logo_design} href="/user">
+          <div className={styles.logo_section}>
+            <div className={styles.logo_div}>
+              <Image
+                src={logo}
+                alt=""
+                fill
+                className={styles.logo_design}
+              ></Image>
+            </div>
+            <Link className={styles.logo_name_design} href="/user">
               Dhruvo Parishad
             </Link>
           </div>
@@ -143,7 +153,9 @@ const Header = () => {
             ) : (
               <Link
                 className={`link ${
-                  pathname === "/user/login" ? styles.active_small : styles.inactive_small
+                  pathname === "/user/login"
+                    ? styles.active_small
+                    : styles.inactive_small
                 }`}
                 href={"/user/login"}
               >

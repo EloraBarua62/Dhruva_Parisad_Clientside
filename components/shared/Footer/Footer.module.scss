@@ -30,13 +30,23 @@
       }
 
       .title {
-        font-size: $text-head;
+        font-size: 20px;
         font-weight: 700;
-        margin: 20px 0;
+        margin: 5px 0;
+        font-family: "Bree Serif", serif;
+        
+        @media (min-width: 768px) {
+          margin: 20px 0 10px;
+          font-size: 28px;
+        }
       }
       .info {
         font-size: $text-label;
         margin: 0;
+
+        @media (min-width: 768px) {
+          font-size: 16px;
+        }
       }
     }
 

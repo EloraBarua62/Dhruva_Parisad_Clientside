@@ -7,6 +7,7 @@ import {
 } from "@component/app/Reducers/resultReducer";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import Certificate from "@component/components/Certificate/Certificate";
 
 const StudentResult = () => {
   const { isLoading, successMessage, errorMessage, studentResultInfo } =
@@ -112,6 +113,11 @@ const StudentResult = () => {
                   )
                 )}
               </div>
+              <Certificate
+                student_name={studentResultInfo?.studentInfo?.student_name}
+                roll={studentResultInfo?.studentInfo?.roll}
+                result={"3.62"}
+              />
             </div>
           ) : (
             ""

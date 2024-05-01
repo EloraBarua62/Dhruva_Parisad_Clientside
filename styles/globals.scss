@@ -282,7 +282,7 @@ body {
         }
       }
       .marquee_display {
-        width: 150px;
+        width: 160px;
         height: 80px;
         background-color: white;
         border: 0;
@@ -292,6 +292,11 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+        color: $medium-green;
+        padding: 4px;
       }
     }
   }
