@@ -5,8 +5,35 @@
   position: relative;
   padding: 20px;
 
+  .heading {
+    color: $deep-green;
+    text-align: center;
+    text-decoration: underline;
+  }
+
   .school_table {
     height: 100%;
+
+    .header_section {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 40px;
+
+      .pagination {
+        width: 300px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 10px;
+        background-color: #f9fad1;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 0 solid;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+    }
 
     .heading_field_design {
       width: 100%;

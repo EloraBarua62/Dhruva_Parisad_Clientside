@@ -2,8 +2,28 @@
 
 .newresult_design {
   padding: 10px;
-  width: 1000px;
+  width: 1250px;
   position: relative;
+
+  .heading {
+    color: $deep-green;
+    text-align: center;
+    text-decoration: underline;
+  }
+
+  .pagination {
+    width: 300px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    background-color: #f9fad1;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 0 solid;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
 
   .heading_field_design {
     width: 100%;
@@ -25,8 +45,8 @@
     }
 
     .single_heading {
-      max-width: 110px;    
-      min-width: 110px;    
+      max-width: 110px;
+      min-width: 110px;
       padding: 10px 2px;
       text-align: center;
       margin-bottom: 5px;
@@ -37,9 +57,46 @@
     }
   }
 
-  .info_field_design{
+  .info_field_design {
     height: 100vh;
-    border-bottom: 1px solid $deep-green;    
+    border-bottom: 1px solid $deep-green;
+
+    .activity_section {
+      max-width: 110px;
+      min-width: 110px;
+      padding: 10px 2px 0;
+      text-align: center;
+
+      display: flex;
+      gap: 10px;
+
+      .update_button{
+        color: white;
+        border: 0;
+        border-radius: 5px;
+        background-color: $deep-green;
+        font-weight: 600;
+        padding: 4px;
+        cursor: pointer;
+      }
+
+      .update_button:hover{
+        background-color: rgba(2, 144, 2, 0.675);
+      }
+      .delete_button{
+        color: white;
+        border: 0;
+        border-radius: 5px;
+        background-color: red;
+        font-weight: 600;
+        padding: 4px;
+        cursor: pointer;
+      }
+
+      .delete_button:hover{
+        background-color: rgb(252, 35, 35);
+      }
+    }
   }
 
   .student_details {
@@ -58,11 +115,12 @@
       display: flex;
       justify-content: space-between;
       gap: 25px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
 
-      .school_head {
+      .student_head {
         font-size: $text-body;
-        color: $deep-green;
+        font-weight: 600;
+        color: $medium-green;
         @media (min-width: 768px) {
           font-size: 20px;
         }
@@ -78,15 +136,15 @@
         background-color: transparent;
 
         .button_design {
-          font-size: 25px;
+          font-size: 30px;
           color: $deep-green;
+          cursor: pointer;
         }
       }
     }
 
     .school_name {
       font-size: $text-body;
-      font-weight: 700;
       margin-bottom: 10px;
 
       @media (min-width: 1200px) {
@@ -94,17 +152,21 @@
       }
     }
 
-    form{
+    form {
       width: 100%;
-      .input_field_design{
+      label {
+        font-size: $text-label;
+        margin-bottom: 4px;
+      }
+      .input_field_design {
         display: block;
         width: 100%;
         margin-bottom: 10px;
         outline: none;
         border: 1px solid $deep-green;
         border-radius: 5px;
-        padding-top: 3px;
-        padding-bottom: 3px;
+        padding-top: 5px;
+        padding-bottom: 5px;
       }
     }
 

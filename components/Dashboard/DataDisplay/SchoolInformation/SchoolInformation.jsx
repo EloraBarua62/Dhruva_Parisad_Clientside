@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import styles from "./SchoolInformation.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { enlistedSchools, updateStatus } from "@component/app/Reducers/schoolReducer";
+import { enlistedSchools, schoolInformation, updateStatus } from "@component/app/Reducers/schoolReducer";
 import { schoolInformField } from "@component/utils/demoData";
 import Image from "next/image";
 import { ThreeDots } from "react-loader-spinner";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import Pagination from "../../Pagination/Pagination";
 
 const SchoolInformation = () => {
-  const { isLoading, schoolInfo } = useSelector((state) => state.school);
+  const { isLoading, schoolList, totalData } = useSelector((state) => state.school);
   const [selectStatus , setSelectStatus] = useState('all');
   let [schoolDetails, setSchoolDetails] = useState({});
   const statusOptions = [
@@ -16,6 +17,8 @@ const SchoolInformation = () => {
     { title: "confirmed", text: "Confirmed" },
     { title: "blocked", text: "Blocked" },
   ];
+  const [parPage, setParPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
 
   const table_heading = [
@@ -27,8 +30,12 @@ const SchoolInformation = () => {
     "Details",
   ];
   useEffect(() => {
-      dispatch(enlistedSchools("all"));
-    }, []);
+    const obj = {
+      parPage: parseInt(parPage),
+      page: parseInt(currentPage),
+    };
+    dispatch(schoolInformation(obj));
+  }, [currentPage, parPage, dispatch]);
 
   const hadleStatusChange = (e, id) => {
     const status = e.target.status.value;
@@ -41,16 +48,29 @@ const SchoolInformation = () => {
 
   return (
     <div className={styles.schoolInfo_design}>
+      <h1 className={styles.heading}>School Information</h1>
       {/*Enlisted School  */}
       <div className={styles.school_table}>
-        <div>
-          <label htmlFor="status">Select Status</label>
-          <select onChange={(e) => setSelectStatus(e.target.value)}>
-            <option value="all">All</option>
-            <option value="pending">Pending</option>
-            <option value="confirmed">Confirmed</option>
-            <option value="blocked">Blocked</option>
-          </select>
+        <div className={styles.header_section}>
+          <div>
+            <label htmlFor="status">Select Status</label>
+            <select onChange={(e) => setSelectStatus(e.target.value)}>
+              <option value="all">All</option>
+              <option value="pending">Pending</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="blocked">Blocked</option>
+            </select>
+          </div>
+          <div className={styles.pagination}>
+            <div>Page no</div>
+            <Pagination
+              pageNumber={currentPage}
+              setPageNumber={setCurrentPage}
+              totalItem={totalData}
+              parPage={parPage}
+              showItem={4}
+            />
+          </div>
         </div>
 
         <div className={styles.heading_field_design}>
@@ -61,7 +81,7 @@ const SchoolInformation = () => {
           ))}
         </div>
         <div>
-          {schoolInfo
+          {schoolList
             .filter((each) => {
               if (selectStatus === each.status || selectStatus === "all") {
                 return each;

@@ -33,13 +33,33 @@ export const updateInfo = createAsyncThunk(
   }
 );
 
-export const studentDetails = createAsyncThunk(
-  "student/studentDetails",
-  async (_,{ rejectWithValue, fulfillWithValue }) => {
+
+export const deleteInfo = createAsyncThunk(
+  "student/deleteInfo",
+  async (data, { rejectWithValue, fulfillWithValue }) => {
+    const id = data.id;
+    console.log(id)
     try {
-      const { data } = await api.get("/student/details", {
+      const { data } = await api.delete(`/student/delete-info/${id}`, {
         withCredentials: true,
       });
+      return fulfillWithValue({id, data});
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const studentDetails = createAsyncThunk(
+  "student/studentDetails",
+  async ({ parPage, page },{ rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await api.get(
+        `student/details?page=${page}&&parPage=${parPage}`,
+        {
+          withCredentials: true,
+        }
+      );
       return fulfillWithValue(data);
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -56,6 +76,7 @@ export const studentReducer = createSlice({
     studentInfo: [],
     role: "",
     studentDetail: {},
+    totalData: 1000,
     exam_date: ""
   },
   reducers: {
@@ -95,6 +116,7 @@ export const studentReducer = createSlice({
     builder.addCase(studentDetails.fulfilled, (state, { payload }) => {
       state.isLoading = false;
       state.studentInfo = payload.studentInfo;
+      state.totalData = payload?.totalData || 1000,
       state.successMessage = payload?.message;
     });
 
@@ -102,9 +124,9 @@ export const studentReducer = createSlice({
     builder.addCase(updateInfo.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(updateInfo.rejected, (state, { payload }) => {
-      state.isLoading = false;
+    builder.addCase(updateInfo.rejected, (state, { payload }) => {    
       state.errorMessage = payload?.error;
+      state.isLoading = false;
     });
     builder.addCase(updateInfo.fulfilled, (state, { payload }) => {
       let parentArray = state.studentInfo;
@@ -116,6 +138,25 @@ export const studentReducer = createSlice({
         }
       }
       state.studentInfo = parentArray;
+      state.successMessage = payload?.message;
+      state.isLoading = false;
+    });
+    
+    
+    // Details Fetching action
+    builder.addCase(deleteInfo.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(deleteInfo.rejected, (state, { payload }) => {    
+      state.errorMessage = payload?.error;
+      state.isLoading = false;
+    });
+    builder.addCase(deleteInfo.fulfilled, (state, { payload }) => {
+      const parentArray = state.studentInfo;
+      const id = payload.id;
+      const keep_parentArray = parentArray.filter(each => each._id !== id );
+      console.log(keep_parentArray)
+      state.studentInfo = keep_parentArray;
       state.successMessage = payload?.message;
       state.isLoading = false;
     });

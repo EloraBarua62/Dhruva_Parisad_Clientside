@@ -64,6 +64,23 @@ export const updateStatus = createAsyncThunk(
   }
 ); 
 
+export const schoolInformation = createAsyncThunk(
+  "school/schoolInformation",
+  async ({ parPage, page }, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await api.get(
+        `school/display?page=${page}&&parPage=${parPage}`,
+        {
+          withCredentials: true,
+        }
+      );
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const schoolReducer = createSlice({
   name: "school",
   initialState: {
@@ -72,6 +89,8 @@ export const schoolReducer = createSlice({
     isLoading: false,
     zoneInfo: [],
     schoolInfo: [],
+    schoolList: [],
+    totalData: 1000,
     role: "",
   },
   reducers: {
@@ -81,12 +100,11 @@ export const schoolReducer = createSlice({
     },
   },
   extraReducers: (builder) => {
-    
-    // Fetch enlisted school 
+    // Fetch enlisted school
     builder.addCase(enlistedSchools.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(enlistedSchools.rejected, (state, { payload }) => {    
+    builder.addCase(enlistedSchools.rejected, (state, { payload }) => {
       state.errorMessage = payload?.error;
       state.isLoading = false;
     });
@@ -96,8 +114,6 @@ export const schoolReducer = createSlice({
       state.isLoading = false;
     });
 
-    
-    
     // Details Fetching action
     builder.addCase(enlistedZone.pending, (state) => {
       state.isLoading = true;
@@ -112,9 +128,7 @@ export const schoolReducer = createSlice({
       // state.successMessage = payload?.message;
       state.isLoading = false;
     });
-    
-    
-    
+
     // Details Fetching action
     builder.addCase(schoolRegistration.pending, (state) => {
       state.isLoading = true;
@@ -128,7 +142,6 @@ export const schoolReducer = createSlice({
       state.isLoading = false;
     });
 
-    
     // Details Fetching action
     builder.addCase(updateStatus.pending, (state) => {
       state.isLoading = true;
@@ -141,16 +154,30 @@ export const schoolReducer = createSlice({
       let index = payload.id;
       let parentArray = state.schoolInfo;
       const size = parentArray.length;
-      console.log(payload.data.schoolInfo)
-      for(let i=0 ; i<size ; i++)
-      {
-        if(parentArray[i]?._id === index){
+      console.log(payload.data.schoolInfo);
+      for (let i = 0; i < size; i++) {
+        if (parentArray[i]?._id === index) {
           parentArray[i] = payload.data.schoolInfo;
           break;
         }
       }
       state.schoolInfo = parentArray;
       state.successMessage = payload?.message;
+      state.isLoading = false;
+    });
+
+    // Fetch enlisted school
+    builder.addCase(schoolInformation.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(schoolInformation.rejected, (state, { payload }) => {
+      state.errorMessage = payload?.error;
+      state.isLoading = false;
+    });
+    builder.addCase(schoolInformation.fulfilled, (state, { payload }) => {
+      state.schoolList = payload?.schoolList;
+      (state.totalData = payload?.totalData || 1000),
+        (state.successMessage = payload?.message);
       state.isLoading = false;
     });
   },

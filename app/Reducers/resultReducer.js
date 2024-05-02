@@ -94,11 +94,11 @@ export const resultReducer = createSlice({
     builder.addCase(resultDisplay.pending , (state) => {
         state.isLoading = true;
     });
-    builder.addCase(resultDisplay.fulfilled , (state, {payload}) => {
-        state.isLoading = false;
-        state.successMessage = payload.message;
-        state.totalData = payload?.totalData || 1000,
+    builder.addCase(resultDisplay.fulfilled , (state, {payload}) => {                
         state.resultInfo = payload.resultInfo;
+        state.totalData = payload?.totalData || 1000,
+        state.successMessage = payload.message;
+        state.isLoading = false;
     });
     builder.addCase(resultDisplay.rejected , (state, {payload}) => {
         state.isLoading = false;

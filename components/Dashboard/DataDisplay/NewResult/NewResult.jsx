@@ -31,8 +31,8 @@ const NewResult = () => {
   const [toogleEditDoneButton, setToogleEditDoneButton] = useState(true);
   const [toogle, setToogle] = useState(false);
 
-   const [parPage, setParPage] = useState(13);
-   const [currentPage, setCurrentPage] = useState(1);
+  const [parPage, setParPage] = useState(12);
+  const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -93,6 +93,8 @@ const NewResult = () => {
 
   return (
     <div className={styles.newresult_design}>
+      <h1 className={styles.heading}>New Result</h1>
+
       {/* Pagination */}
       <div className={styles.pagination}>
         <div>Page no</div>

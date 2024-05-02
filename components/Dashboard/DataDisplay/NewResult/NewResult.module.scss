@@ -4,13 +4,26 @@
   padding: 10px;
   width: 1250px;
 
-  .pagination{
+  .heading{
+    color: $deep-green;
+    text-align: center;
+    text-decoration: underline;
+  }
+
+  .pagination {
+    width: 300px;
     display: flex;
     justify-content: start;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
+    background-color: #f9fad1;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 0 solid;
+    border-radius: 10px;
+    margin-bottom: 20px;
   }
- 
+
   .heading_field_design {
     width: 100%;
     display: flex;
@@ -31,8 +44,8 @@
     }
 
     .single_heading {
-      max-width: 110px;    
-      min-width: 110px;   
+      max-width: 110px;
+      min-width: 110px;
       padding: 10px 2px;
       text-align: center;
       margin-bottom: 5px;
@@ -40,12 +53,10 @@
       border-radius: 5px;
       font-weight: 600;
       color: white;
-      
     }
   }
 
-  .info_field_design{
+  .info_field_design {
     border-bottom: 1px solid $deep-green;
-     
   }
 }
