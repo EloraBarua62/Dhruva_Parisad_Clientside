@@ -1,0 +1,131 @@
+@import "../../styles/config";
+
+.certificate_section {
+  margin-top: 40px;
+  width: 100%;
+  // padding: 20px;
+  background-color: $brown-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 1024px) {
+    margin-top: 60px;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+  }
+
+  .title {
+    font-size: $text-head;
+    font-weight: 600;
+    color: $deep-green;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    text-decoration: underline;
+    text-align: left;
+
+    @media (min-width: 768px) {
+      font-size: 20px;
+      margin-bottom: 40px;
+    }
+    @media (min-width: 1024px) {
+      text-align: center;
+    }
+    @media (min-width: 1200px) {
+      font-size: 24px;
+    }
+  }
+
+  .child_section {
+    // width: 100%;
+    position: relative;
+
+    .image_section {
+      width: 600px;
+      height: 800px;
+    }
+
+    .student_info {
+      width: 600px;
+      height: 400px;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      .student_image {
+        // margin-top: 165px;
+        // margin-left: 425px;
+        // max-width: 110px;
+        // max-height: 115px;
+        top: 50;
+        // overflow: hidden;
+        background-color: red;
+
+        .image_set{
+          width: 50px;
+          // object-fit: cover;
+        }
+      }
+
+      .date_design {
+        margin-left: 170px;
+        margin-top: 100px;
+        font-style: italic;
+        font-weight: 600;
+      }
+      .name_design {
+        margin-left: 190px;
+        margin-top: 5px;
+        font-style: italic;
+        font-weight: 600;
+      }
+      .roll_design {
+        margin-left: 150px;
+        margin-top: 5px;
+        font-style: italic;
+        font-weight: 600;
+      }
+      .father_name_design {
+        margin-left: 200px;
+        margin-top: 5px;
+        font-style: italic;
+        font-weight: 600;
+      }
+      .mother_name_design {
+        margin-left: 200px;
+        margin-top: 5px;
+        font-style: italic;
+        font-weight: 600;
+      }
+      .school_design {
+        margin-left: 200px;
+        margin-top: 5px;
+        font-style: italic;
+        font-weight: 600;
+      }
+      
+    }
+  }
+
+  .download_button {
+    width: 200px;
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+    background-color: $deep-green;
+    color: white;
+    font-size: $text-body;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  .download_button:hover {
+    background-color: $light-green;
+    color: $deep-green;
+    transition: 0.5s;
+  }
+}

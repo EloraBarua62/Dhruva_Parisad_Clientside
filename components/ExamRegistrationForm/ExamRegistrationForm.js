@@ -19,6 +19,7 @@ import jsPDFInvoiceTemplate, {
 } from "jspdf-invoice-template";
 import { PDFViewer } from "@react-pdf/renderer";
 import PdfDocument from "../PdfDocument/PdfDocument";
+import Admitcard from "../AdmitCard/AdmitCard";
 
 
 
@@ -38,8 +39,30 @@ const ExamRegistrationForm = () => {
   let currentBanglaYear = currentYear - 594;
   if (month >= 3 && day >= 15) ++currentBanglaYear;
 
-  const subject_list = ["poem", "rack", "nock", "shak", "dance"];
-  const year_list = ["primary", "first", "second", "third", "forth"];
+  const subject_list = [
+    "Rhyme",
+    "Patriotic Song",
+    "Rabindra Sangeet",
+    "Nazrul Sangeet",
+    "Folk Song",
+    "Classical Music",
+    "Recitation(Abrtti)",
+    "Tabla",
+    "Dance",
+    "Fine Arts",
+  ];
+  const year_list = [
+    "Primary",
+    "First",
+    "Second",
+    "Third",
+    "Forth",
+    "Fifth",
+    "Sixth",
+    "Seventh",
+    "Eighth",
+    "Ninth",
+  ];
   const [imageDisplay, setImageDisplay] = useState("");
   const [imageShow, setImageShow] = useState("");
   const [subjectYear, setSubjectYear] = useState([
@@ -82,6 +105,7 @@ const ExamRegistrationForm = () => {
   };
 
   // Function: Submit registration form
+  // const [AdmitCardInfo, setAdmitCardInfo] = useState({});
   const handleRegistrationForm = (e) => {
     const student_name = e.target.student_name.value;
     const father_name = e.target.father_name.value;
@@ -104,7 +128,14 @@ const ExamRegistrationForm = () => {
     formData.append("imageShow", imageShow);
     formData.append("subjectYear", JSON.stringify(subjectYear));
 
-    console.log(subjectYear);
+    // setAdmitCardInfo({
+    //   currentYear,
+    //   student_name,
+    //   father_name,
+    //   mother_name,
+    //   school,
+    //   subjectYear,
+    // })
     dispatch(studentRegistration(formData));
     e.preventDefault();
   };
@@ -203,16 +234,6 @@ const ExamRegistrationForm = () => {
 
   return (
     <div className={styles.form_design}>
-      {(studentDetail &&
-      Object.keys(studentDetail).length !== 0 &&
-      studentDetail.constructor === Object) ? (
-        <PDFViewer width={"100%"} height={"700px"}>
-          <PdfDocument studentDetail={studentDetail} exam_date={exam_date}/>
-        </PDFViewer>
-      ) : (
-        ""
-      )}
-
       {/* Heading */}
       <div className={styles.heading_design}>
         <h1 className={styles.institute_name}>Dhruva Parisad</h1>
@@ -259,7 +280,7 @@ const ExamRegistrationForm = () => {
 
             {/* Field: school name */}
             <div className={styles.field_design}>
-              <label htmlFor="school">Select Your Examination school</label>
+              <label htmlFor="school">Select Your Examination Center</label>
               <select name="school" id="">
                 {schoolInfo
                   .filter((each) => {
@@ -371,6 +392,17 @@ const ExamRegistrationForm = () => {
           wrapperStyle={{}}
           wrapperClass=""
         />
+      )}
+
+      {studentDetail &&
+      Object.keys(studentDetail).length !== 0 &&
+      studentDetail.constructor === Object ? (
+        <Admitcard studentDetail={studentDetail} exam_date={exam_date} />
+      ) : (
+        // <PDFViewer width={"100%"} height={"700px"}>
+        //   <PdfDocument studentDetail={studentDetail} exam_date={exam_date}/>
+        // </PDFViewer>
+        ""
       )}
     </div>
   );

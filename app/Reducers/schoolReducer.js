@@ -64,6 +64,22 @@ export const updateStatus = createAsyncThunk(
   }
 ); 
 
+export const deleteInfo = createAsyncThunk(
+  "school/deleteInfo",
+  async (info, { rejectWithValue, fulfillWithValue }) => {
+    const id = info.id;
+  
+    try {
+      const { data } = await api.delete(`/school/delete-info/${id}`, {
+        withCredentials: true,
+      });
+      return fulfillWithValue({id,data});
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+); 
+
 export const schoolInformation = createAsyncThunk(
   "school/schoolInformation",
   async ({ parPage, page }, { rejectWithValue, fulfillWithValue }) => {
@@ -152,7 +168,7 @@ export const schoolReducer = createSlice({
     });
     builder.addCase(updateStatus.fulfilled, (state, { payload }) => {
       let index = payload.id;
-      let parentArray = state.schoolInfo;
+      let parentArray = state.schoolList;
       const size = parentArray.length;
       console.log(payload.data.schoolInfo);
       for (let i = 0; i < size; i++) {
@@ -161,7 +177,25 @@ export const schoolReducer = createSlice({
           break;
         }
       }
-      state.schoolInfo = parentArray;
+      state.schoolList = parentArray;
+      state.successMessage = payload?.message;
+      state.isLoading = false;
+    });
+
+    // Details Fetching action
+    builder.addCase(deleteInfo.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(deleteInfo.rejected, (state, { payload }) => {
+      state.errorMessage = payload?.error;
+      state.isLoading = false;
+    });
+    builder.addCase(deleteInfo.fulfilled, (state, { payload }) => {
+      const parentArray = state.schoolList;
+      const id = payload.id;
+      const keep_parentArray = parentArray.filter((each) => each._id !== id);
+      console.log(keep_parentArray);
+      state.schoolList = keep_parentArray;
       state.successMessage = payload?.message;
       state.isLoading = false;
     });

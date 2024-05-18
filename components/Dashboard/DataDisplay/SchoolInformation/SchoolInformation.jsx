@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import styles from "./SchoolInformation.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { enlistedSchools, schoolInformation, updateStatus } from "@component/app/Reducers/schoolReducer";
+import { deleteInfo, enlistedSchools, schoolInformation, updateStatus } from "@component/app/Reducers/schoolReducer";
 import { schoolInformField } from "@component/utils/demoData";
 import Image from "next/image";
 import { ThreeDots } from "react-loader-spinner";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import { TbListDetails } from "react-icons/tb";
+import { RiDeleteBinLine } from "react-icons/ri";
 import Pagination from "../../Pagination/Pagination";
 
 const SchoolInformation = () => {
@@ -46,6 +48,11 @@ const SchoolInformation = () => {
     setSchoolDetails(school);
   };
 
+  const deleteSchoolDetails = (id) => {
+    const obj = {id}
+    dispatch(deleteInfo(obj));
+  }
+
   return (
     <div className={styles.schoolInfo_design}>
       <h1 className={styles.heading}>School Information</h1>
@@ -80,7 +87,7 @@ const SchoolInformation = () => {
             </div>
           ))}
         </div>
-        <div>
+        <div className={styles.data_field_design}>
           {schoolList
             .filter((each) => {
               if (selectStatus === each.status || selectStatus === "all") {
@@ -99,9 +106,20 @@ const SchoolInformation = () => {
                 <div className="text_details">{head?.zone}</div>
                 <div className="text_details">{head?.principalInfo?.name}</div>
                 <div className="text_details">{head?.principalInfo?.email}</div>
-                <button onClick={() => handleSchoolDetails(head)}>
-                  details
-                </button>
+                <div className={styles.activity_section}>
+                  <button
+                    className={styles.update_button}
+                    onClick={() => handleSchoolDetails(head)}
+                  >
+                    <TbListDetails />
+                  </button>
+                  <button
+                    className={styles.delete_button}
+                    onClick={() => deleteSchoolDetails(head._id)}
+                  >
+                    <RiDeleteBinLine />
+                  </button>
+                </div>
               </div>
             ))}
         </div>
@@ -123,12 +141,14 @@ const SchoolInformation = () => {
             School Code: <span>{schoolDetails.school_code}</span>
           </div>
           <div className={styles.info}>
-            Principal Name: {schoolDetails.principalInfo?.name}
+            <strong>Principal Name:</strong> {schoolDetails.principalInfo?.name}
           </div>
           <div className={styles.info}>
-            Email: {schoolDetails.principalInfo?.email}
+            <strong>Email:</strong> {schoolDetails.principalInfo?.email}
           </div>
-          <div className={styles.info}>Status: {schoolDetails.status}</div>
+          <div className={styles.info}>
+            <strong>Status: </strong> {schoolDetails.status}
+          </div>
           <div className={styles.status}>Change Status</div>
           <form onSubmit={(e) => hadleStatusChange(e, schoolDetails._id)}>
             <label htmlFor="status">Select Status</label>
