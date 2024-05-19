@@ -5,7 +5,6 @@ import { CiImageOn } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { studentRegistration } from "@component/app/Reducers/studentReducer";
-import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { messageClear } from "@component/app/Reducers/studentReducer";
 import {
@@ -13,12 +12,6 @@ import {
   enlistedZone,
 } from "@component/app/Reducers/schoolReducer";
 import { ThreeDots } from "react-loader-spinner";
-import jsPDFInvoiceTemplate, {
-  OutputType,
-  jsPDF,
-} from "jspdf-invoice-template";
-import { PDFViewer } from "@react-pdf/renderer";
-import PdfDocument from "../PdfDocument/PdfDocument";
 import Admitcard from "../AdmitCard/AdmitCard";
 
 
@@ -128,98 +121,9 @@ const ExamRegistrationForm = () => {
     formData.append("imageShow", imageShow);
     formData.append("subjectYear", JSON.stringify(subjectYear));
 
-    // setAdmitCardInfo({
-    //   currentYear,
-    //   student_name,
-    //   father_name,
-    //   mother_name,
-    //   school,
-    //   subjectYear,
-    // })
     dispatch(studentRegistration(formData));
     e.preventDefault();
   };
-
-  // PDF generator
-  // const generatePdf = (info, date) => {
-  //   console.log(info, date);
-
-  //   var props = {
-  //     outputType: OutputType.Save,
-  //     returnJsPDFDocObject: true,
-  //     fileName: "Examination Admit Card",
-  //     orientationLandscape: false,
-  //     compress: true,
-  //     logo: {
-  //       src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/logo.png",
-  //       type: "PNG", //optional, when src= data:uri (nodejs case)
-  //       width: 53.33, //aspect ratio = width/height
-  //       height: 26.66,
-  //       margin: {
-  //         top: 0, //negative or positive num, from the current position
-  //         left: 0, //negative or positive num, from the current position
-  //       },
-  //     },
-  //     business: {
-  //       name: info.student_name,
-  //       address: "0923",
-  //       phone: date.exam_date,
-  //     },
-  //     contact: {
-  //       label: "This admit card is issued for:",
-  //       name: info.student_name,
-  //       address: info.father_name,
-  //       phone: info.mother_name,
-  //       num: info.roll,
-  //       otherInfo: info.school,
-  //     },
-  //     // invoice: {
-  //     //   label: "Photo",
-  //     //   // src: info.imageShow,
-  //     //   // type: "PNG", //optional, when src= data:uri (nodejs case)
-  //     //   // width: 53.33, //aspect ratio = width/height
-  //     //   // height: 26.66,
-  //     //   // margin: {
-  //     //   //   top: 0, //negative or positive num, from the current position
-  //     //   //   left: 0, //negative or positive num, from the current position
-  //     //   // },
-  //     //   headerBorder: false,
-  //     //   tableBodyBorder: false,
-  //     //   header: [
-  //     //     {
-  //     //       title: "#",
-  //     //       style: {
-  //     //         width: 10,
-  //     //       },
-  //     //     },
-  //     //     {
-  //     //       title: "Subject",
-  //     //       style: {
-  //     //         width: 30,
-  //     //       },
-  //     //     },
-  //     //     {
-  //     //       title: "Year",
-  //     //       style: {
-  //     //         width: 30,
-  //     //       },
-  //     //     },
-  //     //   ],
-  //     //   table: Array.from(Array(4), (sub_year, index) => [
-  //     //     index + 1,
-  //     //     sub_year?.subject,
-  //     //     sub_year?.year,
-  //     //   ]),
-  //     // },
-  //     footer: {
-  //       text: "Please bring the admit card on examination day.",
-  //     },
-  //     pageEnable: true,
-  //     pageLabel: "Page ",
-  //   };
-
-  //   const pdfObject = jsPDFInvoiceTemplate(props);
-  // };
 
   useEffect(() => {
     if (successMessage) {
@@ -403,9 +307,6 @@ const ExamRegistrationForm = () => {
       studentDetail.constructor === Object ? (
         <Admitcard studentDetail={studentDetail} exam_date={exam_date} />
       ) : (
-        // <PDFViewer width={"100%"} height={"700px"}>
-        //   <PdfDocument studentDetail={studentDetail} exam_date={exam_date}/>
-        // </PDFViewer>
         ""
       )}
     </div>

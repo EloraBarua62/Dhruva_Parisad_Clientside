@@ -1,9 +1,7 @@
 import { displayNews } from "@component/app/Reducers/newsReducer";
-import { enlistedZone } from "@component/app/Reducers/schoolReducer";
 import Banner from "@component/components/Banner/Banner";
 import News from "@component/components/News/News";
 import Container from "@component/components/shared/Container/Container";
-import Link from "next/link";
 import React, { useEffect } from "react";
 import Marquee from "react-fast-marquee";
 import { ThreeDots } from "react-loader-spinner";

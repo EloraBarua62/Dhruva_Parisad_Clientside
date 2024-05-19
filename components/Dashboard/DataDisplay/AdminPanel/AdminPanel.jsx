@@ -1,7 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
 import styles from './AdminPanel.module.scss';
-import { messageClear, userSignup } from '@component/app/Reducers/authReducer';
-import { ThreeDots } from 'react-loader-spinner';
 import { useEffect, useState } from 'react';
 
 const AdminPanel = () => {

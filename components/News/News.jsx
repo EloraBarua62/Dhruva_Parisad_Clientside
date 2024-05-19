@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Container from "../shared/Container/Container";
 import styles from "./News.module.scss";
-import { useState } from "react";
-import { FaShareAlt } from "react-icons/fa";
 import Link from "next/link";
 
 const News = ({ newsList }) => {

@@ -5,7 +5,6 @@ import { deleteInfo, studentDetails, updateInfo } from '@component/app/Reducers/
 import Image from 'next/image';
 import { ThreeDots } from 'react-loader-spinner';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
-import { enlistedZone } from '@component/app/Reducers/schoolReducer';
 import Pagination from '../../Pagination/Pagination';
 
 const NewStudentsDetails = () => {

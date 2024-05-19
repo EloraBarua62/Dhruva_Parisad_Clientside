@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import styles from "./SchoolInformation.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteInfo, enlistedSchools, schoolInformation, updateStatus } from "@component/app/Reducers/schoolReducer";
-import { schoolInformField } from "@component/utils/demoData";
-import Image from "next/image";
 import { ThreeDots } from "react-loader-spinner";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { TbListDetails } from "react-icons/tb";

@@ -5,7 +5,6 @@ import {
   resultDisplay,
   updateWrittenPracticalMarks,
 } from "@component/app/Reducers/resultReducer";
-import { MdEdit, MdOutlineDone } from "react-icons/md";
 import { ThreeDots } from "react-loader-spinner";
 import Pagination from "../../Pagination/Pagination";
 

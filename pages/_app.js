@@ -1,7 +1,6 @@
 import store from "@component/app/store";
 import Layout from "@component/components/shared/Layout";
 import "@component/styles/globals.scss";
-import { jwtDecode } from "jwt-decode";
 import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";

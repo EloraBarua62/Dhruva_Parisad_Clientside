@@ -1,5 +1,5 @@
-import { enlistedSchools, enlistedZone } from "@component/app/Reducers/schoolReducer";
-import { useSelector } from "react-redux";
+// import { enlistedSchools, enlistedZone } from "@component/app/Reducers/schoolReducer";
+// import { useSelector } from "react-redux";
 
 const DashboardHome = () => {
     // const { zoneInfo, schoolInfo } = useSelector((state) => state.school);
