@@ -77,7 +77,8 @@ export const authReducer = createSlice({
       state.isLoading = false;
       if (payload?.userInfo?.pin_number === 0) {
         state.userInfo = payload?.userInfo;
-      } else {
+      } 
+      else {
         if (typeof window !== "undefined") {
           let principalInfo =
             JSON.parse(window.localStorage.getItem("principalInfo")) || [];
@@ -85,6 +86,7 @@ export const authReducer = createSlice({
           // principalInfo = [...principalInfo, payload?.userInfo];
           localStorage.setItem("principalInfo", JSON.stringify(principalInfo));
         }
+        
       }
       state.successMessage = payload?.message;
     });
