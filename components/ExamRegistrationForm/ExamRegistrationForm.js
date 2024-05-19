@@ -256,7 +256,7 @@ const ExamRegistrationForm = () => {
             {regFormField.map((field, index) => (
               <div key={index} className={styles.field_design}>
                 <label htmlFor={field.name}>{field.title}</label>
-                <input type={field.type} name={field.name} id="" />
+                <input type={field.type} name={field.name} id="" required />
               </div>
             ))}
           </div>
@@ -268,6 +268,7 @@ const ExamRegistrationForm = () => {
               <select
                 name="zone"
                 id=""
+                required
                 onChange={(e) => setZoneValue(e.target.value)}
               >
                 {zoneInfo.map((zone, index) => (
@@ -281,7 +282,7 @@ const ExamRegistrationForm = () => {
             {/* Field: school name */}
             <div className={styles.field_design}>
               <label htmlFor="school">Select Your Examination Center</label>
-              <select name="school" id="">
+              <select name="school" id="" required>
                 {schoolInfo
                   .filter((each) => {
                     if (zoneValue === each.zone) {
@@ -305,6 +306,7 @@ const ExamRegistrationForm = () => {
                     name="subject"
                     id=""
                     value={data.subject}
+                    required
                     onChange={(e) => handleChange(e, index)}
                   >
                     {subject_list.map((subject, i) => (
@@ -317,6 +319,7 @@ const ExamRegistrationForm = () => {
                     name="year"
                     id=""
                     value={data.year}
+                    required
                     onChange={(e) => handleChange(e, index)}
                   >
                     {year_list.map((year, idx) => (
@@ -367,6 +370,7 @@ const ExamRegistrationForm = () => {
                 id="image"
                 className={styles.image_file}
                 placeholder="Image"
+                required
                 onChange={handleImage}
               />
             </div>

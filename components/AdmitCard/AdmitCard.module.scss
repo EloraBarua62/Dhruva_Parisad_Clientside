@@ -2,13 +2,14 @@
 
 .certificate_section {
   margin-top: 40px;
-  width: 100%;
+  // width: 100%;
   // padding: 20px;
   background-color: $brown-color;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-x: scroll;
 
   @media (min-width: 1024px) {
     margin-top: 60px;
@@ -29,7 +30,7 @@
 
     @media (min-width: 768px) {
       font-size: 20px;
-      margin-bottom: 40px;
+      margin-top: 50px;
     }
     @media (min-width: 1024px) {
       text-align: center;
@@ -40,9 +41,10 @@
   }
 
   .child_section {
-    // width: 100%;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
     position: relative;
-
     .image_section {
       width: 600px;
       height: 800px;
@@ -56,57 +58,69 @@
       left: 0;
 
       .student_image {
-        // margin-top: 165px;
-        // margin-left: 425px;
-        // max-width: 110px;
-        // max-height: 115px;
-        top: 50;
-        // overflow: hidden;
-        background-color: red;
+        margin-top: 82px;
+        margin-left: 448px;
+        width: 90px;
+        height: 90px;
+        position: relative;
+        overflow: hidden;
+        // background-color: red;
 
-        .image_set{
-          width: 50px;
-          // object-fit: cover;
+        .image_set {
+          width: 100%;
+          object-fit: cover;
         }
       }
 
       .date_design {
         margin-left: 170px;
-        margin-top: 100px;
-        font-style: italic;
-        font-weight: 600;
+        margin-top: -8px;
+        font-weight: 500;
       }
       .name_design {
-        margin-left: 190px;
+        margin-left: 200px;
         margin-top: 5px;
-        font-style: italic;
-        font-weight: 600;
+        font-weight: 500;
       }
       .roll_design {
         margin-left: 150px;
         margin-top: 5px;
-        font-style: italic;
-        font-weight: 600;
+        font-weight: 500;
       }
       .father_name_design {
         margin-left: 200px;
         margin-top: 5px;
-        font-style: italic;
-        font-weight: 600;
+        font-weight: 500;
       }
       .mother_name_design {
         margin-left: 200px;
         margin-top: 5px;
-        font-style: italic;
-        font-weight: 600;
+        font-weight: 500;
       }
       .school_design {
-        margin-left: 200px;
+        margin-left: 180px;
         margin-top: 5px;
-        font-style: italic;
-        font-weight: 600;
+        font-weight: 500;
       }
-      
+
+      .sub_year_section {
+        margin-top: 90px;
+        margin-left: -50px;
+        .sub_year_field {
+          font-weight: 500;
+          display: flex;
+          justify-content: center;
+
+          .subject_design {
+            // margin-left: 5px;
+            margin-top: 15px;
+          }
+          .year_design {
+            margin-left: 150px;
+            margin-top: 15px;
+          }
+        }
+      }
     }
   }
 

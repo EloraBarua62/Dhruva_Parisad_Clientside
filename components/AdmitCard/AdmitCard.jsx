@@ -31,14 +31,14 @@ const Admitcard = ({ studentDetail, exam_date }) => {
         <Image src={admitcard} alt="" className={styles.image_section} />
 
         <div className={styles.student_info}>
-          {/* <div style={{ width: "100px" }} className={styles.student_image}>
+          <div className={styles.student_image}>
             <Image
               src={studentDetail.imageShow}
               alt=""
-              fill
+              fill="true"
               className={styles.image_set}
             />
-          </div> */}
+          </div>
           <div className={styles.date_design}>{exam_date}</div>
           <div className={styles.name_design}>{studentDetail.student_name}</div>
           <div className={styles.roll_design}>{studentDetail.roll}</div>
@@ -49,6 +49,18 @@ const Admitcard = ({ studentDetail, exam_date }) => {
             {studentDetail.mother_name}
           </div>
           <div className={styles.school_design}>{studentDetail.school}</div>
+          <div className={styles.sub_year_section}>
+            {studentDetail.subjectYear.map((each, i) => (
+              <div className={styles.sub_year_field} key={i}>
+                <div className={styles.subject_design}>
+                  {each.subject}
+                </div>
+                <div className={styles.year_design}>
+                  {each.year}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 

@@ -3,16 +3,17 @@
 .form_design {
   width: 100%;
   background-color: white;
-  padding: 10px;
+  // padding: 10px;
   border: 0;
   border-radius: 10px;
 
-  @media (min-width: 576px) {
-    padding: 50px;
-  }
-
   .heading_design {
     text-align: center;
+    // padding: 10px;
+
+    // @media (min-width: 576px) {
+    //   padding: 50px;
+    // }
     // institution name design
     .institute_name {
       font-size: $text-subhead;
@@ -57,7 +58,12 @@
   }
 
   form {
-    .registration_section {     
+    // padding: 10px;
+
+    // @media (min-width: 576px) {
+    //   padding: 50px;
+    // }
+    .registration_section {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -122,7 +128,7 @@
         display: flex;
         margin-bottom: 5px;
 
-        select{
+        select {
           width: 100px;
           padding: 3px;
           margin-right: 3px;
@@ -140,12 +146,12 @@
 
       .addition_button {
         background-color: green;
-          border: 0;
-          border-radius: 5px;
-          padding: 5px;
-          color: white;
-         margin-top: 5px;
-          cursor: pointer;
+        border: 0;
+        border-radius: 5px;
+        padding: 5px;
+        color: white;
+        margin-top: 5px;
+        cursor: pointer;
       }
 
       .image_field_design {
@@ -182,8 +188,7 @@
       }
     }
     // Submit button
-    
-    
+
     .button_section {
       width: 100%;
       display: flex;
