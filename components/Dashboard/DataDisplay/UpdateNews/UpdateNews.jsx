@@ -40,7 +40,7 @@ const UpdateNews = () => {
   useEffect(() => {
     const count = 100;
     dispatch(displayNews({count}));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={styles.update_news_design}>

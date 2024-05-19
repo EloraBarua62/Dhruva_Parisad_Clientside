@@ -9,8 +9,10 @@ const AdminPanel = () => {
   const [principalInfo, setPrincipalInfo] = useState([]);
 
   useEffect(()=>{
-    const listInfo = JSON.parse(window.localStorage.getItem("principalInfo"));
-    setPrincipalInfo(listInfo);
+    if (typeof window !== "undefined") {
+      const listInfo = JSON.parse(window.localStorage.getItem("principalInfo"));
+      setPrincipalInfo(listInfo);
+    }   
   },[])
   
   const table_heading = [

@@ -3,24 +3,20 @@ import api from "@component/api/api";
 import { jwtDecode } from "jwt-decode";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-
 // User signup
 export const userSignup = createAsyncThunk(
   "auth/userSignup",
-  async (info, {rejectWithValue, fulfillWithValue}) => {
-    
+  async (info, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const {data} = await api.post("/user/signup" , info, {
+      const { data } = await api.post("/user/signup", info, {
         withCredentials: true,
-      })
+      });
       return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
   }
-  catch(error){
-    return rejectWithValue(error.response.data);
-  }
-}
 );
-
 
 // User login
 export const userLogin = createAsyncThunk(
@@ -38,7 +34,7 @@ export const userLogin = createAsyncThunk(
 );
 
 const returnRole = () => {
-  let token_string = '';
+  let token_string = "";
   if (typeof document !== "undefined") {
     token_string = document.cookie;
     if (token_string?.length > 0) {
@@ -55,7 +51,7 @@ export const authReducer = createSlice({
     errorMessage: "",
     isLoading: false,
     userInfo: "",
-    role: '',
+    role: "",
   },
   reducers: {
     messageClear: (state) => {
@@ -66,7 +62,7 @@ export const authReducer = createSlice({
       state.role = "";
       document.cookie =
         "accessToken=; expires=Thu, 01 Jan 1971 00:00:00 UTC; path=/;";
-    }
+    },
   },
   extraReducers: (builder) => {
     // Signup action
@@ -79,16 +75,17 @@ export const authReducer = createSlice({
     });
     builder.addCase(userSignup.fulfilled, (state, { payload }) => {
       state.isLoading = false;
-      if (payload?.userInfo?.pin_number === 0){
+      if (payload?.userInfo?.pin_number === 0) {
         state.userInfo = payload?.userInfo;
+      } else {
+        if (typeof window !== "undefined") {
+          let principalInfo =
+            JSON.parse(window.localStorage.getItem("principalInfo")) || [];
+          principalInfo.push(payload?.userInfo);
+          // principalInfo = [...principalInfo, payload?.userInfo];
+          localStorage.setItem("principalInfo", JSON.stringify(principalInfo));
+        }
       }
-      else{
-        let principalInfo = JSON.parse(window.localStorage.getItem("principalInfo")) || [];
-        principalInfo.push(payload?.userInfo);
-        // principalInfo = [...principalInfo, payload?.userInfo];
-        localStorage.setItem("principalInfo", JSON.stringify(principalInfo));
-      }
-      
       state.successMessage = payload?.message;
     });
 

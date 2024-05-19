@@ -13,7 +13,7 @@ const NewsPage = () => {
       
     useEffect(()=>{
         dispatch(displayNews());
-    },[])
+    },[dispatch])
     return (
       <div className={styles.newspage_display}>
         <Container>

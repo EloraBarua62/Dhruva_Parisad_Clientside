@@ -15,7 +15,7 @@ const NewsDetails = () => {
 
     useEffect(() => {
       dispatch(displayNews());
-    }, []);
+    }, [dispatch]);
     console.log(router.query.id)
     console.log(newsList)
     return (

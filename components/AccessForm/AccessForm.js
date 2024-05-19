@@ -36,7 +36,7 @@ const AccessForm = ({ feature, route, request, fields }) => {
         toast.error(errorMessage);
         dispatch(messageClear());
     }     
-  },[successMessage,errorMessage,dispatch,userInfo])
+  },[successMessage,errorMessage,dispatch,userInfo, role, router])
 
   return (
     <div className={styles.access_form_design}>

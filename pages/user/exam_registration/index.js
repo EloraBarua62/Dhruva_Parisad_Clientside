@@ -11,7 +11,7 @@ const ExamRegistration = () => {
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(enlistedZone())
-    },[])
+    },[dispatch])
     return (
         <div className={styles.registration_design}>
             <Container>

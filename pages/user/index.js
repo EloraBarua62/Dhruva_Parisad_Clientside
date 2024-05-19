@@ -29,7 +29,7 @@ const User = () => {
   useEffect(() => {
     const count = 4;
     dispatch(displayNews({ count }));
-  }, []);
+  }, [dispatch]);
 
 
   return (
