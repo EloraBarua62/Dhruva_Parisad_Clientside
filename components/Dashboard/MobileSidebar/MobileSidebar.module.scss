@@ -17,7 +17,7 @@
     margin-bottom: 35px;
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
     // Heading design
     .sidebar_heading {
       font-size: $text-head;
@@ -36,7 +36,7 @@
     color: #392467;
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
     border: 0 solid;
     border-radius: 13px;
 
@@ -103,7 +103,7 @@
       border: 0;
       border-radius: 13px;
       display: flex;
-      justify-content: start;
+      justify-content: flex-start;
       align-items: center;
       padding-left: 15px;
     }
@@ -129,7 +129,7 @@
     border: 0;
     border-radius: 13px;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     padding-left: 15px;
     margin-bottom: 40px;

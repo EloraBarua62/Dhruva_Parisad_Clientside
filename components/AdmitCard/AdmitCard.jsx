@@ -28,7 +28,12 @@ const Admitcard = ({ studentDetail, exam_date }) => {
     <div className={styles.certificate_section}>
       <div className={styles.title}>Admit Card</div>
       <div className={styles.child_section} ref={ref}>
-        <Image src={admitcard} alt="" className={styles.image_section} />
+        <Image
+          src={admitcard}
+          alt=""
+          fill="true"
+           className={styles.image_section}
+        />
 
         <div className={styles.student_info}>
           <div className={styles.student_image}>
@@ -52,12 +57,8 @@ const Admitcard = ({ studentDetail, exam_date }) => {
           <div className={styles.sub_year_section}>
             {studentDetail.subjectYear.map((each, i) => (
               <div className={styles.sub_year_field} key={i}>
-                <div className={styles.subject_design}>
-                  {each.subject}
-                </div>
-                <div className={styles.year_design}>
-                  {each.year}
-                </div>
+                <div className={styles.subject_design}>{each.subject}</div>
+                <div className={styles.year_design}>{each.year}</div>
               </div>
             ))}
           </div>

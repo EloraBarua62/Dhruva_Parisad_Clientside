@@ -4,7 +4,7 @@
   padding: 10px;
   width: 1250px;
 
-  .heading{
+  .heading {
     color: $deep-green;
     text-align: center;
     text-decoration: underline;
@@ -13,7 +13,7 @@
   .pagination {
     width: 300px;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     gap: 10px;
     background-color: #f9fad1;
@@ -28,7 +28,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
     gap: 5px;
     border: 0px;
     border-radius: 5px;

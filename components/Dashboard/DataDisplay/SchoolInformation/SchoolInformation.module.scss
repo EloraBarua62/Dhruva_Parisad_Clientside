@@ -23,7 +23,7 @@
       .pagination {
         width: 300px;
         display: flex;
-        justify-content: start;
+        justify-content: flex-start;
         align-items: center;
         gap: 10px;
         background-color: #f9fad1;
@@ -39,7 +39,7 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
-      align-items: start;
+      align-items: flex-start;
       gap: 5px;
       border: 0px;
       border-radius: 5px;
@@ -69,7 +69,6 @@
     }
 
     .data_field_design {
-      
       .activity_section {
         max-width: 110px;
         min-width: 110px;

@@ -45,7 +45,7 @@ const News = ({ newsList }) => {
               <Image
                 src={newsList[0]?.imageShow}
                 alt=""
-                fill
+                fill="true"
                 className={styles.image_design}
               ></Image>
             </div>
@@ -96,7 +96,7 @@ const News = ({ newsList }) => {
                     <Image
                       src={news.imageShow}
                       alt=""
-                      fill
+                      fill="true"
                       className={styles.image_design}
                     ></Image>
                   </div>

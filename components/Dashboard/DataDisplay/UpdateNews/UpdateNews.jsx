@@ -87,7 +87,7 @@ const UpdateNews = () => {
                 <Image
                   src={imageDisplay}
                   alt=""
-                  fill={true}
+                  fill="true"
                   className={styles.image_display}
                 />
               ) : (

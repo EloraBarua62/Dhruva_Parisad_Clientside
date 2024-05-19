@@ -11,7 +11,7 @@ const Banner = () => {
           <Image
             src={banner_image.barath_long}
             alt=""
-            fill
+            fill="true"
             className={styles.image_design1}
           ></Image>
         </div>
@@ -20,7 +20,7 @@ const Banner = () => {
             <Image
               src={banner_image.sitar}
               alt=""
-              fill
+              fill="true"
               className={styles.image_design2}
             ></Image>
           </div>
@@ -28,7 +28,7 @@ const Banner = () => {
             <Image
               src={banner_image.paint}
               alt=""
-              fill
+              fill="true"
               className={styles.image_design2}
             ></Image>
           </div>
@@ -37,7 +37,7 @@ const Banner = () => {
           <Image
             src={banner_image.kathak}
             alt=""
-            fill
+            fill="true"
             className={styles.image_design1}
           ></Image>
         </div>
@@ -46,7 +46,7 @@ const Banner = () => {
             <Image
               src={banner_image.tabla}
               alt=""
-              fill
+              fill="true"
               className={styles.image_design2}
             ></Image>
           </div>
@@ -54,7 +54,7 @@ const Banner = () => {
             <Image
               src={banner_image.harmon}
               alt=""
-              fill
+              fill="true"
               className={styles.image_design2}
             ></Image>
           </div>
@@ -63,7 +63,7 @@ const Banner = () => {
           <Image
             src={banner_image.barath_short}
             alt=""
-            fill
+            fill="true"
             className={styles.image_design1}
           ></Image>
         </div>

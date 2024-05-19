@@ -1,6 +1,6 @@
 @import "../../../../styles/config";
 
-.admin_panel_design{
+.admin_panel_design {
   padding: 10px;
   width: 500px;
 
@@ -8,7 +8,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
     gap: 5px;
     border: 0px;
     border-radius: 5px;
@@ -24,8 +24,8 @@
     }
 
     .single_heading {
-      max-width: 110px;    
-      min-width: 110px;    
+      max-width: 110px;
+      min-width: 110px;
       padding: 10px 2px;
       text-align: center;
       margin-bottom: 5px;
@@ -36,7 +36,7 @@
     }
   }
 
- .info_field_design{
-    border-bottom: 1px solid $deep-green;    
+  .info_field_design {
+    border-bottom: 1px solid $deep-green;
   }
 }

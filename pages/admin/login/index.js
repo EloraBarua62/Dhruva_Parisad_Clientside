@@ -19,7 +19,7 @@ const login = () => {
             <Image
               src={logo}
               alt=""
-              fill
+              fill="true"
               className={styles.logo_design}
             ></Image>
           </div>

@@ -27,7 +27,7 @@ const Certificate = ({student_name, roll, result}) => {
       <div className={styles.certificate_section}>
         <div className={styles.title}>Examination Certificate</div>
         <div className={styles.child_section} ref={ref}>
-          <Image src={certificate} alt="" className={styles.image_section} />
+          <Image src={certificate} alt="" fill="true" className={styles.image_section} />
 
           <div className={styles.student_info}>
             <div className={styles.name_design}>{student_name}</div>
