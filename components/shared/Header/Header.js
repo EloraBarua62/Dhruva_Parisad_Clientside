@@ -15,6 +15,7 @@ const Header = () => {
   const pathname = usePathname();
   const [openHamburger, setOpenHamburger] = useState(false);
   const {role} = useSelector((state) => state.auth);
+  console.log(role)
   const dispatch = useDispatch();
   const router = useRouter();
   const page_navigation = [
