@@ -2,8 +2,27 @@
 
 .access_form_design {
     margin: 150px 0 50px;
+
+    
   // Form prompt design
   .form_design {
+    .sub_head {
+    color: $brown-color;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: 40px;
+    font-size: $text-head;
+    font-weight: 600;
+
+    @media (min-width: 768px) {
+      font-size: 28px;
+    }
+
+    @media (min-width: 1200px) {
+      font-size: 30px;
+    }
+  }
     
     padding: 50px 38px;
     background-color: $deep-green;

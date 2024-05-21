@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./Header.module.scss";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "../Container/Container";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
@@ -44,13 +44,15 @@ const Header = () => {
   ];
 
   const handleLogout = () => {
-    // role = "";
-    // document.cookie =
-    //   "accessToken=; expires=Thu, 01 Jan 1971 00:00:00 UTC; path=/;";
-
     dispatch(logOut());
     router.push('/user/login');
   }
+
+  useEffect(() => {
+    if (typeof document === "undefined") {
+      router.push("/user/login");
+    }
+  }, [router]);
   return (
     <div className={styles.header_display}>
       {/* Name and logo display */}
@@ -61,7 +63,8 @@ const Header = () => {
               <Image
                 src={logo}
                 alt=""
-                fill="true"
+                fill
+                sizes="100%"
                 className={styles.logo_design}
               ></Image>
             </div>

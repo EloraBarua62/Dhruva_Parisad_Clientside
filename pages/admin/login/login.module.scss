@@ -4,7 +4,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
   .logo_section {
@@ -45,21 +45,6 @@
       @media (min-width: 1200px) {
         font-size: 35px;
       }
-    }
-  }
-
-  .sub_head {
-    color: $deep-green;
-    margin-top: 40px;
-    font-size: $text-head;
-    font-weight: 600;
-
-    @media (min-width: 768px) {
-      font-size: 28px;
-    }
-
-    @media (min-width: 1200px) {
-      font-size: 30px;
     }
   }
 }

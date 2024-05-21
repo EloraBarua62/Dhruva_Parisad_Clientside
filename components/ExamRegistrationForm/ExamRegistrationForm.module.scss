@@ -16,17 +16,19 @@
     // }
     // institution name design
     .institute_name {
-      font-size: $text-subhead;
+      font-size: $text-head;
       font-weight: 700;
       color: $deep-green;
-      margin: 0 0 10px 0;
+      margin: 10px 0;
 
       @media (min-width: 768px) {
         font-size: 28px;
+        margin: 20px 0 10px;
       }
 
       @media (min-width: 1200px) {
         font-size: 30px;
+        margin: 30px 0 10px;
       }
     }
 
@@ -43,7 +45,7 @@
       justify-content: space-between;
       margin: auto;
 
-      h1 {
+      .date {
         font-size: $text-label;
         color: $deep-green;
         margin: 0;
@@ -71,8 +73,17 @@
       padding: 10px;
       gap: 20px;
 
+      @media (min-width: 425px) {
+        padding: 10px 30px;
+      }
+
       @media (min-width: 768px) {
         flex-direction: row;
+        padding: 10px 20px;
+      }
+
+      @media (min-width: 1024px) {
+        padding: 10px 50px;
       }
 
       .user_info_section {

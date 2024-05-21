@@ -29,6 +29,7 @@ const News = ({ newsList }) => {
       else time.push(value + " days ago");
     } else {
       time.push("Today");
+      console.log(time)
     }
   });
 
@@ -43,7 +44,8 @@ const News = ({ newsList }) => {
               <Image
                 src={newsList[0]?.imageShow}
                 alt=""
-                fill="true"
+                fill
+                sizes="100%"
                 className={styles.image_design}
               ></Image>
             </div>
@@ -54,14 +56,6 @@ const News = ({ newsList }) => {
                 <div className={styles.status_left}>Current</div>
                 <div className={styles.status_right}>
                   <p className={styles.extra_details}>Post: {time[0]}.</p>
-                  {/* <p className={styles.extra_details}>0 views</p> */}
-                  {/* <FaShareAlt
-                    style={{ fontSize: "16px", color: "gray" }}
-                    className={styles.icon_design}
-                  /> */}
-                  {/* <div className={styles.share_design}>
-                      <FaShareAlt className={styles.icon_design} />
-                    </div> */}
                 </div>
               </div>
               <p className={styles.title}>{newsList[0]?.news_title}</p>
@@ -73,13 +67,10 @@ const News = ({ newsList }) => {
               <div className={styles.description_content}>
                 {newsList[0]?.news_details}
               </div>
-              <strong>
-                N.B: {newsList[0]?.imp_msg}
-              </strong>
+              <strong>N.B: {newsList[0]?.imp_msg}</strong>
               <Link
                 href={`user/news/${newsList[0]?._id}`}
-                className={styles.details_button}
-              >
+                className={styles.details_button}>
                 Details
               </Link>
             </div>
@@ -94,7 +85,8 @@ const News = ({ newsList }) => {
                     <Image
                       src={news.imageShow}
                       alt=""
-                      fill="true"
+                      fill
+                      sizes="100%"
                       className={styles.image_design}
                     ></Image>
                   </div>
@@ -106,7 +98,9 @@ const News = ({ newsList }) => {
 
                     <div className={styles.status_section}>
                       <div className={styles.status_right}>
-                        <p className={styles.extra_details}>Post: {time[index]}.</p>
+                        <p className={styles.extra_details}>
+                          Post: {time[index]}.
+                        </p>
                         {/* <p className={styles.extra_details}>0 views</p> */}
                       </div>
 

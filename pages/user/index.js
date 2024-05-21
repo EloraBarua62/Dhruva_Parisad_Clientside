@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 const User = () => {
   const dispatch = useDispatch();
   const { newsList, isLoading } = useSelector((state) => state.news);
-  const { zone } = useSelector((state) => state.school);
+  // const { zone } = useSelector((state) => state.school);
 
   const schools = [
     "Saptorshi Shongeet School",
@@ -48,6 +48,7 @@ const User = () => {
           wrapperClass=""
         />
       ) : (
+       
         <News newsList={newsList} />
       )}
 

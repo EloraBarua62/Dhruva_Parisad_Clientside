@@ -42,6 +42,11 @@ const AccessForm = ({ feature, route, request, fields }) => {
     <div className={styles.access_form_design}>
       {/* Section: form design */}
       <div className={styles.form_design}>
+        {router.pathname === "/admin/login" ? (
+          <div className={styles.sub_head}>Admin Dashboard</div>
+        ) : (
+          ""
+        )}
         <form onSubmit={handleFormSubmit}>
           <h1 className={styles.heading_design}>{feature}</h1>
 

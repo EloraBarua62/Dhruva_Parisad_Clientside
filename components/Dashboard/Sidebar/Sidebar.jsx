@@ -13,9 +13,10 @@ const Sidebar = ({
   const admin_profile = "";
   const router = useRouter();
   const handleLogout = () => {
+    router.push("/admin/login");
     document.cookie =
       "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    router.push('/admin/login');
+   
   }
   return (
       <div className={styles.sidebar_design}>

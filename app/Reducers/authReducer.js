@@ -33,6 +33,24 @@ export const userLogin = createAsyncThunk(
   }
 );
 
+// User login
+export const principalInformation = createAsyncThunk(
+  "auth/principalInformation",
+  async ({ parPage, page }, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await api.get(
+        `/user/principal-info?page=${page}&&parPage=${parPage}`,
+        {
+          withCredentials: true,
+        }
+      );
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const returnRole = () => {
   let token_string = "";
   if (typeof document !== "undefined") {
@@ -52,6 +70,8 @@ export const authReducer = createSlice({
     isLoading: false,
     userInfo: "",
     role: "",
+    principalInfo: [],
+    totalData: 0
   },
   reducers: {
     messageClear: (state) => {
@@ -85,8 +105,7 @@ export const authReducer = createSlice({
           principalInfo.push(payload?.userInfo);
           // principalInfo = [...principalInfo, payload?.userInfo];
           localStorage.setItem("principalInfo", JSON.stringify(principalInfo));
-        }
-        
+        }        
       }
       state.successMessage = payload?.message;
     });
@@ -104,6 +123,24 @@ export const authReducer = createSlice({
       state.userInfo = payload?.userInfo;
       state.successMessage = payload?.message;
       state.role = returnRole();
+    });
+
+    // Login action
+    builder.addCase(principalInformation.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(principalInformation.rejected, (state, { payload }) => {     
+      state.principalInfo = [];
+      state.totalData = 0;
+      state.errorMessage = payload?.error;
+      state.isLoading = false;
+    });
+    builder.addCase(principalInformation.fulfilled, (state, { payload }) => {      
+      state.principalInfo = payload?.principal_info;
+      // console.log(principalInfo);
+      state.totalData = payload?.totalData;
+      state.successMessage = payload?.message;
+      state.isLoading = false;
     });
   },
 });

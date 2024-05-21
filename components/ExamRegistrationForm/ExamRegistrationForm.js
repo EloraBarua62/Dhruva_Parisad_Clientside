@@ -143,8 +143,8 @@ const ExamRegistrationForm = () => {
         <h1 className={styles.institute_name}>Dhruva Parisad</h1>
         <h1 className={styles.reg_no}>Registration No: 0923</h1>
         <div className={styles.date_design}>
-          <h1>{currentBanglaYear} BS</h1>
-          <h1>{currentYear} AD</h1>
+          <div className={styles.date}>{currentBanglaYear} BS</div>
+          <div className={styles.date}>{currentYear} AD</div>
         </div>
 
         <h1 className={styles.exam_title}>

@@ -19,7 +19,6 @@ export const newsPublish = createAsyncThunk(
 export const displayNews = createAsyncThunk(
   "news/displayNews",
   async (info, { rejectWithValue, fulfillWithValue }) => {
-    console.log(info);
     try {
       const {count} = info;
       console.log(typeof(count))

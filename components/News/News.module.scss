@@ -23,6 +23,9 @@
     font-family: "Bree Serif", serif;
     color: $deep-green;
     text-decoration: underline;
+    @media (min-width: 500px) {
+      font-size: 24px;
+    }
     @media (min-width: 768px) {
       font-size: 28px;
     }
@@ -37,7 +40,8 @@
     display: grid;
     grid-template-columns: 1;
     margin: 20px 20px 50px;
-    gap: 10px;
+    gap: 20px;
+
 
     @media (min-width: 500px) {
       grid-template-columns: repeat(2, 1fr);
@@ -45,6 +49,7 @@
 
     @media (min-width: 1024px) {
       grid-template-columns: 1fr 2fr;
+      margin: 20px 0 50px;
     }
 
     .news_left_section {
@@ -52,8 +57,7 @@
       background-color: $brown-color;
       border: 0;
       border-radius: 10px;
-      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-        0 4px 6px -4px rgb(0 0 0 / 0.1);
+     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
       position: relative;
 
       // Image display
@@ -73,15 +77,16 @@
       // Details
       .info_section {
         width: 100%;
-        padding-bottom: 20px;
+        padding-bottom: 20px ;
 
         .status_section {
           display: flex;
           justify-content: space-between;
           align-items: center;
           padding: 10px;
-          @media (min-width: 1024px) {
-            padding: 20px;
+          
+          @media (min-width: 1200px) {
+            padding: 10px 20px 10px;
           }
 
           // Duration
@@ -90,8 +95,8 @@
             height: 30px;
             background-color: $deep-green;
             color: $brown-color;
-            font-size: $text-body;
-            font-weight: 700;
+            font-size: $text-label;
+            font-weight: 600;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -99,8 +104,13 @@
             border-radius: 30px;
 
             @media (min-width: 768px) {
-              width: 100px;
+              width: 90px;
               height: 35px;
+              font-size: 14px;
+            }
+
+            @media (min-width: 1200px) {
+              font-size: 16px;
             }
           }
 
@@ -145,11 +155,11 @@
           padding: 0 10px;
           margin: 0;
           @media (min-width: 500px) {
-            font-size: 24px;
+            font-size: 22px;
             // padding: 0 10px;
           }
           @media (min-width: 1200px) {
-            font-size: 28px;
+            font-size: 24px;
             padding: 0 20px;
           }
         }
@@ -160,21 +170,17 @@
           justify-content: flex-start;
           align-items: center;
           gap: 10px;
-          padding: 3px 10px;
+          padding: 0 10px;
 
           @media (min-width: 1200px) {
-            font-size: 20px;
-            padding: 5px 20px;
+            // font-size: 20px;
+            padding: 0 20px;
           }
 
           .imp_date {
             font-size: 14px;
             font-weight: 600;
-            margin: 0;
-
-            //   @media (min-width: 500px) {
-            //   font-size: 16px
-            // }
+           
             @media (min-width: 1200px) {
               font-size: 16px;
             }
@@ -184,7 +190,7 @@
         .description_content {
           font-size: 16px;
           padding: 0 10px;
-          margin: 20px 0;
+          margin: 10px 0;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
@@ -198,7 +204,7 @@
         strong {
           display: block;
           padding: 0 10px;
-          margin: 20px 0;
+          margin: 10px 0 30px;
 
           @media (min-width: 1200px) {
             padding: 20px;
@@ -206,7 +212,7 @@
         }
 
         .details_button {
-          background-color: rgb(2, 119, 123);
+          background-color: $deep-green;
           color: white;
           font-size: $text-body;
           text-decoration: none;
@@ -226,7 +232,7 @@
         }
 
         .details_button:hover {
-          background-color: rgb(2, 92, 95);
+          background-color: darkgreen;
           transition: 0.5s ease;
         }
       }
@@ -246,14 +252,14 @@
       .previous_news_section {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        background-color: $light-green;
+        align-items: flex-start;
+        background-color: #cbf9ab;
         min-height: 150px;
         position: relative;
         border: 0;
         border-radius: 10px;
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
-          0 4px 6px -4px rgb(0 0 0 / 0.1);
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+
 
         // Image display
         .image_section {
@@ -278,12 +284,12 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            width: 70px;
-            height: 25px;
+            width: 90px;
+            height: 30px;
             background-color: $deep-green;
             color: $brown-color;
             font-size: $text-label;
-            font-weight: 700;
+            font-weight: 600;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -292,12 +298,13 @@
             margin-bottom: 30px;
 
             @media (min-width: 768px) {
-              width: 100px;
+              width: 90px;
               height: 35px;
               padding: 0;
+              font-size: 14px;
             }
-            @media (min-width: 1024px) {
-              padding: 0;
+            @media (min-width: 1200px) {
+              font-size: 16px;
             }
           }
 
@@ -305,9 +312,13 @@
           .title {
             font-size: $text-body;
             color: $deep-green;
-            padding: 5px 0;
+            font-weight: 600;
+            padding: 25px 0 5px;
             margin: 0;
 
+            @media (min-width: 1024px) {
+              padding: 35px 0 5px;
+            }
             @media (min-width: 1200px) {
               font-size: 18px;
               // padding: 0 20px;

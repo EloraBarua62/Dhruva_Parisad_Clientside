@@ -25,8 +25,9 @@ const login = () => {
           </div>
           <div className={styles.logo_name_design}>Dhruvo Parishad</div>
         </div>
-        <div className={styles.sub_head}>Admin Dashboard</div>
+
         <Container>
+          
           <AccessForm
             feature={feature}
             route={route}
