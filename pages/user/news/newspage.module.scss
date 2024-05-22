@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 50px 0;
+  padding: 100px 0;
 
 
   .main_content{
@@ -14,7 +14,8 @@
     align-items: center;
   
   .heading {
-    font-size: $text-subhead;
+    font-size: 24px;
+    font-weight: 700;
     font-family: "Bree Serif", serif;
     color: $deep-green;
     text-decoration: underline;

@@ -70,7 +70,7 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: flex-start;
-      padding: 10px;
+      padding: 10px ;
       gap: 20px;
 
       @media (min-width: 425px) {
@@ -213,8 +213,8 @@
         color: white;
         font-size: $text-body;
         font-weight: 600;
-        margin-top: 50px;
-        margin-bottom: 50px;
+        margin-top: 30px;
+        margin-bottom: 20px;
         cursor: pointer;
       }
       .button_design:hover {
@@ -223,5 +223,10 @@
         transition: 0.5s;
       }
     }
+  }
+
+  .admit_card_section{
+    width: 100%;
+    
   }
 }

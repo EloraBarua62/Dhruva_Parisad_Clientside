@@ -2,21 +2,21 @@
 
 .certificate_section {
   margin-top: 40px;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
 
   @media (min-width: 1024px) {
     margin-top: 60px;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
   }
 
   .title {
-    font-size: $text-head;
+    font-size: $text-subhead;
     font-weight: 600;
     color: $deep-green;
-    margin-top: 20px;
+    margin-top: 50px;
     margin-bottom: 20px;
     text-align: center;
     text-decoration: underline;
@@ -35,38 +35,108 @@
   }
 
   .child_section {
-    width: 100%;
-    position: relative;
-
-    .image_section {
+    width: 310px;
+    height: 200px;
+    @media (min-width: 576px) {
+      width: 500px;
+      height: 300px;
+    }
+    @media (min-width: 768px) {
       width: 600px;
       height: 400px;
     }
+    position: relative;
+
+    // admit card image
+    .image_section {
+      width: 310px;
+      height: 200px;
+      @media (min-width: 576px) {
+        width: 500px;
+        height: 300px;
+      }
+      @media (min-width: 768px) {
+        width: 600px;
+        height: 400px;
+      }
+    }
 
     .student_info {
-      width: 600px;
-      height: 400px;
       position: absolute;
       top: 0;
       left: 0;
 
+      // Mobile device
       .name_design {
-        margin-left: 300px;
-        margin-top: 160px;
+        margin-left: 140px;
+        margin-top: 75px;
         font-style: italic;
         font-weight: 600;
+        font-size: 10px;
       }
       .roll_design {
-        margin-left: 420px;
-        margin-top: 25px;
+        margin-left: 220px;
+        margin-top: 8px;
         font-style: italic;
         font-weight: 600;
+        font-size: 10px;
       }
       .result_design {
-        margin-left: 235px;
-        margin-top: 25px;
+        margin-left: 120px;
+        margin-top: 5px;
         font-style: italic;
         font-weight: 600;
+        font-size: 10px;
+      }
+
+      // Tablet device
+      @media (min-width: 576px) {
+        .name_design {
+          margin-left: 300px;
+          margin-top: 160px;
+          font-style: italic;
+          font-weight: 600;
+          font-size: 14px;
+        }
+        .roll_design {
+          margin-left: 420px;
+          margin-top: 25px;
+          font-style: italic;
+          font-weight: 600;
+          font-size: 14px;
+        }
+        .result_design {
+          margin-left: 235px;
+          margin-top: 25px;
+          font-style: italic;
+          font-weight: 600;
+          font-size: 14px;
+        }
+      }
+
+      // Laptop device
+      @media (min-width: 768px) {
+        .name_design {
+          margin-left: 300px;
+          margin-top: 160px;
+          font-style: italic;
+          font-weight: 600;
+          font-size: 16px;
+        }
+        .roll_design {
+          margin-left: 420px;
+          margin-top: 25px;
+          font-style: italic;
+          font-weight: 600;
+          font-size: 16px;
+        }
+        .result_design {
+          margin-left: 235px;
+          margin-top: 25px;
+          font-style: italic;
+          font-weight: 600;
+          font-size: 16px;
+        }
       }
     }
   }
@@ -80,7 +150,7 @@
     color: white;
     font-size: $text-body;
     font-weight: 600;
-    margin-top: 20px;
+    margin-top: 30px;
     margin-bottom: 20px;
     cursor: pointer;
   }

@@ -11,13 +11,18 @@ const NewStudentsDetails = () => {
   const { isLoading, studentInfo, totalData } = useSelector(
     (state) => state.student
   );
-
   const { zoneInfo, schoolInfo } = useSelector((state) => state.school);
   const [updateStudentInfo, setUpdateStudentInfo] = useState({});
   const [zoneValue, setZoneValue] = useState("Dhaka");
   const [parPage, setParPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
+
+  // Payment status
+  const statusOptions = [
+    { title: "Unpaid"},
+    { title: "Paid"},
+  ];
   const table_heading = [
     "Roll",
     "Name",
@@ -25,6 +30,7 @@ const NewStudentsDetails = () => {
     "Mother Name",
     "Zone",
     "School Name",
+    "Payment Status",
     "Image",
     "Details",
   ];
@@ -34,6 +40,7 @@ const NewStudentsDetails = () => {
     father_name: "",
     mother_name: "",
     phone_no: "",
+    payment: ""
   });
 
   // Button to update student details
@@ -43,6 +50,7 @@ const NewStudentsDetails = () => {
       father_name: student.father_name,
       mother_name: student.mother_name,
       phone_no: student.phone_no,
+      payment: student.payment,
     });
     setUpdateStudentInfo(student);
   };
@@ -54,13 +62,15 @@ const NewStudentsDetails = () => {
     const father_name = state.father_name;
     const mother_name = state.mother_name;
     const phone_no = state.phone_no;
-    const data = { ...info, student_name, father_name, mother_name, phone_no };
+    const payment = state.payment;
+    const data = { ...info, student_name, father_name, mother_name, phone_no, payment };
     dispatch(updateInfo(data));
     setState({
       student_name: "",
       father_name: "",
       mother_name: "",
       phone_no: "",
+      payment: ""
     });
     console.log(data);
   };
@@ -118,6 +128,7 @@ const NewStudentsDetails = () => {
             <div className="single_details">{head.mother_name}</div>
             <div className="single_details">{head.zone}</div>
             <div className="single_details">{head.school}</div>
+            <div className="single_details">{head.payment}</div>
             <div className="image_field">
               <Image
                 src={head.imageShow}
@@ -127,10 +138,15 @@ const NewStudentsDetails = () => {
               />
             </div>
             <div className={styles.activity_section}>
-              <button className={styles.update_button} onClick={() => handleStudentDetails(head)}>Update</button>
-              <button className={styles.delete_button} onClick={() => deleteStudentDetails(head._id)}>
-                Delete
+              <button
+                className={styles.update_button}
+                onClick={() => handleStudentDetails(head)}
+              >
+                Update
               </button>
+              {/* <button className={styles.delete_button} onClick={() => deleteStudentDetails(head._id)}>
+                Delete
+              </button> */}
             </div>
           </div>
         ))}
@@ -163,7 +179,7 @@ const NewStudentsDetails = () => {
                 })
               }
             />
-            <label htmlFor="name">Father Name</label>
+            <label htmlFor="father_name">Father Name</label>
             <input
               type="text"
               className={styles.input_field_design}
@@ -176,7 +192,7 @@ const NewStudentsDetails = () => {
                 })
               }
             />
-            <label htmlFor="name">Mother Name</label>
+            <label htmlFor="mother_name">Mother Name</label>
             <input
               type="text"
               className={styles.input_field_design}
@@ -189,7 +205,7 @@ const NewStudentsDetails = () => {
                 })
               }
             />
-            <label htmlFor="name">Phone No</label>
+            <label htmlFor="phone_no">Phone No</label>
             <input
               type="text"
               className={styles.input_field_design}
@@ -202,6 +218,23 @@ const NewStudentsDetails = () => {
                 })
               }
             />
+            <label htmlFor="status">Change Payment Status</label>
+            <select
+              name="status"
+              onChange={(e) =>
+                setState({
+                  ...state,
+                  payment: e.target.value,
+                })
+              }
+            >
+              {statusOptions.map((data, index) => (
+                <option key={index} value={data.title}>
+                  {data.title}
+                </option>
+              ))}
+            </select>
+
             {/* <div className={styles.field_design}>
                 <label htmlFor="zone">Select Your Examination Zone</label>
                 <select

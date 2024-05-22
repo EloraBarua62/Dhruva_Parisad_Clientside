@@ -302,13 +302,15 @@ const ExamRegistrationForm = () => {
         />
       )}
 
-      {studentDetail &&
-      Object.keys(studentDetail).length !== 0 &&
-      studentDetail.constructor === Object ? (
-        <Admitcard studentDetail={studentDetail} exam_date={exam_date} />
-      ) : (
-        ""
-      )}
+      <div className={styles.admit_card_section}>
+        {studentDetail &&
+        Object.keys(studentDetail).length !== 0 &&
+        studentDetail.constructor === Object ? (
+          <Admitcard studentDetail={studentDetail} exam_date={exam_date} />
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };
