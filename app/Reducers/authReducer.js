@@ -57,6 +57,7 @@ const returnRole = () => {
     token_string = document.cookie;
     if (token_string?.length > 0) {
       const decodeToken = jwtDecode(token_string);
+      console.log(decodeToken.role)
       return decodeToken.role;
     } else return "";
   } else return "";
