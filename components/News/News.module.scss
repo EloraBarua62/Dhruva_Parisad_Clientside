@@ -13,9 +13,9 @@
   //   height: 350px;
   // }
 
-  // @media (min-width: 768px) {
-  //   height: 400px;
-  // }
+  @media (min-width: 768px) {
+    padding-top: 60px;
+  }
 
   .heading {
     font-size: 24px;
@@ -57,7 +57,7 @@
       background-color: $brown-color;
       border: 0;
       border-radius: 10px;
-     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;      
       position: relative;
 
       // Image display
@@ -258,9 +258,7 @@
         position: relative;
         border: 0;
         border-radius: 10px;
-        box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
-
-
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         // Image display
         .image_section {
           width: 30%;
@@ -271,7 +269,7 @@
             object-fit: cover;
             border: 0;
             border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
           }
         }
 
