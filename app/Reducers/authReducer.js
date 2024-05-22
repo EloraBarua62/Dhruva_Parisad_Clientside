@@ -119,11 +119,11 @@ export const authReducer = createSlice({
       state.isLoading = false;
       state.errorMessage = payload?.error;
     });
-    builder.addCase(userLogin.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
-      state.userInfo = payload?.userInfo;
+    builder.addCase(userLogin.fulfilled, (state, { payload }) => {  
+      state.role = returnRole();    
+      state.userInfo = payload?.userInfo;           
       state.successMessage = payload?.message;
-      state.role = returnRole();
+      state.isLoading = false;
     });
 
     // Login action
