@@ -4,7 +4,6 @@ import styles from "./News.module.scss";
 import Link from "next/link";
 
 const News = ({ newsList }) => {
-  console.log(newsList);
   const year = new Date().getFullYear();
   const date = new Date().getDate();
   const month = new Date().getMonth() + 1;
@@ -29,7 +28,6 @@ const News = ({ newsList }) => {
       else time.push(value + " days ago");
     } else {
       time.push("Today");
-      console.log(time)
     }
   });
 

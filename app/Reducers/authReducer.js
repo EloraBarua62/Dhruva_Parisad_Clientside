@@ -119,9 +119,9 @@ export const authReducer = createSlice({
       state.isLoading = false;
       state.errorMessage = payload?.error;
     });
-    builder.addCase(userLogin.fulfilled, (state, { payload }) => {  
-      state.role = returnRole();    
-      state.userInfo = payload?.userInfo;           
+    builder.addCase(userLogin.fulfilled, (state, { payload }) => {     
+      state.userInfo = payload?.userInfo; 
+      state.role = returnRole();           
       state.successMessage = payload?.message;
       state.isLoading = false;
     });
