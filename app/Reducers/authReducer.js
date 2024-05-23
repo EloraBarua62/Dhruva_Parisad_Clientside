@@ -53,8 +53,10 @@ export const principalInformation = createAsyncThunk(
 
 const returnRole = () => {
   let token_string = "";
+  console.log('cookie checking')
   if (typeof document !== "undefined") {
     token_string = document.cookie;
+    console.log(token_string)
     if (token_string?.length > 0) {
       const decodeToken = jwtDecode(token_string);
       console.log(decodeToken.role)
