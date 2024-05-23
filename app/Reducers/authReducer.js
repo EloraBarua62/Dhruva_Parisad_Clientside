@@ -96,20 +96,10 @@ export const authReducer = createSlice({
       state.errorMessage = payload?.error;
     });
     builder.addCase(userSignup.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
-      if (payload?.userInfo?.pin_number === 0) {
-        state.userInfo = payload?.userInfo;
-      } 
-      else {
-        if (typeof window !== "undefined") {
-          let principalInfo =
-            JSON.parse(window.localStorage.getItem("principalInfo")) || [];
-          principalInfo.push(payload?.userInfo);
-          // principalInfo = [...principalInfo, payload?.userInfo];
-          localStorage.setItem("principalInfo", JSON.stringify(principalInfo));
-        }        
-      }
+      state.userInfo = payload?.userInfo;
+      state.role = payload?.userInfo?.role;
       state.successMessage = payload?.message;
+      state.isLoading = false;
     });
 
     // Login action
@@ -122,7 +112,7 @@ export const authReducer = createSlice({
     });
     builder.addCase(userLogin.fulfilled, (state, { payload }) => {     
       state.userInfo = payload?.userInfo; 
-      state.role = returnRole();           
+      state.role = payload?.userInfo?.role;        
       state.successMessage = payload?.message;
       state.isLoading = false;
     });
