@@ -19,7 +19,6 @@ const News = ({ newsList }) => {
       else time.push(value + " years ago");
     } else if (month - parseInt(news.updatedAt.substring(5, 7)) > 0) {
       value = month - parseInt(news.updatedAt.substring(5, 7));
-      console.log(value)
       if (value == 1) time.push("Last month");
       else time.push(value + " months ago");
     } else if (date - parseInt(news.updatedAt.substring(8, 10)) > 0) {

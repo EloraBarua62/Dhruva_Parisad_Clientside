@@ -53,15 +53,12 @@ export const principalInformation = createAsyncThunk(
 
 const returnRole = () => {
   let token_string = "";
-  console.log('cookie checking')
-  if (typeof document !== "undefined") {
-    token_string = document.cookie;
-    console.log(token_string)
-    if (token_string?.length > 0) {
-      const decodeToken = jwtDecode(token_string);
-      console.log(decodeToken.role)
-      return decodeToken.role;
-    } else return "";
+  token_string = document.cookie;
+  console.log("cookie checking",token_string);
+  if (token_string?.length > 0) {
+    const decodeToken = jwtDecode(token_string);
+    console.log(decodeToken.role);
+    return decodeToken.role;
   } else return "";
 };
 
@@ -74,7 +71,7 @@ export const authReducer = createSlice({
     userInfo: "",
     role: "",
     principalInfo: [],
-    totalData: 0
+    totalData: 0,
   },
   reducers: {
     messageClear: (state) => {
@@ -100,15 +97,14 @@ export const authReducer = createSlice({
       state.isLoading = false;
       if (payload?.userInfo?.pin_number === 0) {
         state.userInfo = payload?.userInfo;
-      } 
-      else {
+      } else {
         if (typeof window !== "undefined") {
           let principalInfo =
             JSON.parse(window.localStorage.getItem("principalInfo")) || [];
           principalInfo.push(payload?.userInfo);
           // principalInfo = [...principalInfo, payload?.userInfo];
           localStorage.setItem("principalInfo", JSON.stringify(principalInfo));
-        }        
+        }
       }
       state.successMessage = payload?.message;
     });
@@ -121,9 +117,9 @@ export const authReducer = createSlice({
       state.isLoading = false;
       state.errorMessage = payload?.error;
     });
-    builder.addCase(userLogin.fulfilled, (state, { payload }) => {     
-      state.userInfo = payload?.userInfo; 
-      state.role = returnRole();           
+    builder.addCase(userLogin.fulfilled, (state, { payload }) => {
+      state.userInfo = payload?.userInfo;
+      state.role = returnRole();
       state.successMessage = payload?.message;
       state.isLoading = false;
     });
@@ -132,13 +128,13 @@ export const authReducer = createSlice({
     builder.addCase(principalInformation.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(principalInformation.rejected, (state, { payload }) => {     
+    builder.addCase(principalInformation.rejected, (state, { payload }) => {
       state.principalInfo = [];
       state.totalData = 0;
       state.errorMessage = payload?.error;
       state.isLoading = false;
     });
-    builder.addCase(principalInformation.fulfilled, (state, { payload }) => {      
+    builder.addCase(principalInformation.fulfilled, (state, { payload }) => {
       state.principalInfo = payload?.principal_info;
       // console.log(principalInfo);
       state.totalData = payload?.totalData;

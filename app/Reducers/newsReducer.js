@@ -21,13 +21,10 @@ export const displayNews = createAsyncThunk(
   async (info, { rejectWithValue, fulfillWithValue }) => {
     try {
       const {count} = info;
-      console.log(typeof(count))
-
       const data = await api.get(`/news/all-news?count=${count}`, {
         withCredentials: true,
       });        
-      
-      console.log(data)  
+       
       return fulfillWithValue(data);  
     } catch (error) {
       return rejectWithValue(error.response.data);
