@@ -27,7 +27,6 @@ const SchoolInformation = () => {
     "Zone",
     "Principal Name",
     "Email",
-    "PIN Code",
     "Details",
   ];
   useEffect(() => {
@@ -105,7 +104,6 @@ const SchoolInformation = () => {
                 <div className="text_details">{head?.zone}</div>
                 <div className="text_details">{head?.principalInfo?.name}</div>
                 <div className="text_details">{head?.principalInfo?.email}</div>
-                <div className="text_details">{head?.principalInfo?.pin_number}</div>
                 <div className={styles.activity_section}>
                   <button
                     className={styles.update_button}

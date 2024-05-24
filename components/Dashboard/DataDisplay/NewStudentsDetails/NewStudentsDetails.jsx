@@ -11,10 +11,8 @@ const NewStudentsDetails = () => {
   const { isLoading, studentInfo, totalData } = useSelector(
     (state) => state.student
   );
-  const { zoneInfo, schoolInfo } = useSelector((state) => state.school);
   const [updateStudentInfo, setUpdateStudentInfo] = useState({});
-  const [zoneValue, setZoneValue] = useState("Dhaka");
-  const [parPage, setParPage] = useState(10);
+  const [parPage, setParPage] = useState(9);
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
 

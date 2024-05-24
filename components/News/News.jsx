@@ -62,12 +62,15 @@ const News = ({ newsList }) => {
                 </div>
               </div>
               <div className={styles.description_content}>
-                {newsList[0]?.news_details}
+                <div className={styles.inner_description}>
+                  {newsList[0]?.news_details}
+                </div>
               </div>
               <strong>N.B: {newsList[0]?.imp_msg}</strong>
               <Link
                 href={`user/news/${newsList[0]?._id}`}
-                className={styles.details_button}>
+                className={styles.details_button}
+              >
                 Details
               </Link>
             </div>
@@ -100,14 +103,11 @@ const News = ({ newsList }) => {
                         </p>
                         {/* <p className={styles.extra_details}>0 views</p> */}
                       </div>
-
-                      {/* <FaShareAlt
-                        style={{ fontSize: "16px", color: "gray" }}
-                        className={styles.icon_design}
-                      /> */}
-                      {/* <div className={styles.share_design}>
-                      <FaShareAlt className={styles.icon_design} />
-                    </div> */}
+                    </div>
+                    <div className={styles.description_content}>
+                      <div className={styles.inner_description}>
+                        {news?.news_details}
+                      </div>
                     </div>
                   </div>
                 </div>

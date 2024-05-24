@@ -19,7 +19,9 @@ const login = () => {
             <Image
               src={logo}
               alt=""
-              fill="true"
+              fill
+              sizes="100%"
+              priority={true}
               className={styles.logo_design}
             ></Image>
           </div>
@@ -27,7 +29,6 @@ const login = () => {
         </div>
 
         <Container>
-          
           <AccessForm
             feature={feature}
             route={route}

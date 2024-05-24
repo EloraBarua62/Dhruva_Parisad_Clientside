@@ -12,7 +12,10 @@ import Certificate from "@component/components/Certificate/Certificate";
 const StudentResult = () => {
   const { isLoading, successMessage, errorMessage, studentResultInfo } =
     useSelector((state) => state.result);
+  const { important_date } = useSelector((state) => state.news);
 
+  const today_date = new Date().toISOString();
+  console.log(today_date, "....",important_date);
   const table_heading = [
     "Subject",
     "Year",
@@ -43,86 +46,95 @@ const StudentResult = () => {
   return (
     <div className={styles.student_result_design}>
       <Container>
-        <div className={styles.result_content}>
-          <div className={styles.data_entry}>
-            <h1>Enter Student Roll Number</h1>
-            <form onSubmit={handleSubmit}>
-              <div className={styles.field_design}>
-                <label htmlFor="roll">Roll Number</label>
-                <input type="number" name="roll" id="" />
-              </div>
-              <div className={styles.button_section}>
-                <button className={styles.button_design} type="submit">
-                  Search
-                </button>
-              </div>
-            </form>
-          </div>
-
-          {studentResultInfo &&
-          Object.keys(studentResultInfo).length !== 0 &&
-          studentResultInfo.constructor === Object ? (
-            <div className={styles.student_info}>
-              <div className={styles.other_info}>
-                <div className={styles.title}>Student Result</div>
-                <div className={styles.personal_details}>
-                  Name: {studentResultInfo?.studentInfo?.student_name}
+        {important_date > today_date ? (
+          <div className={styles.result_declaration}>Result has not published yet. Please check the updated news! </div>
+        ) : (
+          <div className={styles.result_content}>
+            <div className={styles.data_entry}>
+              <h1>Enter Student Roll Number</h1>
+              <form onSubmit={handleSubmit}>
+                <div className={styles.field_design}>
+                  <label htmlFor="roll">Roll Number</label>
+                  <input type="number" name="roll" id="" />
                 </div>
-                <div className={styles.personal_details}>
-                  Roll: {studentResultInfo?.studentInfo?.roll}
+                <div className={styles.button_section}>
+                  <button className={styles.button_design} type="submit">
+                    Search
+                  </button>
                 </div>
-                <div className={styles.personal_details}>
-                  School Code: {studentResultInfo?.studentInfo?.school_code}
-                </div>
-                <div className={styles.personal_details_title}>
-                  Result Details
-                </div>
-
-                <div className={styles.subject_marks_title_display}>
-                  {table_heading.map((each, index) => (
-                    <div key={index} className={styles.single_field}>
-                      {each}
-                    </div>
-                  ))}
-                </div>
-
-                {studentResultInfo?.studentInfo?.subjectYear.map(
-                  (each, index) => (
-                    <div key={index} className={styles.subject_marks_display}>
-                      <div className={styles.single_field}>{each.subject}</div>
-                      <div className={styles.single_field}>{each.year}</div>
-                      <div className={styles.single_field}>
-                        {studentResultInfo?.writtenPractical[index]?.written}
-                      </div>
-                      <div className={styles.single_field}>
-                        {studentResultInfo?.writtenPractical[index]?.practical}
-                      </div>
-                      <div className={styles.single_field}>
-                        {studentResultInfo?.writtenPractical[index]?.total}
-                      </div>
-                      <div className={styles.single_field}>
-                        {studentResultInfo?.writtenPractical[index]?.grade}
-                      </div>
-                      <div className={styles.single_field}>
-                        {
-                          studentResultInfo?.writtenPractical[index]
-                            ?.excellence[0]
-                        }
-                      </div>
-                    </div>
-                  )
-                )}
-              </div>
-              <Certificate
-                student_name={studentResultInfo?.studentInfo?.student_name}
-                roll={studentResultInfo?.studentInfo?.roll}
-                result={"3.62"}
-              />
+              </form>
             </div>
-          ) : (
-            ""
-          )}
-        </div>
+
+            {studentResultInfo &&
+            Object.keys(studentResultInfo).length !== 0 &&
+            studentResultInfo.constructor === Object ? (
+              <div className={styles.student_info}>
+                <div className={styles.other_info}>
+                  <div className={styles.title}>Student Result</div>
+                  <div className={styles.personal_details}>
+                    Name: {studentResultInfo?.studentInfo?.student_name}
+                  </div>
+                  <div className={styles.personal_details}>
+                    Roll: {studentResultInfo?.studentInfo?.roll}
+                  </div>
+                  <div className={styles.personal_details}>
+                    School Code: {studentResultInfo?.studentInfo?.school_code}
+                  </div>
+                  <div className={styles.personal_details_title}>
+                    Result Details
+                  </div>
+
+                  <div className={styles.subject_marks_title_display}>
+                    {table_heading.map((each, index) => (
+                      <div key={index} className={styles.single_field}>
+                        {each}
+                      </div>
+                    ))}
+                  </div>
+
+                  {studentResultInfo?.studentInfo?.subjectYear.map(
+                    (each, index) => (
+                      <div key={index} className={styles.subject_marks_display}>
+                        <div className={styles.single_field}>
+                          {each.subject}
+                        </div>
+                        <div className={styles.single_field}>{each.year}</div>
+                        <div className={styles.single_field}>
+                          {studentResultInfo?.writtenPractical[index]?.written}
+                        </div>
+                        <div className={styles.single_field}>
+                          {
+                            studentResultInfo?.writtenPractical[index]
+                              ?.practical
+                          }
+                        </div>
+                        <div className={styles.single_field}>
+                          {studentResultInfo?.writtenPractical[index]?.total}
+                        </div>
+                        <div className={styles.single_field}>
+                          {studentResultInfo?.writtenPractical[index]?.grade}
+                        </div>
+                        <div className={styles.single_field}>
+                          {
+                            studentResultInfo?.writtenPractical[index]
+                              ?.excellence[0]
+                          }
+                        </div>
+                      </div>
+                    )
+                  )}
+                </div>
+                <Certificate
+                  student_name={studentResultInfo?.studentInfo?.student_name}
+                  roll={studentResultInfo?.studentInfo?.roll}
+                  result={"3.62"}
+                />
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+        )}
       </Container>
     </div>
   );

@@ -11,19 +11,33 @@
     flex-direction: column;
     gap: 20px;
 
+    .pagination {
+      width: 300px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 10px;
+      background-color: #f9fad1;
+      padding-left: 10px;
+      padding-right: 10px;
+      border: 0 solid;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
     .left_section_heading {
-    font-size: $text-body;
-    color: $deep-green;
-    padding: 20px 0;
+      font-size: $text-body;
+      color: $deep-green;
+      padding: 20px 0;
 
-    @media (min-width: 768px) {
-      font-size: 20px;
-    }
+      @media (min-width: 768px) {
+        font-size: 20px;
+      }
 
-    @media (min-width: 1200px) {
-      font-size: 25px;
+      @media (min-width: 1200px) {
+        font-size: 25px;
+      }
     }
-  }
 
     .news_content {
       background-color: $brown-color;
@@ -44,21 +58,21 @@
       }
 
       .description {
-        color: black;
-        font-size: $text-body;
-        margin: 10px 0;
+        font-size: 16px;
 
-        @media (min-width: 768px) {
-          $text-label: 16px;
-        }
         @media (min-width: 1200px) {
-          $text-label: 18px;
+          font-size: 18px;
+        }
+        .inner_description {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
       }
 
       .time {
         font-size: $text-label;
-
         color: gray;
 
         @media (min-width: 768px) {
@@ -68,9 +82,117 @@
           $text-label: 16px;
         }
       }
+
+      .activity_section {
+        max-width: 110px;
+        min-width: 110px;
+        padding: 10px 2px 0;
+        text-align: center;
+        display: flex;
+        gap: 10px;
+
+        .update_button {
+          color: white;
+          border: 0;
+          border-radius: 5px;
+          background-color: $deep-green;
+          font-weight: 600;
+          padding: 4px;
+          cursor: pointer;
+        }
+
+        .update_button:hover {
+          background-color: rgba(2, 144, 2, 0.675);
+        }
+        .delete_button {
+          color: white;
+          border: 0;
+          border-radius: 5px;
+          background-color: red;
+          font-weight: 600;
+          padding: 4px;
+          cursor: pointer;
+        }
+
+        .delete_button:hover {
+          background-color: rgba(255, 44, 44, 0.859);
+        }
+      }
+    }
+
+    .news_details_update {
+      position: absolute;
+      top: 20px;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: #f9fad1;
+      border: 3px solid $deep-green;
+      border-radius: 10px;
+      padding: 25px;
+
+      .heading_design {
+        display: flex;
+        justify-content: space-between;
+        gap: 25px;
+        margin-bottom: 30px;
+
+        .news_head {
+          font-size: $text-body;
+          font-weight: 600;
+          color: $medium-green;
+          @media (min-width: 768px) {
+            font-size: 20px;
+          }
+
+          @media (min-width: 1200px) {
+            font-size: 25px;
+          }
+        }
+
+        button {
+          // width: 50px;
+          border: 0;
+          background-color: transparent;
+
+          .button_design {
+            font-size: 30px;
+            color: $deep-green;
+            cursor: pointer;
+          }
+        }
+      }
+
+      form {
+        width: 100%;
+        label {
+          font-size: $text-label;
+          margin-top: 12px;
+          margin-bottom: 4px;
+          display: block;
+        }
+        .input_field_design {
+          // display: block;
+          width: 100%;
+          outline: none;
+          border: 1px solid $deep-green;
+          border-radius: 5px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+        }
+      }
+
+      .submit_button {
+        background-color: $deep-green;
+        color: $brown-color;
+        border: 0;
+        border-radius: 5px;
+        padding: 3px 10px;
+        margin-left: 5px;
+      }
     }
   }
-
 
   .update_news {
     background-color: $light-green;
@@ -81,22 +203,21 @@
     justify-content: center;
     align-items: center;
     padding: 20px 0;
-    
 
     .new_news {
-    font-size: $text-body;
-    color: $deep-green;
-    background-color: $light-green;
-    padding: 20px 0;
+      font-size: $text-body;
+      color: $deep-green;
+      background-color: $light-green;
+      padding: 20px 0;
 
-    @media (min-width: 768px) {
-      font-size: 20px;
-    }
+      @media (min-width: 768px) {
+        font-size: 20px;
+      }
 
-    @media (min-width: 1200px) {
-      font-size: 25px;
+      @media (min-width: 1200px) {
+        font-size: 25px;
+      }
     }
-  }
     form {
       // width: 100%;
       .title_design {

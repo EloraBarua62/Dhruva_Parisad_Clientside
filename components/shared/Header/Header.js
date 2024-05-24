@@ -65,6 +65,7 @@ const Header = () => {
                 alt=""
                 fill
                 sizes="100%"
+                priority={true}
                 className={styles.logo_design}
               ></Image>
             </div>

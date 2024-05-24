@@ -4,37 +4,23 @@ import { useEffect, useState } from "react";
 import Pagination from "../../Pagination/Pagination";
 import { principalInformation } from "@component/app/Reducers/authReducer";
 import { ThreeDots } from "react-loader-spinner";
+import { isLoading, examResultDate } from "@component/app/Reducers/newsReducer";
 
 const AdminPanel = () => {
-  const { isLoading, principalInfo, totalData } = useSelector(
-    (state) => state.auth
-  );
-  const [parPage, setParPage] = useState(10);
-  const [currentPage, setCurrentPage] = useState(1);
-  const dispatch = useDispatch();
-
-  // useEffect(()=>{
-  //   if (typeof window !== "undefined") {
-  //     const listInfo = JSON.parse(window.localStorage.getItem("principalInfo"));
-  //     setPrincipalInfo(listInfo);
-  //   }
-  // },[])
-
-  const table_heading = ["Name", "Email", "Password"];
-
-  // useEffect(() => {
-  //   const obj = {
-  //     parPage: parseInt(parPage),
-  //     page: parseInt(currentPage),
-  //   };
-  //   dispatch(principalInformation(obj));
-  // }, [currentPage, parPage, dispatch]);
-
-  // console.log(principalInfo)
+   const dispatch = useDispatch();
+  const handleExamResultDate = (e) => {
+    const exam_date = e.target.exam_date.value;
+    const result_date = e.target.result_date.value;
+    const data = { exam_date, result_date };
+    console.log(result_date);
+    dispatch(examResultDate(data));
+    e.preventDefault();
+  };
 
   return (
     <div className={styles.admin_panel_design}>
-      <h1>Principal Information</h1>
+      <h1>Update Exam and Result date</h1>
+      {/* <h1>Principal Information</h1>
       {isLoading ? (
         <ThreeDots
           visible={true}
@@ -80,7 +66,27 @@ const AdminPanel = () => {
             ))}
           </div>
         </div>
-      }
+      } */}
+
+      <form onSubmit={handleExamResultDate}>
+        <label htmlFor="exam_date">Next Exam Date</label>
+        <input type="date" name="exam_date" id="" />
+        <label htmlFor="result_date">Next Result Publication Date</label>
+        <input type="date" name="result_date" id="" />
+        <input type="submit" value="Submit" className={styles.submit_button} />
+      </form>
+      {isLoading && (
+        <ThreeDots
+          visible={true}
+          height="80"
+          width="80"
+          color="#4fa94d"
+          radius="9"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      )}
     </div>
   );
 };
