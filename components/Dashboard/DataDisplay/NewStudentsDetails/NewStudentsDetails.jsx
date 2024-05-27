@@ -12,7 +12,7 @@ const NewStudentsDetails = () => {
     (state) => state.student
   );
   const [updateStudentInfo, setUpdateStudentInfo] = useState({});
-  const [parPage, setParPage] = useState(9);
+  const [parPage, setParPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
 

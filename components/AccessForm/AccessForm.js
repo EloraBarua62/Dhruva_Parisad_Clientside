@@ -53,7 +53,7 @@ const AccessForm = ({ feature, route, request, fields }) => {
           {/* Section: input field design */}
           {fields.map((field, index) => (
             <div key={index} className={styles.field_design}>
-              <input name={field[0]} type="text" required />
+              <input name={field[0]} type={field[0]} required />
               <label htmlFor={field[0]}>{field[1]}</label>
             </div>
           ))}

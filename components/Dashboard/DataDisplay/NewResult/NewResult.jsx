@@ -30,7 +30,7 @@ const NewResult = () => {
   const [toogleEditDoneButton, setToogleEditDoneButton] = useState(true);
   const [toogle, setToogle] = useState(false);
 
-  const [parPage, setParPage] = useState(12);
+  const [parPage, setParPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
 
