@@ -5,8 +5,9 @@ import { toPng } from "html-to-image";
 import { useCallback, useRef } from 'react';
 
 
-const Certificate = ({student_name, roll, result}) => {
+const Certificate = ({student_name, roll, studentPersonalInfo, result}) => {
   const ref = useRef(null);
+  console.log(studentPersonalInfo)
   const onButtonClick = useCallback(() => {
     if (ref.current === null) {
       return;

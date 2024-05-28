@@ -80,68 +80,68 @@ export const resultReducer = createSlice({
     isLoading: false,
     resultInfo: [],
     studentResultInfo: {},
-    totalData: 1000
+    studentPersonalInfo: {},
+    totalData: 1000,
   },
   reducers: {
     messageClear: (state) => {
-        state.errorMessage = "";
-        state.successMessage = "";
-    }
+      state.errorMessage = "";
+      state.successMessage = "";
+    },
   },
   extraReducers: (builder) => {
-
     // Role: Admin
-    builder.addCase(resultDisplay.pending , (state) => {
-        state.isLoading = true;
+    builder.addCase(resultDisplay.pending, (state) => {
+      state.isLoading = true;
     });
-    builder.addCase(resultDisplay.fulfilled , (state, {payload}) => {                
-        state.resultInfo = payload.resultInfo;
-        state.totalData = payload?.totalData || 1000,
-        state.successMessage = payload.message;
-        state.isLoading = false;
+    builder.addCase(resultDisplay.fulfilled, (state, { payload }) => {
+      state.resultInfo = payload.resultInfo;
+      (state.totalData = payload?.totalData || 1000),
+        (state.successMessage = payload.message);
+      state.isLoading = false;
     });
-    builder.addCase(resultDisplay.rejected , (state, {payload}) => {
-        state.isLoading = false;
-        state.errorMessage = payload.error;
+    builder.addCase(resultDisplay.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      state.errorMessage = payload.error;
     });
-
 
     // Role: Principal
-    builder.addCase(specificSchoolResult.pending , (state) => {
-        state.isLoading = true;
+    builder.addCase(specificSchoolResult.pending, (state) => {
+      state.isLoading = true;
     });
-    builder.addCase(specificSchoolResult.fulfilled , (state, {payload}) => {       
-        state.successMessage = payload.message;       
-        state.resultInfo = payload?.resultInfo;
-        state.isLoading = false;
+    builder.addCase(specificSchoolResult.fulfilled, (state, { payload }) => {
+      state.successMessage = payload.message;
+      state.resultInfo = payload?.resultInfo;
+      state.isLoading = false;
     });
-    builder.addCase(specificSchoolResult.rejected , (state, {payload}) => {    
-         state.resultInfo = [];
-        state.errorMessage = payload?.error;
-        state.isLoading = false;
+    builder.addCase(specificSchoolResult.rejected, (state, { payload }) => {
+      state.resultInfo = [];
+      state.errorMessage = payload?.error;
+      state.isLoading = false;
     });
 
-    
     // Role: Student
-    builder.addCase(specificStudentResult.pending , (state) => {
-        state.isLoading = true;
+    builder.addCase(specificStudentResult.pending, (state) => {
+      state.isLoading = true;
     });
-    builder.addCase(specificStudentResult.fulfilled , (state, {payload}) => {       
-        state.successMessage = payload?.message;       
-        state.studentResultInfo = payload?.studentResultInfo;
-        state.isLoading = false;
+    builder.addCase(specificStudentResult.fulfilled, (state, { payload }) => {
+      state.successMessage = payload?.message;
+      state.studentResultInfo = payload?.studentResultInfo;
+      state.studentPersonalInfo = payload?.studentPersonalInfo;
+      state.isLoading = false;
     });
-    builder.addCase(specificStudentResult.rejected , (state, {payload}) => {    
-        state.studentResultInfo = {};
-        state.errorMessage = payload?.error;
-        state.isLoading = false;
+    builder.addCase(specificStudentResult.rejected, (state, { payload }) => {
+      state.studentResultInfo = {};
+      state.errorMessage = payload?.error;
+      state.isLoading = false;
     });
-    
 
-    builder.addCase(updateWrittenPracticalMarks.pending , (state) => {
-        state.isLoading = true;
+    builder.addCase(updateWrittenPracticalMarks.pending, (state) => {
+      state.isLoading = true;
     });
-    builder.addCase(updateWrittenPracticalMarks.fulfilled , (state, {payload}) => {      
+    builder.addCase(
+      updateWrittenPracticalMarks.fulfilled,
+      (state, { payload }) => {
         const index = payload.index;
         const writtenPractical = payload.data.updatedResult;
 
@@ -149,18 +149,21 @@ export const resultReducer = createSlice({
         parentObj = { ...parentObj, writtenPractical: writtenPractical };
         let parentArray = [...state.resultInfo];
         parentArray[index] = parentObj;
-        
+
         // Set value to state variable
         state.resultInfo = parentArray;
         state.successMessage = payload.message;
         state.isLoading = false;
-
-    });
-    builder.addCase(updateWrittenPracticalMarks.rejected , (state, {payload}) => {
+      }
+    );
+    builder.addCase(
+      updateWrittenPracticalMarks.rejected,
+      (state, { payload }) => {
         state.isLoading = false;
         state.errorMessage = payload.error;
-    });
-  }
+      }
+    );
+  },
 });
 
 export default resultReducer.reducer;

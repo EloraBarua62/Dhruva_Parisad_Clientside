@@ -10,8 +10,13 @@ import toast from "react-hot-toast";
 import Certificate from "@component/components/Certificate/Certificate";
 
 const StudentResult = () => {
-  const { isLoading, successMessage, errorMessage, studentResultInfo } =
-    useSelector((state) => state.result);
+  const {
+    isLoading,
+    successMessage,
+    errorMessage,
+    studentResultInfo,
+    studentPersonalInfo,
+  } = useSelector((state) => state.result);
   const { important_date } = useSelector((state) => state.news);
 
   const today_date = new Date().toISOString();
@@ -22,8 +27,8 @@ const StudentResult = () => {
     "Written",
     "Practical",
     "Total Marks",
-    "Grade",
-    "Excellence",
+    "Letter Grade",
+    "Grade Point",
   ];
 
   const dispatch = useDispatch();
@@ -112,12 +117,12 @@ const StudentResult = () => {
                           {studentResultInfo?.writtenPractical[index]?.total}
                         </div>
                         <div className={styles.single_field}>
-                          {studentResultInfo?.writtenPractical[index]?.grade}
+                          {studentResultInfo?.writtenPractical[index]?.letter_grade}
                         </div>
                         <div className={styles.single_field}>
                           {
                             studentResultInfo?.writtenPractical[index]
-                              ?.excellence[0]
+                              ?.grade_point
                           }
                         </div>
                       </div>
@@ -127,6 +132,7 @@ const StudentResult = () => {
                 <Certificate
                   student_name={studentResultInfo?.studentInfo?.student_name}
                   roll={studentResultInfo?.studentInfo?.roll}
+                  studentPersonalInfo={studentPersonalInfo}
                   result={"3.62"}
                 />
               </div>

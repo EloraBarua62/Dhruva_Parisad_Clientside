@@ -18,7 +18,8 @@ const NewResult = () => {
     "Written",
     "Practical",
     "Total Marks",
-    "Grade",
+    "Letter Grade",
+    "Grade Point",
     "Details",
   ];
 
@@ -192,7 +193,8 @@ const NewResult = () => {
                       </div>
 
                       {/* Displaying final grade of written and practical  */}
-                      <div className="child_box_design">{data.grade}</div>
+                      <div className="child_box_design">{data.letter_grade}</div>
+                      <div className="child_box_design">{data.grade_point}</div>
                     </div>
                   ))}
                   <button type="submit" disabled={isLoading ? true : false}>
@@ -227,7 +229,10 @@ const NewResult = () => {
                       head?.writtenPractical[0].practical}
                   </div>
                   <div className="child_box_design">
-                    {head?.writtenPractical[0].grade}
+                    {head?.writtenPractical[0].letter_grade}
+                  </div>
+                  <div className="child_box_design">
+                    {head?.writtenPractical[0].grade_point}
                   </div>
                 </div>
               </div>
