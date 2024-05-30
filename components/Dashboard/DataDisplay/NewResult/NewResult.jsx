@@ -20,6 +20,8 @@ const NewResult = () => {
     "Total Marks",
     "Letter Grade",
     "Grade Point",
+    "Average Letter Grade",
+    "Average Grade Point",
     "Details",
   ];
 
@@ -127,16 +129,16 @@ const NewResult = () => {
             }`}
           >
             {/* Field: Student Roll */}
-            <div className="text_details">{head.studentInfo.roll}</div>
+            <div className="text_details">{head?.studentInfo?.roll}</div>
 
             {/* Field: Student Name */}
             <div className="single_details">
-              {head.studentInfo?.student_name}
+              {head?.studentInfo?.student_name}
             </div>
 
             {/* Field: School ID */}
             <div className="single_details">
-              {head.studentInfo?.school_code}
+              {head?.studentInfo?.school_code}
             </div>
 
             {/* Field: Subjects and Years */}
@@ -144,7 +146,9 @@ const NewResult = () => {
               <div className="subject_year_design">
                 {head.studentInfo?.subjectYear.map((data, idx) => (
                   <div key={idx} className="subject_year_design_inner">
-                    <div className="child_box_design">{data.subject}</div>
+                    <div className="child_box_design">
+                      {data.subject.substring(0, 8)}
+                    </div>
                     <div className="child_box_design">{data.year}</div>
                   </div>
                 ))}
@@ -153,7 +157,7 @@ const NewResult = () => {
               <div className="subject_year_design">
                 <div className="subject_year_design_inner">
                   <div className="child_box_design">
-                    {head.studentInfo?.subjectYear[0].subject}
+                    {head.studentInfo?.subjectYear[0].subject.substring(0, 8)}
                   </div>
                   <div className="child_box_design">
                     {head.studentInfo?.subjectYear[0].year}
@@ -188,12 +192,12 @@ const NewResult = () => {
                       />
 
                       {/* Displaying total score of written and practical  */}
-                      <div className="child_box_design">
-                        {data.written + data.practical}
-                      </div>
+                      <div className="child_box_design">{data.total}</div>
 
                       {/* Displaying final grade of written and practical  */}
-                      <div className="child_box_design">{data.letter_grade}</div>
+                      <div className="child_box_design">
+                        {data.letter_grade}
+                      </div>
                       <div className="child_box_design">{data.grade_point}</div>
                     </div>
                   ))}
@@ -237,6 +241,9 @@ const NewResult = () => {
                 </div>
               </div>
             )}
+
+            <div className="text_details">{head?.averageLetterGrade}</div>
+            <div className="text_details">{head?.averageGradePoint}</div>
 
             {/* Details checking button */}
             <div className="button_content">

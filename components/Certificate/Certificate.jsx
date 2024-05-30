@@ -28,10 +28,21 @@ const Certificate = ({student_name, roll, studentPersonalInfo, result}) => {
       <div className={styles.certificate_section}>
         <div className={styles.title}>Examination Certificate</div>
         <div className={styles.child_section} ref={ref}>
-          <Image src={certificate} alt="" fill="true" className={styles.image_section} />
+          <Image
+            src={certificate}
+            alt=""
+            fill="true"
+            className={styles.image_section}
+          />
 
           <div className={styles.student_info}>
             <div className={styles.name_design}>{student_name}</div>
+            <div className={styles.father_name_design}>
+              {studentPersonalInfo?.father_name}
+            </div>
+            <div className={styles.mother_name_design}>
+              {studentPersonalInfo?.mother_name}
+            </div>
             <div className={styles.roll_design}>{roll}</div>
             <div className={styles.result_design}>{result}</div>
           </div>

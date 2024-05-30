@@ -20,8 +20,6 @@ export const resultDisplay = createAsyncThunk(
     }
   }
 );
-
-
 export const specificSchoolResult = createAsyncThunk(
   "result/specificSchoolResult",
   async (info, { rejectWithValue, fulfillWithValue }) => {
@@ -52,13 +50,13 @@ export const specificStudentResult = createAsyncThunk(
     }
   }
 );
-
 export const updateWrittenPracticalMarks = createAsyncThunk(
   "result/updateWrittenPracticalMarks",
   async(info, { rejectWithValue, fulfillWithValue }) => {
     const index = info.index;
     const id = info.id;
     const writtenPractical = info.writtenPractical;
+    console.log(writtenPractical)
 
     try {
         const { data } = await api.patch(`result/result-update/${id}`,writtenPractical, {
@@ -136,6 +134,8 @@ export const resultReducer = createSlice({
       state.isLoading = false;
     });
 
+
+    // Role: Admin
     builder.addCase(updateWrittenPracticalMarks.pending, (state) => {
       state.isLoading = true;
     });
@@ -144,9 +144,16 @@ export const resultReducer = createSlice({
       (state, { payload }) => {
         const index = payload.index;
         const writtenPractical = payload.data.updatedResult;
+        const averageLetterGrade = payload.data.final_letter_grade;
+        const averageGradePoint = payload.data.final_grade_point;
 
         let parentObj = { ...state.resultInfo[index] };
-        parentObj = { ...parentObj, writtenPractical: writtenPractical };
+        parentObj = {
+          ...parentObj,
+          writtenPractical,
+          averageLetterGrade,
+          averageGradePoint,
+        };
         let parentArray = [...state.resultInfo];
         parentArray[index] = parentObj;
 
