@@ -103,7 +103,7 @@ export const newsReducer = createSlice({
     successMessage: "",
     errorMessage: "",
     isLoading: false,
-    important_date: "",
+    important_date: {},
     newsList: [],
     adminNewsList: [],
     totalData: 1000,

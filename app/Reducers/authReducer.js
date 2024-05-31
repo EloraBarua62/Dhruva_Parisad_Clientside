@@ -33,6 +33,36 @@ export const userLogin = createAsyncThunk(
   }
 );
 
+// Forgot password
+export const forgotPassword = createAsyncThunk(
+  "auth/forgotPassword",
+  async (info, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await api.post("/user/forgot-password", info, {
+        withCredentials: true,
+      });
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+// Reset password
+export const resetPassword = createAsyncThunk(
+  "auth/resetPassword",
+  async (info, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await api.post("/user/reset-password", info, {
+        withCredentials: true,
+      });
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 // User login
 export const principalInformation = createAsyncThunk(
   "auth/principalInformation",
@@ -101,14 +131,40 @@ export const authReducer = createSlice({
       state.successMessage = payload?.message;
       state.isLoading = false;
     });
+    
+    // Forget password
+    builder.addCase(forgotPassword.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(forgotPassword.rejected, (state, { payload }) => {
+      state.errorMessage = payload?.error;
+      state.isLoading = false;
+    });
+    builder.addCase(forgotPassword.fulfilled, (state, { payload }) => {
+      state.successMessage = payload?.message;
+      state.isLoading = false;
+    });
+
+    // Reset password
+    builder.addCase(resetPassword.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(resetPassword.rejected, (state, { payload }) => {
+      state.errorMessage = payload?.error;
+      state.isLoading = false;
+    });
+    builder.addCase(resetPassword.fulfilled, (state, { payload }) => {
+      state.successMessage = payload?.message;
+      state.isLoading = false;
+    });
 
     // Login action
     builder.addCase(userLogin.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(userLogin.rejected, (state, { payload }) => {
-      state.isLoading = false;
+    builder.addCase(userLogin.rejected, (state, { payload }) => {     
       state.errorMessage = payload?.error;
+      state.isLoading = false;
     });
     builder.addCase(userLogin.fulfilled, (state, { payload }) => {     
       state.userInfo = payload?.userInfo; 

@@ -52,10 +52,13 @@ export const deleteInfo = createAsyncThunk(
 
 export const studentDetails = createAsyncThunk(
   "student/studentDetails",
-  async ({ parPage, page },{ rejectWithValue, fulfillWithValue }) => {
+  async (
+    { parPage, page, searchValue, searchNumber },
+    { rejectWithValue, fulfillWithValue }
+  ) => {
     try {
       const { data } = await api.get(
-        `student/details?page=${page}&&parPage=${parPage}`,
+        `student/details?page=${page}&&searchValue=${searchValue}&&searchNumber=${searchNumber}&&parPage=${parPage}`,
         {
           withCredentials: true,
         }

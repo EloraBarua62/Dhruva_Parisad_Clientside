@@ -5,7 +5,7 @@ import { toPng } from "html-to-image";
 import { useCallback, useRef } from 'react';
 
 
-const Certificate = ({student_name, roll, studentPersonalInfo, result}) => {
+const Certificate = ({student_name, roll, studentPersonalInfo, exam_date, letter_grade, grade_point}) => {
   const ref = useRef(null);
   console.log(studentPersonalInfo)
   const onButtonClick = useCallback(() => {
@@ -44,7 +44,9 @@ const Certificate = ({student_name, roll, studentPersonalInfo, result}) => {
               {studentPersonalInfo?.mother_name}
             </div>
             <div className={styles.roll_design}>{roll}</div>
-            <div className={styles.result_design}>{result}</div>
+            <div className={styles.exam_date_design}>{exam_date}</div>
+            <div className={styles.result_design1}>{letter_grade}</div>
+            <div className={styles.result_design2}>{grade_point}</div>
           </div>
         </div>
 

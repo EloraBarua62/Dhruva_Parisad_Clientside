@@ -100,7 +100,7 @@ export const resultReducer = createSlice({
     });
     builder.addCase(resultDisplay.rejected, (state, { payload }) => {
       state.isLoading = false;
-      state.errorMessage = payload.error;
+      state.errorMessage = payload?.error;
     });
 
     // Role: Principal

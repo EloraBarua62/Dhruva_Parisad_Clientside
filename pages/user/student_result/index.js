@@ -20,7 +20,7 @@ const StudentResult = () => {
   const { important_date } = useSelector((state) => state.news);
 
   const today_date = new Date().toISOString();
-  console.log(today_date, "....",important_date);
+  console.log(today_date, "....", important_date?.exam_date.substring(0,4));
   const table_heading = [
     "Subject",
     "Year",
@@ -28,7 +28,7 @@ const StudentResult = () => {
     "Practical",
     "Total Marks",
     "Letter Grade",
-    "Grade Point",
+    "Grade Point"
   ];
 
   const dispatch = useDispatch();
@@ -51,8 +51,10 @@ const StudentResult = () => {
   return (
     <div className={styles.student_result_design}>
       <Container>
-        {important_date > today_date ? (
-          <div className={styles.result_declaration}>Result has not published yet. Please check the updated news! </div>
+        {important_date?.result_date > today_date ? (
+          <div className={styles.result_declaration}>
+            Result has not published yet. Please check the updated news!{" "}
+          </div>
         ) : (
           <div className={styles.result_content}>
             <div className={styles.data_entry}>
@@ -76,16 +78,32 @@ const StudentResult = () => {
               <div className={styles.student_info}>
                 <div className={styles.other_info}>
                   <div className={styles.title}>Student Result</div>
-                  <div className={styles.personal_details}>
-                    Name: {studentResultInfo?.studentInfo?.student_name}
+                  <div className={styles.personal_details_section}>
+                    <div>
+                      <div className={styles.personal_details}>
+                        Name: {studentResultInfo?.studentInfo?.student_name}
+                      </div>
+                      <div className={styles.personal_details}>
+                        Roll: {studentResultInfo?.studentInfo?.roll}
+                      </div>
+                      <div className={styles.personal_details}>
+                        School Code:{" "}
+                        {studentResultInfo?.studentInfo?.school_code}
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        Average Letter Grade:{" "}
+                        {studentResultInfo?.averageLetterGrade}
+                      </div>
+                      <div>
+                        Average Grade Point:{" "}
+                        {studentResultInfo?.averageGradePoint}
+                      </div>
+                    </div>
                   </div>
-                  <div className={styles.personal_details}>
-                    Roll: {studentResultInfo?.studentInfo?.roll}
-                  </div>
-                  <div className={styles.personal_details}>
-                    School Code: {studentResultInfo?.studentInfo?.school_code}
-                  </div>
-                  <div className={styles.personal_details_title}>
+
+                  <div className={styles.result_details_title}>
                     Result Details
                   </div>
 
@@ -117,7 +135,10 @@ const StudentResult = () => {
                           {studentResultInfo?.writtenPractical[index]?.total}
                         </div>
                         <div className={styles.single_field}>
-                          {studentResultInfo?.writtenPractical[index]?.letter_grade}
+                          {
+                            studentResultInfo?.writtenPractical[index]
+                              ?.letter_grade
+                          }
                         </div>
                         <div className={styles.single_field}>
                           {
@@ -133,7 +154,9 @@ const StudentResult = () => {
                   student_name={studentResultInfo?.studentInfo?.student_name}
                   roll={studentResultInfo?.studentInfo?.roll}
                   studentPersonalInfo={studentPersonalInfo}
-                  result={"3.62"}
+                  exam_date={important_date?.exam_date.substring(0, 4)}
+                  letter_grade={studentResultInfo?.averageLetterGrade}
+                  grade_point={studentResultInfo?.averageGradePoint}
                 />
               </div>
             ) : (

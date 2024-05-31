@@ -49,6 +49,9 @@ const AccessForm = ({ feature, route, request, fields }) => {
         )}
         <form onSubmit={handleFormSubmit}>
           <h1 className={styles.heading_design}>{feature}</h1>
+          {request === "principal" && (
+            <p>N.B: This form is only for school principal</p>
+          )}
 
           {/* Section: input field design */}
           {fields.map((field, index) => (
@@ -70,10 +73,14 @@ const AccessForm = ({ feature, route, request, fields }) => {
           ) : (
             ""
           )}
-
-          <Link href={`/`} className={styles.routing}>
+          {
+            request !== "principal" ? <Link href={'/forgot_password'} className={styles.routing}>
             Forget password
           </Link>
+          :
+          ''
+          }
+          
         </div>
       </div>
     </div>

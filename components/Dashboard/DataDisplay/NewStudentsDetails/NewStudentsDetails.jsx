@@ -14,6 +14,8 @@ const NewStudentsDetails = () => {
   const [updateStudentInfo, setUpdateStudentInfo] = useState({});
   const [parPage, setParPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchValue, setSearchValue] = useState("");
+  const [searchNumber, setSearchNumber] = useState(0);
   const dispatch = useDispatch();
 
   // Payment status
@@ -80,30 +82,53 @@ const NewStudentsDetails = () => {
     dispatch(deleteInfo(data));
   }
   
-  
   // Fetch student details
   useEffect(() => {
     const obj = {
       parPage: parseInt(parPage),
       page: parseInt(currentPage),
+      searchValue,
+      searchNumber
     };
     dispatch(studentDetails(obj));
-  }, [currentPage, parPage, dispatch]);
+  }, [currentPage, parPage, dispatch,searchValue, searchNumber]);
 
   return (
     <div className={styles.newresult_design}>
-      <h1 className={styles.heading}>Student Details</h1>
-      {/* Pagination */}
-      <div className={styles.pagination}>
-        <div>Page no</div>
-        <Pagination
-          pageNumber={currentPage}
-          setPageNumber={setCurrentPage}
-          totalItem={totalData}
-          parPage={parPage}
-          showItem={4}
-        />
+      <div className={styles.header_section}>
+        <div className={styles.heading}>Student Details</div>
+        {/* Pagination */}
+        <div className={styles.search_function}>
+          <div className={styles.pagination}>
+            <p>Page no</p>
+            <Pagination
+              pageNumber={currentPage}
+              setPageNumber={setCurrentPage}
+              totalItem={totalData}
+              parPage={parPage}
+              showItem={4}
+            />
+          </div>
+          <div className={styles.searchbar}>
+            <p>Filter by:</p>
+            <div className={styles.search_fields}>
+              <input
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                type="text"
+                placeholder="Student name"
+              />
+              <input
+                value={searchNumber}
+                onChange={(e) => setSearchNumber(e.target.value)}
+                type="number"
+                placeholder="Roll"
+              />
+            </div>
+          </div>
+        </div>
       </div>
+
       {/* Table heading */}
       <div className={styles.heading_field_design}>
         {table_heading.map((head, index) => (

@@ -44,7 +44,7 @@ const Admitcard = ({ studentDetail, exam_date }) => {
               className={styles.image_set}
             />
           </div>
-          <div className={styles.date_design}>{exam_date}</div>
+          <div className={styles.date_design}>{exam_date.substring(0,4)}</div>
           <div className={styles.name_design}>{studentDetail.student_name}</div>
           <div className={styles.roll_design}>{studentDetail.roll}</div>
           <div className={styles.father_name_design}>

@@ -5,24 +5,76 @@
   width: 1250px;
   position: relative;
 
-  .heading {
-    color: $deep-green;
-    text-align: center;
-    text-decoration: underline;
-  }
-
-  .pagination {
-    width: 300px;
+  // header section
+  .header_section {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
-    background-color: #f9fad1;
-    padding-left: 10px;
-    padding-right: 10px;
-    border: 0 solid;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    justify-content: start;
+    align-items: start;
+    gap: 400px;
+    margin: 40px 0 20px;
+    .heading {
+      font-size: 28px;
+      font-weight: 600;
+      color: $deep-green;
+      text-decoration: underline;
+    }
+
+    .search_function {
+      // display: flex;
+      // justify-content: flex-start;
+      // align-items: end;
+      // gap: 150px;
+      .pagination {
+        width: 300px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        // background-color: #f9fad1;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 0 solid;
+        border-radius: 10px;
+        
+        p{
+          margin: 0;
+        }
+        // margin-bottom: 20px;
+      }
+      .searchbar {
+        // width: 300px;
+        height: 55px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 30px;
+        // background-color: #f9fad1;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 0 solid;
+        border-radius: 10px;
+        margin-top: 20px;
+        p{
+          margin: 0;
+        }
+
+        .search_fields {
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+
+          input {
+            border: 2px solid $light-green;
+            border-radius: 5px;
+            padding: 3px;
+            outline: none;
+            display: block;
+          }
+        }
+        
+      }
+    }
   }
 
   .heading_field_design {
@@ -81,7 +133,7 @@
       .update_button:hover {
         background-color: rgba(2, 144, 2, 0.675);
       }
-      
+
       .delete_button {
         color: white;
         border: 0;
@@ -156,7 +208,7 @@
         font-size: $text-label;
         margin-top: 12px;
         margin-bottom: 4px;
-         display: block;
+        display: block;
       }
       .input_field_design {
         // display: block;

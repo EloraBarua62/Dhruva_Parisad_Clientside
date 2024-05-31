@@ -56,7 +56,7 @@ const Result = () => {
   return (
     <div className={styles.result_design}>
       <Container>
-        {important_date > today_date ? (
+        {important_date.result_date > today_date ? (
           <div className={styles.result_declaration}>
             Result has not published yet. Please check the updated news!{" "}
           </div>
