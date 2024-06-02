@@ -32,7 +32,7 @@ const Admitcard = ({ studentDetail, exam_date }) => {
           src={admitcard}
           alt=""
           fill="true"
-           className={styles.image_section}
+          className={styles.image_section}
         />
 
         <div className={styles.student_info}>
@@ -44,7 +44,11 @@ const Admitcard = ({ studentDetail, exam_date }) => {
               className={styles.image_set}
             />
           </div>
-          <div className={styles.date_design}>{exam_date.substring(0,4)}</div>
+          <div className={styles.date_design}>
+            {exam_date.substring(8, 10)}-
+            {exam_date.substring(5, 7)}-
+            {exam_date.substring(0, 4)}
+          </div>
           <div className={styles.name_design}>{studentDetail.student_name}</div>
           <div className={styles.roll_design}>{studentDetail.roll}</div>
           <div className={styles.father_name_design}>

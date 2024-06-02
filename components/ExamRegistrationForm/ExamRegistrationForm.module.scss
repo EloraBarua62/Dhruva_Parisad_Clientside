@@ -9,11 +9,6 @@
 
   .heading_design {
     text-align: center;
-    // padding: 10px;
-
-    // @media (min-width: 576px) {
-    //   padding: 50px;
-    // }
     // institution name design
     .institute_name {
       font-size: $text-head;
@@ -59,18 +54,150 @@
     }
   }
 
-  form {
-    // padding: 10px;
+  .question{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 30px auto;
+    font-size: 16px;
 
-    // @media (min-width: 576px) {
-    //   padding: 50px;
-    // }
+    @media (min-width: 768px) {
+      width: 50%;
+      margin: 50px auto 30px;
+    }
+  }
+
+  .previous_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .previous_registration_section {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 10px;
+      gap: 20px;
+
+      @media (min-width: 425px) {
+        padding: 10px 30px;
+        width: 300px;
+      }
+      @media (min-width: 768px) {
+        // flex-direction: row;
+        padding: 10px 20px;
+        // width: 500px;
+      }
+      @media (min-width: 1024px) {
+        padding: 10px 50px;
+      }
+
+      .field_design {
+        width: 100%;
+        label {
+          display: block;
+        }
+        input {
+          width: 100%;
+          border: 2px solid #4ade80;
+          border-radius: 3px;
+          background-color: white;
+          outline: none;
+          padding: 10px 0;
+        }
+      }
+
+
+      .field_design_center{
+        width: 100%;
+        label {
+            display: block;
+          }
+          select {
+            width: 100%;
+            border: 2px solid #4ade80;
+            border-radius: 3px;
+            background-color: white;
+            outline: none;
+            padding: 9px 0;
+          }
+        }
+
+      .field_title {
+        font-size: $text-body;
+        font-weight: 500;
+        margin: 0;
+      }
+
+      .sub_year_content {
+        width: 100%;
+        display: flex;
+        margin-bottom: 5px;
+
+        select {
+          // width: 100px;
+          padding: 3px;
+          margin-right: 3px;
+        }
+        .delete_button {
+          background-color: red;
+          border: 0;
+          border-radius: 5px;
+          padding: 5px 10px;
+          color: white;
+          margin-left: 5px;
+          cursor: pointer;
+        }
+      }
+
+      .addition_button {
+        background-color: green;
+        border: 0;
+        border-radius: 5px;
+        padding: 5px 10px;
+        color: white;
+        margin-top: 5px;
+        cursor: pointer;
+      }
+    }
+
+    // Submit button
+    .button_section {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      .button_design {
+        width: 126px;
+        height: 32px;
+        border: 0;
+        border-radius: 5px;
+        background-color: $deep-green;
+        color: white;
+        font-size: $text-body;
+        font-weight: 600;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        cursor: pointer;
+      }
+      .button_design:hover {
+        background-color: $light-green;
+        color: $deep-green;
+        transition: 0.5s;
+      }
+    }
+  }
+
+  .new_form {
     .registration_section {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: flex-start;
-      padding: 10px ;
+      padding: 10px;
       gap: 20px;
 
       @media (min-width: 425px) {
@@ -199,7 +326,6 @@
       }
     }
     // Submit button
-
     .button_section {
       width: 100%;
       display: flex;
@@ -214,7 +340,7 @@
         font-size: $text-body;
         font-weight: 600;
         margin-top: 30px;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         cursor: pointer;
       }
       .button_design:hover {
@@ -225,8 +351,7 @@
     }
   }
 
-  .admit_card_section{
+  .admit_card_section {
     width: 100%;
-    
   }
 }

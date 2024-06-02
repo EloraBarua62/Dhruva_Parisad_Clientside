@@ -2,11 +2,26 @@ import api from "@component/api/api";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
-export const studentRegistration = createAsyncThunk(
-  "student/studentRegistration",
+export const newStudentRegistration = createAsyncThunk(
+  "student/newStudentRegistration",
   async (info, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const { data } = await api.post("/student/registration", info, {
+      const { data } = await api.post("/student/new-registration", info, {
+        withCredentials: true,
+      });
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const previousStudentRegistration = createAsyncThunk(
+  "student/previousStudentRegistration",
+  async ({roll, info}, { rejectWithValue, fulfillWithValue }) => {
+
+    try {
+      const { data } = await api.patch(`/student/previous-registration/${roll}`, info, {
         withCredentials: true,
       });
       return fulfillWithValue(data);
@@ -91,17 +106,36 @@ export const studentReducer = createSlice({
   },
   extraReducers: (builder) => {
     // Registration action
-    builder.addCase(studentRegistration.pending, (state) => {
+    builder.addCase(newStudentRegistration.pending, (state) => {
       state.studentDetail= {},
       state.isLoading = true;
     });
-    builder.addCase(studentRegistration.rejected, (state, { payload }) => {    
+    builder.addCase(newStudentRegistration.rejected, (state, { payload }) => {    
       state.errorMessage = payload?.error;
       state.studentDetail = {},
       state.exam_date = "",
       state.isLoading = false;
     });
-    builder.addCase(studentRegistration.fulfilled, (state, { payload }) => {
+    builder.addCase(newStudentRegistration.fulfilled, (state, { payload }) => {
+      state.studentDetail = payload?.studentDetail;
+      state.exam_date = payload?.exam_date;
+      state.successMessage = payload?.message;
+      state.isLoading = false;
+    });
+
+
+    // Registration action
+    builder.addCase(previousStudentRegistration.pending, (state) => {
+      state.studentDetail= {},
+      state.isLoading = true;
+    });
+    builder.addCase(previousStudentRegistration.rejected, (state, { payload }) => {    
+      state.errorMessage = payload?.error;
+      state.studentDetail = {},
+      state.exam_date = "",
+      state.isLoading = false;
+    });
+    builder.addCase(previousStudentRegistration.fulfilled, (state, { payload }) => {
       state.studentDetail = payload?.studentDetail;
       state.exam_date = payload?.exam_date;
       state.successMessage = payload?.message;
