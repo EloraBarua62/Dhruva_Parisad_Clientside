@@ -2,6 +2,7 @@ import styles from "./NewResult.module.scss";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  previousResult,
   resultDisplay,
   updateWrittenPracticalMarks,
 } from "@component/app/Reducers/resultReducer";
@@ -22,6 +23,7 @@ const NewResult = () => {
     "Grade Point",
     "Average Letter Grade",
     "Average Grade Point",
+    "Result Status",
     "Details",
   ];
 
@@ -45,6 +47,8 @@ const NewResult = () => {
     dispatch(resultDisplay(obj));
   }, [currentPage, parPage, dispatch]);
 
+
+  // Toogle open/close button
   const handleToogle = (index) => {
     setToogle(!toogle);
     if (toogle) setDetailsLength(index);
@@ -56,6 +60,13 @@ const NewResult = () => {
     setEditDoneSingleIdx(idx);
     setToogleEditDoneButton(!toogleEditDoneButton);
   };
+
+
+  // Handle result status function
+  const handleResultStatus = (id) => {
+    console.log(id)
+    dispatch(previousResult({id: id}));
+  }
 
   // const [state, setState] = useState({
   //   written: 0,
@@ -71,14 +82,8 @@ const NewResult = () => {
       keepMarks = resultInfo[index].writtenPractical;
     else keepMarks = writtenPracticalState;
 
-    // console.log(keepMarks);
-    // console.log(event.target)
-    // const written = event.target.written;
-    // const practical = event.target.practical;
-    // console.log(written, practical)
     const value = parseInt(event.target.value);
     const obj = { ...keepMarks[idx], [event.target.name]: value };
-    // obj = { ...obj, written: written, practical: practical };
     let array = [...keepMarks];
     array[idx] = obj;
     keepMarks = array;
@@ -245,6 +250,19 @@ const NewResult = () => {
             <div className="text_details">{head?.averageLetterGrade}</div>
             <div className="text_details">{head?.averageGradePoint}</div>
 
+            {/* Details checking button */}
+            <div className={styles.result_status_container}>
+              <button
+                className={
+                  head?.resultStatus == "Running"
+                    ? styles.running_button
+                    : styles.finish_button
+                }
+                onClick={() => handleResultStatus(head?.studentInfo?.id)}
+              >
+                {head?.resultStatus}
+              </button>
+            </div>
             {/* Details checking button */}
             <div className="button_content">
               <button

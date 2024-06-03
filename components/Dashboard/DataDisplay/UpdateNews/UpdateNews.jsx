@@ -57,21 +57,26 @@ const UpdateNews = () => {
       news_title,
       news_details,
       imp_date,
-      imp_msg
+      imp_msg,
     };
     dispatch(updateInfo(data));
     setState({
       news_title: "",
       news_details: "",
       imp_date: "",
-      imp_date: ""
+      imp_date: "",
     });
   };
 
   // Function to delete news details
   const deleteNewsDetails = (id) => {
-    const data = { id };
-    dispatch(deleteInfo(data));
+    const shouldRemove = confirm(
+      `Are you sure you want to delete the news permanently?`
+    );
+    if (shouldRemove) {
+      const data = { id };
+      dispatch(deleteInfo(data));
+    }
   };
 
   // Function: Add Image files

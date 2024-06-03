@@ -1,11 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux';
-import styles from './NewStudentsDetails.module.scss';
-import { useEffect, useState } from 'react';
-import { deleteInfo, studentDetails, updateInfo } from '@component/app/Reducers/studentReducer';
-import Image from 'next/image';
-import { ThreeDots } from 'react-loader-spinner';
-import { IoMdCloseCircleOutline } from 'react-icons/io';
-import Pagination from '../../Pagination/Pagination';
+import { useDispatch, useSelector } from "react-redux";
+import styles from "./NewStudentsDetails.module.scss";
+import { useEffect, useState } from "react";
+import {
+  deleteInfo,
+  studentDetails,
+  updateInfo,
+} from "@component/app/Reducers/studentReducer";
+import Image from "next/image";
+import { ThreeDots } from "react-loader-spinner";
+import { IoMdCloseCircleOutline } from "react-icons/io";
+import Pagination from "../../Pagination/Pagination";
 
 const NewStudentsDetails = () => {
   const { isLoading, studentInfo, totalData } = useSelector(
@@ -19,10 +23,7 @@ const NewStudentsDetails = () => {
   const dispatch = useDispatch();
 
   // Payment status
-  const statusOptions = [
-    { title: "Unpaid"},
-    { title: "Paid"},
-  ];
+  const statusOptions = [{ title: "Unpaid" }, { title: "Paid" }];
   const table_heading = [
     "Roll",
     "Name",
@@ -40,7 +41,7 @@ const NewStudentsDetails = () => {
     father_name: "",
     mother_name: "",
     phone_no: "",
-    payment: ""
+    payment: "",
   });
 
   // Button to update student details
@@ -63,35 +64,47 @@ const NewStudentsDetails = () => {
     const mother_name = state.mother_name;
     const phone_no = state.phone_no;
     const payment = state.payment;
-    const data = { ...info, student_name, father_name, mother_name, phone_no, payment };
+    const data = {
+      ...info,
+      student_name,
+      father_name,
+      mother_name,
+      phone_no,
+      payment,
+    };
     dispatch(updateInfo(data));
     setState({
       student_name: "",
       father_name: "",
       mother_name: "",
       phone_no: "",
-      payment: ""
+      payment: "",
     });
     console.log(data);
   };
 
   // Function to delete student info
-  const deleteStudentDetails = (id) => {
-    const data = {id};
-    console.log(data)
-    dispatch(deleteInfo(data));
-  }
-  
+  const deleteStudentDetails = (id, roll) => {
+    const shouldRemove = confirm(
+      `Are you sure you want to delete the information of roll: ${roll} permanently?`
+    );
+    if (shouldRemove) {
+      const data = { id };
+      console.log(data);
+      dispatch(deleteInfo(data));
+    }
+  };
+
   // Fetch student details
   useEffect(() => {
     const obj = {
       parPage: parseInt(parPage),
       page: parseInt(currentPage),
       searchValue,
-      searchNumber
+      searchNumber,
     };
     dispatch(studentDetails(obj));
-  }, [currentPage, parPage, dispatch,searchValue, searchNumber]);
+  }, [currentPage, parPage, dispatch, searchValue, searchNumber]);
 
   return (
     <div className={styles.newresult_design}>
@@ -167,9 +180,12 @@ const NewStudentsDetails = () => {
               >
                 Update
               </button>
-              {/* <button className={styles.delete_button} onClick={() => deleteStudentDetails(head._id)}>
+              <button
+                className={styles.delete_button}
+                onClick={() => deleteStudentDetails(head._id, head.roll)}
+              >
                 Delete
-              </button> */}
+              </button>
             </div>
           </div>
         ))}

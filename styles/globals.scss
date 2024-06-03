@@ -122,10 +122,12 @@ body {
       }
 
       .button_content {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        max-width: 110px;
+      min-width: 110px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items:center;
 
         .toogle_button_design {
           background-color: $deep-green;
@@ -237,10 +239,12 @@ body {
       }
 
       .button_content {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        max-width: 110px;
+      min-width: 110px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items:center;
 
         .toogle_button_design {
           background-color: $deep-green;

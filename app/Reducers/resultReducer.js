@@ -56,7 +56,6 @@ export const updateWrittenPracticalMarks = createAsyncThunk(
     const index = info.index;
     const id = info.id;
     const writtenPractical = info.writtenPractical;
-    console.log(writtenPractical)
 
     try {
         const { data } = await api.patch(`result/result-update/${id}`,writtenPractical, {
@@ -66,6 +65,25 @@ export const updateWrittenPracticalMarks = createAsyncThunk(
         return fulfillWithValue({index, data});
     } catch (error) {
         return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const previousResult = createAsyncThunk(
+  "result/previousResult",
+  async (info, { rejectWithValue, fulfillWithValue }) => {
+    console.log(info)
+    try {
+      const { data } = await api.post(
+        'result/previous-result',
+        info,
+        {
+          withCredentials: true,
+        }
+      );
+      return fulfillWithValue( data );
+    } catch (error) {
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -134,7 +152,6 @@ export const resultReducer = createSlice({
       state.isLoading = false;
     });
 
-
     // Role: Admin
     builder.addCase(updateWrittenPracticalMarks.pending, (state) => {
       state.isLoading = true;
@@ -170,6 +187,19 @@ export const resultReducer = createSlice({
         state.errorMessage = payload.error;
       }
     );
+
+    // Role: Student
+    builder.addCase(previousResult.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(previousResult.fulfilled, (state, { payload }) => {
+      state.successMessage = payload?.message;
+      state.isLoading = false;
+    });
+    builder.addCase(previousResult.rejected, (state, { payload }) => {
+      state.errorMessage = payload?.error;
+      state.isLoading = false;
+    });
   },
 });
 
