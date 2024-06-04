@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Pagination from "../../Pagination/Pagination";
 import { principalInformation } from "@component/app/Reducers/authReducer";
 import { ThreeDots } from "react-loader-spinner";
-import { isLoading, examResultDate } from "@component/app/Reducers/newsReducer";
+import {  examResultDate } from "@component/app/Reducers/newsReducer";
 
 const AdminPanel = () => {
    const dispatch = useDispatch();
@@ -75,7 +75,7 @@ const AdminPanel = () => {
         <input type="date" name="result_date" id="" />
         <input type="submit" value="Submit" className={styles.submit_button} />
       </form>
-      {isLoading && (
+      {/* {isLoading && (
         <ThreeDots
           visible={true}
           height="80"
@@ -86,7 +86,7 @@ const AdminPanel = () => {
           wrapperStyle={{}}
           wrapperClass=""
         />
-      )}
+      )} */}
     </div>
   );
 };

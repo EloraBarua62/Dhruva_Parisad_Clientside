@@ -2,7 +2,7 @@ import AdminPanel from "../DataDisplay/AdminPanel/AdminPanel";
 import DashboardHome from "../DataDisplay/DashboardHome/DashboardHome";
 import NewResult from "../DataDisplay/NewResult/NewResult";
 import NewStudentsDetails from "../DataDisplay/NewStudentsDetails/NewStudentsDetails";
-import PreviousResult from "../DataDisplay/PreviousResult/PreviousResult";
+// import PreviousResult from "../DataDisplay/PreviousResult/PreviousResult";
 import SchoolInformation from "../DataDisplay/SchoolInformation/SchoolInformation";
 import UpdateNews from "../DataDisplay/UpdateNews/UpdateNews";
 
