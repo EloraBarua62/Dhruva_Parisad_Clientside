@@ -20,6 +20,7 @@ export const resultDisplay = createAsyncThunk(
     }
   }
 );
+
 export const specificSchoolResult = createAsyncThunk(
   "result/specificSchoolResult",
   async (info, { rejectWithValue, fulfillWithValue }) => {
@@ -35,6 +36,7 @@ export const specificSchoolResult = createAsyncThunk(
     }
   }
 );
+
 export const specificStudentResult = createAsyncThunk(
   "result/specificResultDisplay",
   async (info, { rejectWithValue, fulfillWithValue }) => {
@@ -88,6 +90,27 @@ export const previousResult = createAsyncThunk(
   }
 );
 
+
+export const previousResultDisplay = createAsyncThunk(
+  "result/previousResultDisplay",
+  async (
+    { parPage, page, searchValue },
+    { rejectWithValue, fulfillWithValue }
+  ) => {
+    try {
+      const { data } = await api.get(
+        `result/previous-display?page=${page}&&searchValue=${searchValue}&&parPage=${parPage}`,
+        {
+          withCredentials: true,
+        }
+      );
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const resultReducer = createSlice({
   name: "result",
   initialState: {
@@ -98,6 +121,8 @@ export const resultReducer = createSlice({
     studentResultInfo: {},
     studentPersonalInfo: {},
     totalData: 1000,
+    previousData: [],
+    previousPersonalData: [],
   },
   reducers: {
     messageClear: (state) => {
@@ -197,6 +222,25 @@ export const resultReducer = createSlice({
       state.isLoading = false;
     });
     builder.addCase(previousResult.rejected, (state, { payload }) => {
+      state.errorMessage = payload?.error;
+      state.isLoading = false;
+    });
+
+    // Role: Student
+    builder.addCase(previousResultDisplay.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(previousResultDisplay.fulfilled, (state, { payload }) => {
+      state.previousData = payload?.final_parent_array;
+      state.previousPersonalData = payload?.final_personal_info;
+      state.totalData = payload?.totalData;
+      state.successMessage = payload?.message;
+      state.isLoading = false;
+    });
+    builder.addCase(previousResultDisplay.rejected, (state, { payload }) => {
+      state.previousData = [];
+      state.previousPersonalData = [];
+      state.totalData= 1000;
       state.errorMessage = payload?.error;
       state.isLoading = false;
     });

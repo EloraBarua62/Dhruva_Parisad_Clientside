@@ -6,7 +6,7 @@ import {
   resultDisplay,
   updateWrittenPracticalMarks,
 } from "@component/app/Reducers/resultReducer";
-import { ThreeDots } from "react-loader-spinner";
+import { Oval, ThreeDots } from "react-loader-spinner";
 import Pagination from "../../Pagination/Pagination";
 
 const NewResult = () => {
@@ -261,6 +261,19 @@ const NewResult = () => {
                 onClick={() => handleResultStatus(head?.studentInfo?.id)}
               >
                 {head?.resultStatus}
+                {
+                  isLoading? <Oval
+                  visible={true}
+                  height="10"
+                  width="10"
+                  color="#FFFFFF"
+                  ariaLabel="oval-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                />
+                :
+                ''
+                }               
               </button>
             </div>
             {/* Details checking button */}

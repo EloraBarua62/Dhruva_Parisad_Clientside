@@ -1,0 +1,75 @@
+@import "../../../../styles/config";
+
+.old_result_design{
+padding: 10px;
+  width: 1250px;
+  position: relative;
+
+  // header section
+  .header_section {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    gap: 400px;
+    margin: 40px 0 20px;
+    .heading {
+      font-size: 28px;
+      font-weight: 600;
+      color: $deep-green;
+      text-decoration: underline;
+    }
+
+    .search_function {
+      .pagination {
+        width: 300px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        // background-color: #f9fad1;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 0 solid;
+        border-radius: 10px;
+        
+        p{
+          margin: 0;
+        }
+        // margin-bottom: 20px;
+      }
+      .searchbar {
+        // width: 300px;
+        height: 55px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 30px;
+        // background-color: #f9fad1;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 0 solid;
+        border-radius: 10px;
+        margin-top: 20px;
+        p{
+          margin: 0;
+        }
+
+        .search_fields {
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+
+          input {
+            border: 2px solid $light-green;
+            border-radius: 5px;
+            padding: 3px;
+            outline: none;
+            display: block;
+          }
+        }
+        
+      }
+    }
+  }
+}
