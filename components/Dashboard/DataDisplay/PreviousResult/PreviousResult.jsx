@@ -5,69 +5,34 @@ import Pagination from "../../Pagination/Pagination";
 import styles from "./PreviousResult.module.scss";
 
 const PreviousResult = () => {
-  let { isLoading, previousData, previousPersonalData, totalData } = useSelector(
-    (state) => state.result
-  );
+  // let { isLoading, previousData, previousPersonalData, totalData } = useSelector(
+  //   (state) => state.result
+  // );
   const [parPage, setParPage] = useState(12);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchValue, setSearchValue] = useState("");
   const dispatch = useDispatch();
 
-  const table_heading = [
-    "Name",
-    "Father Name",
-    "Mother Name",
-    "Average Letter Grade",
-    "Average Grade Point",
-  ];
+  // const table_heading = [
+  //   "Name",
+  //   "Father Name",
+  //   "Mother Name",
+  //   "Average Letter Grade",
+  //   "Average Grade Point",
+  // ];
 
   // Fetch student details
-  useEffect(() => {
-    const obj = {
-      parPage: parseInt(parPage),
-      page: parseInt(currentPage),
-      searchValue,
-    };
-    dispatch(previousResultDisplay(obj));
-  }, [currentPage, parPage, dispatch, searchValue]);
+  // useEffect(() => {
+  //   const obj = {
+  //     parPage: parseInt(parPage),
+  //     page: parseInt(currentPage),
+  //     searchValue,
+  //   };
+  //   dispatch(previousResultDisplay(obj));
+  // }, [currentPage, parPage, dispatch, searchValue]);
 
   return (
-    <div className={styles.old_result_design}>
-      <div className={styles.header_section}>
-        <div className={styles.heading}>Previous Result</div>
-        {/* Pagination */}
-        <div className={styles.search_function}>
-          <div className={styles.pagination}>
-            <p>Page no</p>
-            <Pagination
-              pageNumber={currentPage}
-              setPageNumber={setCurrentPage}
-              totalItem={totalData}
-              parPage={parPage}
-              showItem={4}
-            />
-          </div>
-          <div className={styles.searchbar}>
-            <p>Filter by:</p>
-            <div className={styles.search_fields}>
-              <input
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                type="text"
-                placeholder="Email Address"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-       {previousData.map((each,index) => {
-        <div></div>
-       })}
-      </div>
-    
-    </div>
+   <div></div>
   );
 };
 
