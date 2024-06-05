@@ -20,7 +20,7 @@ const StudentResult = () => {
   const { important_date } = useSelector((state) => state.news);
 
   const today_date = new Date().toISOString();
-  console.log(today_date, "....", important_date?.exam_date.substring(0,4));
+  console.log(today_date, "....", important_date?.exam_date);
   const table_heading = [
     "Subject",
     "Year",
@@ -154,7 +154,7 @@ const StudentResult = () => {
                   student_name={studentResultInfo?.studentInfo?.student_name}
                   roll={studentResultInfo?.studentInfo?.roll}
                   studentPersonalInfo={studentPersonalInfo}
-                  exam_date={important_date?.exam_date.substring(0, 4)}
+                  exam_date={important_date?.exam_date}
                   letter_grade={studentResultInfo?.averageLetterGrade}
                   grade_point={studentResultInfo?.averageGradePoint}
                 />
