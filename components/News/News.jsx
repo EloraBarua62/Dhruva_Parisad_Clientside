@@ -13,21 +13,36 @@ const News = ({ newsList }) => {
   newsList.map((news) => {
     let value;
 
-    if (year - parseInt(news.updatedAt.substring(0, 4)) > 0) {
-      value = year - parseInt(news.updatedAt.substring(0, 4));
+    if (year - parseInt(news.updatedAt) > 0) {
+      value = year - parseInt(news.updatedAt);
       if (value == 1) time.push("Last year");
       else time.push(value + " years ago");
-    } else if (month - parseInt(news.updatedAt.substring(5, 7)) > 0) {
-      value = month - parseInt(news.updatedAt.substring(5, 7));
+    } else if (month - parseInt(news.updatedAt) > 0) {
+      value = month - parseInt(news.updatedAt);
       if (value == 1) time.push("Last month");
       else time.push(value + " months ago");
-    } else if (date - parseInt(news.updatedAt.substring(8, 10)) > 0) {
-      value = date - parseInt(news.updatedAt.substring(8, 10));
+    } else if (date - parseInt(news.updatedAt) > 0) {
+      value = date - parseInt(news.updatedAt);
       if (value == 1) time.push(value + " day ago");
       else time.push(value + " days ago");
     } else {
       time.push("Today");
     }
+    // if (year - parseInt(news.updatedAt.substring(0, 4)) > 0) {
+    //   value = year - parseInt(news.updatedAt.substring(0, 4));
+    //   if (value == 1) time.push("Last year");
+    //   else time.push(value + " years ago");
+    // } else if (month - parseInt(news.updatedAt.substring(5, 7)) > 0) {
+    //   value = month - parseInt(news.updatedAt.substring(5, 7));
+    //   if (value == 1) time.push("Last month");
+    //   else time.push(value + " months ago");
+    // } else if (date - parseInt(news.updatedAt.substring(8, 10)) > 0) {
+    //   value = date - parseInt(news.updatedAt.substring(8, 10));
+    //   if (value == 1) time.push(value + " day ago");
+    //   else time.push(value + " days ago");
+    // } else {
+    //   time.push("Today");
+    // }
   });
 
   return (

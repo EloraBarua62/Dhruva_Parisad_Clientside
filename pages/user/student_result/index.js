@@ -154,7 +154,7 @@ const StudentResult = () => {
                   student_name={studentResultInfo?.studentInfo?.student_name}
                   roll={studentResultInfo?.studentInfo?.roll}
                   studentPersonalInfo={studentPersonalInfo}
-                  exam_date={important_date?.exam_date}
+                  exam_date={important_date?.exam_date.substring(0, 4)}
                   letter_grade={studentResultInfo?.averageLetterGrade}
                   grade_point={studentResultInfo?.averageGradePoint}
                 />
