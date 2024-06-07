@@ -25,7 +25,7 @@ const Pagination = ({pageNumber, setPageNumber, totalItem, parPage, showItem}) =
 
         for(let i=startPage ; i<endPage ; i++){
             btns.push(
-               <li onClick={() => setPageNumber(i)} className={`${pageNumber === i? styles.active_page : styles.inactive_page}`}>
+               <li key={i} onClick={() => setPageNumber(i)} className={`${pageNumber === i? styles.active_page : styles.inactive_page}`}>
                 {i}
                </li>
             )
@@ -48,7 +48,7 @@ const Pagination = ({pageNumber, setPageNumber, totalItem, parPage, showItem}) =
             onClick={() => setPageNumber(pageNumber + 1)}
             className={styles.arrow}
           >
-           <BsChevronDoubleRight />
+            <BsChevronDoubleRight />
           </li>
         )}
       </ul>

@@ -35,6 +35,7 @@ const Sidebar = ({
                 src={admin_profile.image}
                 alt=""
                 className={styles.image_sizing}
+                fill
               />
             ) : (
               <Image src={profile_pic} alt="" className={styles.image_sizing} />

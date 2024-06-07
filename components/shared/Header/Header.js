@@ -9,13 +9,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { logOut } from "@component/app/Reducers/authReducer";
 import Image from "next/image";
-import logo from '../../../public/logo.jpeg'
+import logo from "../../../public/logo.jpeg";
+import { jwtDecode } from "jwt-decode";
 
 const Header = () => {
   const pathname = usePathname();
   const [openHamburger, setOpenHamburger] = useState(false);
-  const {role} = useSelector((state) => state.auth);
-  console.log(role)
+  let { role } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const router = useRouter();
   const page_navigation = [
@@ -45,12 +45,18 @@ const Header = () => {
 
   const handleLogout = () => {
     dispatch(logOut());
-    router.push('/user/login');
-  }
+    router.push("/user/login");
+  };
 
   useEffect(() => {
     if (typeof document === "undefined") {
       router.push("/user/login");
+    } else {
+      let token_string = document.cookie;
+      if (token_string?.length > 0) {
+        const decodeToken = jwtDecode(token_string);
+        role = decodeToken.role;
+      }
     }
   }, [router]);
   return (
@@ -64,7 +70,7 @@ const Header = () => {
                 src={logo}
                 alt=""
                 fill
-                sizes="100%"
+                // sizes="100%"
                 priority={true}
                 className={styles.logo_design}
               ></Image>

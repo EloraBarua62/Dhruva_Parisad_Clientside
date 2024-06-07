@@ -85,10 +85,8 @@ const returnRole = () => {
   let token_string = "";
   if (typeof document !== "undefined") {
     token_string = document.cookie;
-    console.log(token_string)
     if (token_string?.length > 0) {
       const decodeToken = jwtDecode(token_string);
-      console.log(decodeToken.role)
       return decodeToken.role;
     } else return "";
   } else return "";
@@ -127,7 +125,7 @@ export const authReducer = createSlice({
     });
     builder.addCase(userSignup.fulfilled, (state, { payload }) => {
       state.userInfo = payload?.userInfo;
-      state.role = payload?.userInfo?.role;
+      state.role = returnRole() || payload?.userInfo?.role;
       state.successMessage = payload?.message;
       state.isLoading = false;
     });
@@ -168,7 +166,7 @@ export const authReducer = createSlice({
     });
     builder.addCase(userLogin.fulfilled, (state, { payload }) => {     
       state.userInfo = payload?.userInfo; 
-      state.role = payload?.userInfo?.role;        
+      state.role = returnRole();        
       state.successMessage = payload?.message;
       state.isLoading = false;
     });

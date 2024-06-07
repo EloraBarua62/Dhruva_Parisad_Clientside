@@ -1,12 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./AdminPanel.module.scss";
 import { useEffect, useState } from "react";
-import Pagination from "../../Pagination/Pagination";
-import { principalInformation } from "@component/app/Reducers/authReducer";
 import { ThreeDots } from "react-loader-spinner";
-import {  examResultDate } from "@component/app/Reducers/newsReducer";
+import {  examResultDate, messageClear } from "@component/app/Reducers/newsReducer";
+import toast from "react-hot-toast";
 
 const AdminPanel = () => {
+  const { isLoading, successMessage, errorMessage } = useSelector(
+    (state) => state.news
+  );
    const dispatch = useDispatch();
   const handleExamResultDate = (e) => {
     const exam_date = e.target.exam_date.value;
@@ -16,6 +18,17 @@ const AdminPanel = () => {
     dispatch(examResultDate(data));
     e.preventDefault();
   };
+
+  useEffect(() => {
+    if (successMessage) {
+      toast.success(successMessage);
+      dispatch(messageClear());
+    }
+    if (errorMessage) {
+      toast.error(errorMessage);
+      dispatch(messageClear());
+    }
+  }, [successMessage, errorMessage, dispatch]);
 
   return (
     <div className={styles.admin_panel_design}>
@@ -75,7 +88,7 @@ const AdminPanel = () => {
         <input type="date" name="result_date" id="" />
         <input type="submit" value="Submit" className={styles.submit_button} />
       </form>
-      {/* {isLoading && (
+      {isLoading && (
         <ThreeDots
           visible={true}
           height="80"
@@ -86,7 +99,7 @@ const AdminPanel = () => {
           wrapperStyle={{}}
           wrapperClass=""
         />
-      )} */}
+      )}
     </div>
   );
 };
