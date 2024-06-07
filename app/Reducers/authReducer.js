@@ -166,7 +166,7 @@ export const authReducer = createSlice({
     });
     builder.addCase(userLogin.fulfilled, (state, { payload }) => {     
       state.userInfo = payload?.userInfo; 
-      state.role = returnRole();        
+      state.role = returnRole() || payload?.userInfo?.role;        
       state.successMessage = payload?.message;
       state.isLoading = false;
     });
