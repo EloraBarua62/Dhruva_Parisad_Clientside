@@ -50,7 +50,9 @@ const AccessForm = ({ feature, route, request, fields }) => {
         <form onSubmit={handleFormSubmit}>
           <h1 className={styles.heading_design}>{feature}</h1>
           {request === "principal" && (
-            <p>N.B: This form is only for school principal</p>
+            <p style={{ color: "#e9efc0" }}>
+              N.B: This form is only for school principal
+            </p>
           )}
 
           {/* Section: input field design */}
@@ -66,21 +68,16 @@ const AccessForm = ({ feature, route, request, fields }) => {
 
         {/* Routing */}
         <div className={styles.routing_design}>
-          {request === "student" ? (
+          {request === "principal" ? (
             <Link href={`/user/${route}`} className={styles.routing}>
               {route === "signup" ? "New member?" : "Already have an account?"}
             </Link>
           ) : (
             ""
           )}
-          {
-            request !== "principal" ? <Link href={'/forgot_password'} className={styles.routing}>
+          <Link href={"/forgot_password"} className={styles.routing}>
             Forget password
           </Link>
-          :
-          ''
-          }
-          
         </div>
       </div>
     </div>

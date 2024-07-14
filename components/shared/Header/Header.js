@@ -23,7 +23,7 @@ const Header = () => {
     {
       name: "/user/exam_registration",
       title: "Exam Registration",
-      user_role: ["student", "admin"],
+      user_role: ["all"],
     },
     {
       name: "/user/school_registration",
@@ -38,7 +38,7 @@ const Header = () => {
     {
       name: "/user/student_result",
       title: "Student Result",
-      user_role: ["student", "admin"],
+      user_role: ["all"],
     },
     // { name: "/user/login", title: "Login", user_role: ["all"] },
   ];
@@ -58,7 +58,7 @@ const Header = () => {
         role = decodeToken.role;
       }
     }
-  }, [router]);
+  }, [router, role]);
   return (
     <div className={styles.header_display}>
       {/* Name and logo display */}
@@ -70,7 +70,9 @@ const Header = () => {
                 src={logo}
                 alt=""
                 fill
-                // sizes="100%"
+                sizes="(min-width: 66em) 33vw,
+  (min-width: 44em) 50vw,
+  100vw"
                 priority={true}
                 className={styles.logo_design}
               ></Image>

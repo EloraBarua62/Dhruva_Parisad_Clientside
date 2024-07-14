@@ -32,11 +32,10 @@
     // width: 100%;
     display: grid;
     grid-template-columns: 1;
-    gap: 10px;
+    gap: 20px;
 
     @media (min-width: 576px) {
       grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
     }
     @media (min-width: 768px) {
       grid-template-columns: repeat(3, 1fr);
@@ -48,8 +47,6 @@
     }
 
     .news_details_section {
-      margin: 50px 0px;
-      gap: 10px;
       background-color: white;
       padding: 10px;
       border: 0;

@@ -12,6 +12,7 @@
     align-items: flex-start;
     gap: 400px;
     margin: 40px 0 20px;
+    
     .heading {
       font-size: 28px;
       font-weight: 600;
@@ -42,7 +43,7 @@
         height: 55px;
         display: flex;
         justify-content: flex-start;
-        align-items: center;
+        align-items: flex-start;
         gap: 30px;
         // background-color: #f9fad1;
         padding-left: 10px;

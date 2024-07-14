@@ -116,17 +116,19 @@ const UpdateNews = () => {
     <div className={styles.update_news_design}>
       <div className={styles.all_news_contents}>
         {/* Display previous news */}
-        <div className={styles.left_section_heading}>Previous News</div>
-        {/* Pagination */}
-        <div className={styles.pagination}>
-          <div>Page no</div>
-          <Pagination
-            pageNumber={currentPage}
-            setPageNumber={setCurrentPage}
-            totalItem={totalData}
-            parPage={parPage}
-            showItem={4}
-          />
+        <div className={styles.header_section}>
+          <div className={styles.heading}>Previous News</div>
+          {/* Pagination */}
+          <div className={styles.pagination}>
+            <div>Page no</div>
+            <Pagination
+              pageNumber={currentPage}
+              setPageNumber={setCurrentPage}
+              totalItem={totalData}
+              parPage={parPage}
+              showItem={4}
+            />
+          </div>
         </div>
 
         {adminNewsList.map((single_news, index) => (

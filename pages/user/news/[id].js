@@ -16,8 +16,7 @@ const NewsDetails = () => {
     useEffect(() => {
       dispatch(displayNews());
     }, [dispatch]);
-    console.log(router.query.id)
-    console.log(newsList)
+
     return (
       <div className={styles.news_display}>
         <Container>
@@ -36,15 +35,16 @@ const NewsDetails = () => {
                           {"."}
                           {news.updatedAt.substring(0, 4)}
                         </p>
-                        <p className={styles.details}>
-                          {news.news_details}
-                        </p>
+                        <p className={styles.details}>{news.news_details}</p>
                       </div>
                       <div className={styles.image_section}>
                         <Image
                           src={news.imageShow}
                           alt=""
                           fill="true"
+                          sizes="(min-width: 66em) 33vw,
+  (min-width: 44em) 50vw,
+  100vw"
                           className={styles.image_design}
                         ></Image>
                       </div>

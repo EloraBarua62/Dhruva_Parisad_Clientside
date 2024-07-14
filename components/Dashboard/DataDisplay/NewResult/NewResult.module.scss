@@ -4,24 +4,34 @@
   padding: 10px;
   width: 1850px;
 
-  .heading {
-    color: $deep-green;
-    text-align: center;
-    text-decoration: underline;
-  }
-
-  .pagination {
-    width: 300px;
+  // header section
+  .header_section {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 10px;
-    background-color: #f9fad1;
-    padding-left: 10px;
-    padding-right: 10px;
-    border: 0 solid;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    gap: 400px;
+    margin: 40px 0 20px;
+    
+    .heading {
+      color: $deep-green;
+      text-align: center;
+      text-decoration: underline;
+      margin: 0;
+    }
+
+    .pagination {
+      width: 300px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 10px;
+      background-color: #f9fad1;
+      padding: 10px 0px 10px 10px;
+      // padding-right: 10px;
+      border: 0 solid;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
   }
 
   .heading_field_design {
@@ -53,22 +63,21 @@
       border-radius: 5px;
       font-weight: 600;
       color: white;
-
     }
   }
 
   .info_field_design {
     border-bottom: 1px solid $deep-green;
 
-    .result_status_container{
+    .result_status_container {
       max-width: 110px;
       min-width: 110px;
       height: 60px;
       display: flex;
       justify-content: center;
-      align-items:center;
+      align-items: center;
 
-      .running_button{
+      .running_button {
         background-color: red;
         color: white;
         padding: 5px 10px;
@@ -79,7 +88,7 @@
         justify-content: center;
         align-items: center;
       }
-      .finish_button{
+      .finish_button {
         background-color: $light-green;
         padding: 5px 10px;
         border: 0;

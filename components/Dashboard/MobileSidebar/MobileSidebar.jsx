@@ -10,7 +10,7 @@ const MobileSidebar = ({
   openSidebar,
   setOpenSidebar,
 }) => {
-  console.log(navigateMain);
+
   const admin_profile = "";
   return (
       <div className={styles.sidebar_design}>

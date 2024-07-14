@@ -18,7 +18,9 @@ const Banner = () => {
             src={barath_long}
             alt=""
             fill
-            sizes="100%"
+            sizes="(min-width: 66em) 33vw,
+  (min-width: 44em) 50vw,
+  100vw"
             priority={true}            
             className={styles.image_design1}
           ></Image>
@@ -29,7 +31,10 @@ const Banner = () => {
               src={sitar}
               alt=""
               fill
-              sizes="100%"
+
+              sizes="(min-width: 66em) 33vw,
+  (min-width: 44em) 50vw,
+  100vw"
               priority={true}
               className={styles.image_design2}
             ></Image>
@@ -39,7 +44,10 @@ const Banner = () => {
               src={paint}
               alt=""
               fill
-              sizes="100%"
+
+              sizes="(min-width: 66em) 33vw,
+  (min-width: 44em) 50vw,
+  100vw"
               priority={true}
               className={styles.image_design2}
             ></Image>
@@ -50,7 +58,9 @@ const Banner = () => {
             src={kathak}
             alt=""
             fill
-            sizes="100%"
+            sizes="(min-width: 66em) 33vw,
+  (min-width: 44em) 50vw,
+  100vw"
             priority={true}            
             className={styles.image_design1}
           ></Image>
@@ -61,7 +71,10 @@ const Banner = () => {
               src={tabla}
               alt=""
               fill
-              sizes="100%"
+
+              sizes="(min-width: 66em) 33vw,
+  (min-width: 44em) 50vw,
+  100vw"
               priority={true}
               className={styles.image_design2}
             ></Image>
@@ -71,7 +84,9 @@ const Banner = () => {
               src={harmon}
               alt=""
               fill
-              sizes="100%"
+              sizes="(min-width: 66em) 33vw,
+  (min-width: 44em) 50vw,
+  100vw"
               priority={true}
               className={styles.image_design2}
             ></Image>
@@ -82,7 +97,9 @@ const Banner = () => {
             src={barath_short}
             alt=""
             fill
-            sizes="100%"
+            sizes="(min-width: 66em) 33vw,
+  (min-width: 44em) 50vw,
+  100vw"
             priority={true}
             className={styles.image_design1}
           ></Image>

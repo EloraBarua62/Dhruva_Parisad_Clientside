@@ -4,7 +4,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const enlistedZone = createAsyncThunk(
   "school/enlistedZone",
   async (_,{ rejectWithValue, fulfillWithValue }) => {
-    // console.log(info);
     try {
       const { data } = await api.get("/school/zone-details", {
         withCredentials: true,
@@ -19,7 +18,6 @@ export const enlistedZone = createAsyncThunk(
 export const schoolRegistration = createAsyncThunk(
   "school/schoolRegistration",
   async (info, { rejectWithValue, fulfillWithValue }) => {
-    console.log(info);
     try {
       const { data } = await api.post("/school/registration", info, {
         withCredentials: true,
@@ -50,7 +48,6 @@ export const updateStatus = createAsyncThunk(
   async (info, { rejectWithValue, fulfillWithValue }) => {
     const id = info.id;
     const status = info.status;
-    console.log(id, status)
     try {
       const { data } = await api.patch(`/school/update-status/${id}`,{status}, {
         withCredentials: true,
@@ -168,7 +165,7 @@ export const schoolReducer = createSlice({
       let index = payload.id;
       let parentArray = state.schoolList;
       const size = parentArray.length;
-      console.log(payload.data.schoolInfo);
+
       for (let i = 0; i < size; i++) {
         if (parentArray[i]?._id === index) {
           parentArray[i] = payload.data.schoolInfo;
@@ -192,7 +189,7 @@ export const schoolReducer = createSlice({
       const parentArray = state.schoolList;
       const id = payload.id;
       const keep_parentArray = parentArray.filter((each) => each._id !== id);
-      console.log(keep_parentArray);
+
       state.schoolList = keep_parentArray;
       state.successMessage = payload?.message;
       state.isLoading = false;

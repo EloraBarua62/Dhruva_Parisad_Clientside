@@ -9,7 +9,7 @@ const Footer = () => {
         <div className={styles.footer_contents}>
           {/* Title display */}
           <div className={styles.title_display}>
-            <div className={styles.title}>Dhrubo Parishad</div>
+            <div className={styles.title}>Dhruvo Parishad</div>
             <div className={styles.info}>Since 1998</div>
           </div>
 

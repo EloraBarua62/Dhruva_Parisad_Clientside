@@ -18,7 +18,6 @@ const Pagination = ({pageNumber, setPageNumber, totalItem, parPage, showItem}) =
         startPage = 1
     }
 
-    console.log(totalItem, parPage, pageNumber, totalPage)
 
     const createBtn = () => {
         const btns = [];

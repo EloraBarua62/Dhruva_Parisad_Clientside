@@ -183,7 +183,6 @@ export const authReducer = createSlice({
     });
     builder.addCase(principalInformation.fulfilled, (state, { payload }) => {      
       state.principalInfo = payload?.principal_info;
-      // console.log(principalInfo);
       state.totalData = payload?.totalData;
       state.successMessage = payload?.message;
       state.isLoading = false;

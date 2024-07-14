@@ -2,12 +2,11 @@
 
 .result_design {
   width: 100%;
-  // height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 
-.result_declaration {
+  .result_declaration {
     height: 100vh;
     margin: 150px 0 50px;
     font-size: 20px;
@@ -21,13 +20,11 @@
     align-items: center;
     margin: 100px 0 50px;
     padding-left: 2px;
-    // padding-right: 2px;
 
     h1 {
       font-size: $text-head;
       font-weight: 800;
       color: $deep-green;
-      // margin: 0 0 10px 0;
 
       @media (min-width: 768px) {
         font-size: 28px;
@@ -47,7 +44,7 @@
         }
         input {
           width: 100%;
-          border: 2px solid #4ade80;
+          border: 2px solid $deep-green;
           border-radius: 3px;
           background-color: white;
           outline: none;
@@ -82,12 +79,10 @@
     }
 
     .newresult_design {
-      // padding: 10px;
-      // margin: 10px;
       width: 100%;
       overflow-x: auto;
-      border: 1px solid $deep-green;
-      border-radius: 10px;
+      background-color: white;
+      box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 
       .heading_field_design {
         width: 100%;
@@ -95,10 +90,9 @@
         justify-content: space-between;
         align-items: flex-start;
         gap: 5px;
-        border: 0px;
-        border-radius: 5px;
         padding-top: 5px;
         padding-bottom: 5px;
+        border-bottom: 2px solid $deep-green;
 
         @media (min-width: 576px) {
           gap: 10px;
@@ -122,15 +116,27 @@
 
       .info_field_design {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+     
 
+        .border_line{
+          width: 100%;
+          height: 1px;
+          background-color: $deep-green;
+        }
         // Display Odd indexed field in result
         .odd_field_design {
-          width: 100%;
-          // background-color: #f9fad1;
+          width: 100%;         
           display: flex;
           justify-content: space-between;
           align-items: flex-start;
           gap: 5px;
+          border-bottom: 1px solid $deep-green;
+
 
           @media (min-width: 576px) {
             gap: 10px;
@@ -173,6 +179,7 @@
               .child_box_design {
                 max-width: 110px;
                 min-width: 110px;
+                height: 40px;
                 padding: 10px 2px;
                 text-align: center;
               }
@@ -241,6 +248,7 @@
           justify-content: space-between;
           align-items: flex-start;
           gap: 5px;
+          border-bottom: 1px solid $deep-green;
 
           @media (min-width: 576px) {
             gap: 10px;
@@ -286,6 +294,7 @@
               .child_box_design {
                 max-width: 110px;
                 min-width: 110px;
+                height: 50px;
                 padding: 10px 2px;
                 text-align: center;
               }

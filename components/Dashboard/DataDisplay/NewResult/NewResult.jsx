@@ -34,6 +34,7 @@ const NewResult = () => {
   const [editDoneSingleIdx, setEditDoneSingleIdx] = useState(-1);
   const [toogleEditDoneButton, setToogleEditDoneButton] = useState(true);
   const [toogle, setToogle] = useState(false);
+  const [statusUpdateId, setStatusUpdateId] = useState(-1);
 
   const [parPage, setParPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
@@ -64,7 +65,7 @@ const NewResult = () => {
 
   // Handle result status function
   const handleResultStatus = (id) => {
-    console.log(id)
+    setStatusUpdateId(id);
     dispatch(previousResult({id: id}));
   }
 
@@ -88,7 +89,6 @@ const NewResult = () => {
     array[idx] = obj;
     keepMarks = array;
     setWrittenPracticalState([...keepMarks]);
-    console.log(keepMarks);
   };
 
   const handleMarksSubmit = (index, id) => (event) => {
@@ -100,18 +100,20 @@ const NewResult = () => {
 
   return (
     <div className={styles.newresult_design}>
-      <h1 className={styles.heading}>New Result</h1>
+      <div className={styles.header_section}>
+        <h1 className={styles.heading}>New Result</h1>
 
-      {/* Pagination */}
-      <div className={styles.pagination}>
-        <div>Page no</div>
-        <Pagination
-          pageNumber={currentPage}
-          setPageNumber={setCurrentPage}
-          totalItem={totalData}
-          parPage={parPage}
-          showItem={4}
-        />
+        {/* Pagination */}
+        <div className={styles.pagination}>
+          <div>Page no</div>
+          <Pagination
+            pageNumber={currentPage}
+            setPageNumber={setCurrentPage}
+            totalItem={totalData}
+            parPage={parPage}
+            showItem={4}
+          />
+        </div>
       </div>
 
       {/* Table heading */}
@@ -261,19 +263,19 @@ const NewResult = () => {
                 onClick={() => handleResultStatus(head?.studentInfo?.id)}
               >
                 {head?.resultStatus}
-                {
-                  isLoading? <Oval
-                  visible={true}
-                  height="10"
-                  width="10"
-                  color="#FFFFFF"
-                  ariaLabel="oval-loading"
-                  wrapperStyle={{}}
-                  wrapperClass=""
-                />
-                :
-                ''
-                }               
+                {isLoading && statusUpdateId === head?.studentInfo?.id ? (
+                  <Oval
+                    visible={true}
+                    height="10"
+                    width="10"
+                    color="#FFFFFF"
+                    ariaLabel="oval-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                  />
+                ) : (
+                  ""
+                )}
               </button>
             </div>
             {/* Details checking button */}

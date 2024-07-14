@@ -5,9 +5,12 @@ import { toPng } from "html-to-image";
 import { useCallback, useRef } from 'react';
 
 
-const Certificate = ({student_name, roll, studentPersonalInfo, exam_date, letter_grade, grade_point}) => {
+const Certificate = ({
+  resultInfo,
+  studentPersonalInfo,
+  resultPublishDate,
+}) => {
   const ref = useRef(null);
-  console.log(studentPersonalInfo)
   const onButtonClick = useCallback(() => {
     if (ref.current === null) {
       return;
@@ -21,40 +24,45 @@ const Certificate = ({student_name, roll, studentPersonalInfo, exam_date, letter
         link.click();
       })
       .catch((err) => {
-        console.log(err);
       });
   }, [ref]);
-    return (
-      <div className={styles.certificate_section}>
-        <div className={styles.title}>Examination Certificate</div>
-        <div className={styles.child_section} ref={ref}>
-          <Image
-            src={certificate}
-            alt=""
-            fill="true"
-            className={styles.image_section}
-          />
+  return (
+    <div className={styles.certificate_section}>
+      <div className={styles.title}>Examination Certificate</div>
+      <div className={styles.child_section} ref={ref}>
+        <Image
+          src={certificate}
+          alt=""
+          fill="true"
+          className={styles.image_section}
+        />
 
-          <div className={styles.student_info}>
-            <div className={styles.name_design}>{student_name}</div>
-            <div className={styles.father_name_design}>
-              {studentPersonalInfo?.father_name}
-            </div>
-            <div className={styles.mother_name_design}>
-              {studentPersonalInfo?.mother_name}
-            </div>
-            <div className={styles.roll_design}>{roll}</div>
-            <div className={styles.exam_date_design}>{exam_date}</div>
-            <div className={styles.result_design1}>{letter_grade}</div>
-            <div className={styles.result_design2}>{grade_point}</div>
+        <div className={styles.student_info}>
+          <div className={styles.name_design}>
+            {studentPersonalInfo?.student_name}
+          </div>
+          <div className={styles.father_name_design}>
+            {studentPersonalInfo?.father_name}
+          </div>
+          <div className={styles.mother_name_design}>
+            {studentPersonalInfo?.mother_name}
+          </div>
+          <div className={styles.roll_design}>{resultInfo?.roll}</div>
+          <div className={styles.exam_date_design}>{resultPublishDate}</div>
+          <div className={styles.result_design1}>
+            {resultInfo?.averageLetterGrade}
+          </div>
+          <div className={styles.result_design2}>
+            {resultInfo?.averageGradePoint}
           </div>
         </div>
-
-        <button onClick={onButtonClick} className={styles.download_button}>
-          Download Certificate
-        </button>
       </div>
-    );
+
+      <button onClick={onButtonClick} className={styles.download_button}>
+        Download Certificate
+      </button>
+    </div>
+  );
 };
 
 export default Certificate;

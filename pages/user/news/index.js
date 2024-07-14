@@ -25,41 +25,14 @@ const NewsPage = () => {
                   <div className={styles.info_section}>
                     <h1 className={styles.title}>{news.news_title}</h1>
                     <p className={styles.time}>
-                      Date: {news.updatedAt.substring(8, 10)}
+                      Date: {news?.updatedAt?.substring(8, 10)}
                       {"."}
-                      {news.updatedAt.substring(5, 7)}
+                      {news?.updatedAt?.substring(5, 7)}
                       {"."}
-                      {news.updatedAt.substring(0, 4)}
+                      {news?.updatedAt?.substring(0, 4)}
                     </p>
                     <p className={styles.details}>
-                      {news.news_details} Lorem ipsum dolor sit amet consectetur
-                      adipisicing elit. Nobis ullam architecto aperiam explicabo
-                      maxime sunt ut quod? Sed doloremque tempora, accusantium
-                      hic dolorem voluptatum maxime cupiditate totam dolore
-                      soluta? Ducimus debitis exercitationem quibusdam beatae
-                      fugit, nulla corporis dolore ex laborum dolores rem
-                      explicabo, mollitia doloremque. Ad facilis minima nihil
-                      quam voluptas repellendus omnis dolor ea doloremque esse?
-                      Cupiditate sit harum itaque. Eveniet enim explicabo at
-                      quis natus sequi fuga dolore id quibusdam omnis,
-                      laudantium numquam aperiam cum nemo inventore rerum
-                      delectus harum consectetur, perferendis libero eius!
-                      Fugit, consequuntur rerum? Ullam optio perspiciatis
-                      accusantium consequuntur iste dolor quibusdam, neque
-                      impedit blanditiis tenetur voluptatem quidem laudantium
-                      labore doloremque eligendi ratione quod, inventore
-                      delectus in, odio facere dolorum! Suscipit id laborum
-                      adipisci molestias fugit facere tempora aliquid sint
-                      totam, sunt hic dolores velit ducimus nobis magni aperiam
-                      dolorum est minima rem, perferendis in nulla veniam? Dolor
-                      dicta quam ut labore rerum laudantium sint debitis illum
-                      architecto blanditiis dolorem nesciunt voluptatibus harum
-                      veniam temporibus, qui itaque tempora sed tempore nostrum
-                      perferendis? Nihil dicta laboriosam necessitatibus, quia
-                      quasi, ea quos error, minus ducimus accusantium deleniti
-                      dolore eius aut incidunt impedit? In, non nesciunt ratione
-                      neque impedit rem repellat assumenda praesentium
-                      asperiores sunt id odit fuga.
+                      {news.news_details} 
                     </p>
                     <Link
                       href={`/user/news/${newsList[index]?._id}`}
@@ -68,14 +41,6 @@ const NewsPage = () => {
                       Details
                     </Link>
                   </div>
-                  {/* <div className={styles.image_section}>
-                        <Image
-                          src={news.imageShow}
-                          alt=""
-                          fill
-                          className={styles.image_design}
-                        ></Image>
-                      </div> */}
                 </div>
               ))}
             </div>

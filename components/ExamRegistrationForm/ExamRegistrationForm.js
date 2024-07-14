@@ -7,10 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { newStudentRegistration, previousStudentRegistration } from "@component/app/Reducers/studentReducer";
 import toast from "react-hot-toast";
 import { messageClear } from "@component/app/Reducers/studentReducer";
-import {
-  enlistedSchools,
-  enlistedZone,
-} from "@component/app/Reducers/schoolReducer";
 import { ThreeDots } from "react-loader-spinner";
 import Admitcard from "../AdmitCard/AdmitCard";
 
@@ -59,7 +55,7 @@ const ExamRegistrationForm = () => {
   const [imageDisplay, setImageDisplay] = useState("");
   const [imageShow, setImageShow] = useState("");
   const [subjectYear, setSubjectYear] = useState([
-    { subject: "poem", year: "primary" },
+    { subject: "Rhyme", year: "Primary" },
   ]);
   const [zoneValue, setZoneValue] = useState("Dhaka");
 
@@ -74,8 +70,7 @@ const ExamRegistrationForm = () => {
 
   // Function: Add Multiple Subject and Year
   const handleSubjectYear = (e) => {
-    setSubjectYear([...subjectYear, { subject: "poem", year: "primary" }]);
-    console.log(subjectYear);
+    setSubjectYear([...subjectYear, { subject: "Rhyme", year: "Primary" }]);
     e.preventDefault();
   };
 
@@ -92,7 +87,6 @@ const ExamRegistrationForm = () => {
   const handleDelete = (e, index) => {
     const deleteValue = [...subjectYear];
     deleteValue.splice(index, 1);
-    console.log(deleteValue);
     setSubjectYear(deleteValue);
     e.preventDefault();
   };
@@ -122,7 +116,6 @@ const [checkOldStudent , setCheckOldStudent] = useState("");
     const mother_name = e.target.mother_name.value;
     const birth_date = e.target.birth_date.value;
     const phone_no = e.target.phone_no.value;
-    const email = e.target.email.value;
     const zone = e.target.zone.value;
     const school = e.target.school.value;
 
@@ -132,7 +125,6 @@ const [checkOldStudent , setCheckOldStudent] = useState("");
     formData.append("mother_name", mother_name);
     formData.append("birth_date", birth_date);
     formData.append("phone_no", phone_no);
-    formData.append("email", email);
     formData.append("zone", zone);
     formData.append("school", school);
     formData.append("imageShow", imageShow);
@@ -207,14 +199,13 @@ const [checkOldStudent , setCheckOldStudent] = useState("");
             {/* Previous roll number */}
             <div className={styles.field_design}>
               <label htmlFor="roll">Your Previous Roll</label>
-              <input type="number" name="roll" id="" required />
+              <input type="number" name="roll" required />
             </div>
             {/* Exam zone */}
             <div className={styles.field_design_center}>
               <label htmlFor="zone">Select Your Examination Zone</label>
               <select
                 name="zone"
-                id=""
                 required
                 onChange={(e) => setZoneValue(e.target.value)}
               >

@@ -3,14 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import Container from "@component/components/shared/Container/Container";
 import { toast } from "react-hot-toast";
 import {
-  messageClear, specificSchoolResult,
+  messageClear,
+  specificSchoolResult,
 } from "@component/app/Reducers/resultReducer";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ThreeDots } from "react-loader-spinner";
 
 const Result = () => {
-  const { isLoading, successMessage, errorMessage, resultInfo } = useSelector((state) => state.result);
+  const { isLoading, successMessage, errorMessage, resultInfo } = useSelector(
+    (state) => state.result
+  );
   const dispatch = useDispatch();
   const [detailsLength, setDetailsLength] = useState(-1);
   const [toogle, setToogle] = useState(false);
@@ -27,9 +30,10 @@ const Result = () => {
     "Total Marks",
     "Letter Grade",
     "Grade Point",
-    "Details",
+    "Average Letter Grade",
+    "Average Grade Point",
   ];
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const school_code = event.target.school_code.value;
@@ -108,97 +112,67 @@ const Result = () => {
                       </div>
 
                       {/* Field: Subjects and Years */}
-                      {detailsLength === index ? (
-                        <div className={styles.subject_year_design}>
-                          {head.studentInfo?.subjectYear.map((data, idx) => (
-                            <div
-                              key={idx}
-                              className={styles.subject_year_design_inner}
-                            >
-                              <div className={styles.child_box_design}>
-                                {data.subject}
-                              </div>
-                              <div className={styles.child_box_design}>
-                                {data.year}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className={styles.subject_year_design}>
-                          <div className={styles.subject_year_design_inner}>
+                      <div className={styles.subject_year_design}>
+                        {head.studentInfo?.subjectYear.map((data, idx) => (
+                          <div
+                            key={idx}
+                            className={styles.subject_year_design_inner}
+                          >
                             <div className={styles.child_box_design}>
-                              {head.studentInfo?.subjectYear[0].subject}
+                              {data.subject}
                             </div>
                             <div className={styles.child_box_design}>
-                              {head.studentInfo?.subjectYear[0].year}
+                              {data.year}
                             </div>
                           </div>
-                        </div>
-                      )}
+                        ))}
+                      </div>
                       {/* Field: Written and Practical */}
-                      {detailsLength === index ? (
-                        <div className={styles.subject_year_design}>
-                          {/* Result update form for single user */}
-                          {head?.writtenPractical.map((data, idx) => (
-                            <div
-                              key={idx}
-                              className={styles.subject_year_design_inner}
-                            >
-                              <div className={styles.child_box_design}>
-                                {data.written}
-                              </div>
-                              <div className={styles.child_box_design}>
-                                {data.practical}
-                              </div>
+                      <div className={styles.subject_year_design}>
+                        {/* Result update form for single user */}
+                        {head?.writtenPractical.map((data, idx) => (
+                          <div
+                            key={idx}
+                            className={styles.subject_year_design_inner}
+                          >
+                            <div className={styles.child_box_design}>
+                              {data.written}
+                            </div>
+                            <div className={styles.child_box_design}>
+                              {data.practical}
+                            </div>
 
-                              {/* Displaying total score of written and practical  */}
-                              <div className={styles.child_box_design}>
-                                {data.written + data.practical}
-                              </div>
+                            {/* Displaying total score of written and practical  */}
+                            <div className={styles.child_box_design}>
+                              {data.written + data.practical}
+                            </div>
 
-                              {/* Displaying final grade of written and practical  */}
-                              <div className={styles.child_box_design}>
-                                {data.letter_grade}
-                              </div>
-                              {/* Displaying final grade of written and practical  */}
-                              <div className={styles.child_box_design}>
-                                {data.grade_point}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className={styles.subject_year_design}>
-                          <div className={styles.subject_year_design_inner}>
+                            {/* Displaying final grade of written and practical  */}
                             <div className={styles.child_box_design}>
-                              {head?.writtenPractical[0].written}
+                              {data.letter_grade}
                             </div>
+                            {/* Displaying final grade of written and practical  */}
                             <div className={styles.child_box_design}>
-                              {head?.writtenPractical[0].practical}
-                            </div>
-                            <div className={styles.child_box_design}>
-                              {head?.writtenPractical[0].written +
-                                head?.writtenPractical[0].practical}
-                            </div>
-                            <div className={styles.child_box_design}>
-                              {head?.writtenPractical[0].letter_grade}
-                            </div>
-                            <div className={styles.child_box_design}>
-                              {head?.writtenPractical[0].grade_point}
+                              {data.grade_point}
                             </div>
                           </div>
-                        </div>
-                      )}
+                        ))}
+                      </div>
+                      <div className={styles.single_details}>
+                        {head?.averageLetterGrade}
+                      </div>
+                      <div className={styles.single_details}>
+                        {head?.averageGradePoint}
+                      </div>
                       {/* Details checking button */}
-                      <div className={styles.button_content}>
+                      {/* <div className={styles.button_content}>
                         <button
                           className={styles.toogle_button_design}
                           onClick={() => handleToogle(index)}
                         >
                           {detailsLength === index ? "Close" : "Open"}
                         </button>
-                      </div>
+                      </div> */}
                     </div>
                   ))}
                 </div>

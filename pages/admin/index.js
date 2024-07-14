@@ -19,7 +19,6 @@ export default function Home() {
 
   useEffect(() => {
     const array = getNavigation();
-    console.log(array);
     setNavigateMain([...array[0]]);
     setNavigateOther([...array[1]]);
 

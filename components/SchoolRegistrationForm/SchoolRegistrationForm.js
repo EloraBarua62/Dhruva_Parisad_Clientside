@@ -79,7 +79,7 @@ const SchoolRegistrationForm = () => {
         <div className={styles.school_info_section}>
           <div className={styles.field_design}>
             <label htmlFor="zone">Select School Zone</label>
-            <select name="zone" id="">
+            <select name="zone" required>
               {zoneInfo.map((zone, index) => (
                 <option key={index} value={zone.name}>
                   {zone.name}
@@ -91,13 +91,13 @@ const SchoolRegistrationForm = () => {
           {schoolFormField.map((field, index) => (
             <div key={index} className={styles.field_design}>
               <label htmlFor={field.name}>{field.title}</label>
-              <input type={field.type} name={field.name} id="" />
+              <input type={field.type} name={field.name} required />
             </div>
           ))}
 
           <div className={styles.field_design}>
             <label htmlFor="location">Location</label>
-            <textarea type="text" name="location" id="" />
+            <textarea type="text" name="location" required />
           </div>
 
           <div className={styles.button_design}>

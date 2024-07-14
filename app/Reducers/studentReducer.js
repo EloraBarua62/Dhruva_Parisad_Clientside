@@ -35,12 +35,12 @@ export const updateInfo = createAsyncThunk(
   "student/updateInfo",
   async (info, { rejectWithValue, fulfillWithValue }) => {
     const id = info._id;
-    console.log(id, info)
+    
     try {
       const { data } = await api.patch(`/student/update-info/${id}`, info, {
         withCredentials: true,
       });
-      console.log(data)
+      
       return fulfillWithValue({id, info, data});
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -53,7 +53,7 @@ export const deleteInfo = createAsyncThunk(
   "student/deleteInfo",
   async (data, { rejectWithValue, fulfillWithValue }) => {
     const id = data.id;
-    console.log(id)
+    
     try {
       const { data } = await api.delete(`/student/delete-info/${id}`, {
         withCredentials: true,
@@ -101,7 +101,7 @@ export const studentReducer = createSlice({
     messageClear: (state) => {
       state.errorMessage = "";
       state.successMessage = "";
-      console.log("state clear");
+      
     },
   },
   extraReducers: (builder) => {
@@ -192,7 +192,7 @@ export const studentReducer = createSlice({
       const parentArray = state.studentInfo;
       const id = payload.id;
       const keep_parentArray = parentArray.filter(each => each._id !== id );
-      console.log(keep_parentArray)
+      
       state.studentInfo = keep_parentArray;
       state.successMessage = payload?.message;
       state.isLoading = false;

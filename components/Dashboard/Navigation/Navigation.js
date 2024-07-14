@@ -2,7 +2,7 @@ import AdminPanel from "../DataDisplay/AdminPanel/AdminPanel";
 import DashboardHome from "../DataDisplay/DashboardHome/DashboardHome";
 import NewResult from "../DataDisplay/NewResult/NewResult";
 import NewStudentsDetails from "../DataDisplay/NewStudentsDetails/NewStudentsDetails";
-// import PreviousResult from "../DataDisplay/PreviousResult/PreviousResult";
+import PreviousResult from "../DataDisplay/PreviousResult/PreviousResult";
 import SchoolInformation from "../DataDisplay/SchoolInformation/SchoolInformation";
 import UpdateNews from "../DataDisplay/UpdateNews/UpdateNews";
 
@@ -28,29 +28,29 @@ const allNavigation = [
     status: "active",
     datatable: <NewStudentsDetails />,
   },
-  // {
-  //   id: 4,
-  //   title: "Previous Result",
-  //   role: "admin",
-  //   status: "active",
-  //   datatable: <PreviousResult />,
-  // },
   {
     id: 4,
+    title: "Previous Result",
+    role: "admin",
+    status: "active",
+    datatable: <PreviousResult />,
+  },
+  {
+    id: 5,
     title: "School Information",
     role: "admin",
     status: "active",
     datatable: <SchoolInformation />,
   },
   {
-    id: 5,
+    id: 6,
     title: "Update News",
     role: "admin",
     status: "active",
     datatable: <UpdateNews />,
   },
   {
-    id: 6,
+    id: 7,
     title: "Admin Panel",
     role: "admin",
     status: "active",

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Container from "../shared/Container/Container";
 import styles from "./News.module.scss";
 import Link from "next/link";
+import placeholder from '../../public/logo.jpeg'
 
 const News = ({ newsList }) => {
   const year = new Date().getFullYear();
@@ -9,40 +10,39 @@ const News = ({ newsList }) => {
   const month = new Date().getMonth() + 1;
   const time = [];
   
-  
   newsList.map((news) => {
     let value;
 
-    if (year - parseInt(news.updatedAt) > 0) {
-      value = year - parseInt(news.updatedAt);
-      if (value == 1) time.push("Last year");
-      else time.push(value + " years ago");
-    } else if (month - parseInt(news.updatedAt) > 0) {
-      value = month - parseInt(news.updatedAt);
-      if (value == 1) time.push("Last month");
-      else time.push(value + " months ago");
-    } else if (date - parseInt(news.updatedAt) > 0) {
-      value = date - parseInt(news.updatedAt);
-      if (value == 1) time.push(value + " day ago");
-      else time.push(value + " days ago");
-    } else {
-      time.push("Today");
-    }
-    // if (year - parseInt(news.updatedAt.substring(0, 4)) > 0) {
-    //   value = year - parseInt(news.updatedAt.substring(0, 4));
+    // if (year - parseInt(news.updatedAt) > 0) {
+    //   value = year - parseInt(news.updatedAt);
     //   if (value == 1) time.push("Last year");
     //   else time.push(value + " years ago");
-    // } else if (month - parseInt(news.updatedAt.substring(5, 7)) > 0) {
-    //   value = month - parseInt(news.updatedAt.substring(5, 7));
+    // } else if (month - parseInt(news.updatedAt) > 0) {
+    //   value = month - parseInt(news.updatedAt);
     //   if (value == 1) time.push("Last month");
     //   else time.push(value + " months ago");
-    // } else if (date - parseInt(news.updatedAt.substring(8, 10)) > 0) {
-    //   value = date - parseInt(news.updatedAt.substring(8, 10));
+    // } else if (date - parseInt(news.updatedAt) > 0) {
+    //   value = date - parseInt(news.updatedAt);
     //   if (value == 1) time.push(value + " day ago");
     //   else time.push(value + " days ago");
     // } else {
     //   time.push("Today");
     // }
+    if (year - parseInt(news?.updatedAt?.substring(0, 4)) > 0) {
+      value = year - parseInt(news?.updatedAt?.substring(0, 4));
+      if (value == 1) time.push("Last year");
+      else time.push(value + " years ago");
+    } else if (month - parseInt(news?.updatedAt?.substring(5, 7)) > 0) {
+      value = month - parseInt(news?.updatedAt?.substring(5, 7));
+      if (value == 1) time.push("Last month");
+      else time.push(value + " months ago");
+    } else if (date - parseInt(news?.updatedAt?.substring(8, 10)) > 0) {
+      value = date - parseInt(news?.updatedAt?.substring(8, 10));
+      if (value == 1) time.push(value + " day ago");
+      else time.push(value + " days ago");
+    } else {
+      time.push("Today");
+    }
   });
 
   return (
@@ -53,13 +53,23 @@ const News = ({ newsList }) => {
           <div className={styles.news_left_section}>
             {/* left section: image display*/}
             <div className={styles.image_section}>
-              <Image
-                src={newsList[0]?.imageShow}
-                alt=""
-                fill
-                sizes="100%"
-                className={styles.image_design}
-              ></Image>
+              {newsList[0]?.imageShow ? (
+                <Image
+                  src={newsList[0].imageShow}
+                  alt=""
+                  fill
+                  sizes="100%"
+                  className={styles.image_design}
+                ></Image>
+              ) : (
+                <Image
+                  src={placeholder}
+                  alt=""
+                  fill
+                  sizes="100%"
+                  className={styles.image_design}
+                ></Image>
+              )}
             </div>
 
             {/* Left section: Details */}

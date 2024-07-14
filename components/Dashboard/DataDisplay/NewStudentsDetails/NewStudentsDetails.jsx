@@ -80,7 +80,6 @@ const NewStudentsDetails = () => {
       phone_no: "",
       payment: "",
     });
-    console.log(data);
   };
 
   // Function to delete student info
@@ -90,7 +89,7 @@ const NewStudentsDetails = () => {
     );
     if (shouldRemove) {
       const data = { id };
-      console.log(data);
+
       dispatch(deleteInfo(data));
     }
   };

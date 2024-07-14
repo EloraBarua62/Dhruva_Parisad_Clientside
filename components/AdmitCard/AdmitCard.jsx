@@ -6,7 +6,6 @@ import { useCallback, useRef } from 'react';
 
 
 const Admitcard = ({ studentDetail, exam_date }) => {
-  console.log(studentDetail, exam_date)
   const ref = useRef(null);
   const onButtonClick = useCallback(() => {
     if (ref.current === null) {
@@ -21,7 +20,6 @@ const Admitcard = ({ studentDetail, exam_date }) => {
         link.click();
       })
       .catch((err) => {
-        console.log(err);
       });
   }, [ref]);
   return (
@@ -32,6 +30,9 @@ const Admitcard = ({ studentDetail, exam_date }) => {
           src={admitcard}
           alt=""
           fill="true"
+          sizes="(min-width: 66em) 33vw,
+  (min-width: 44em) 50vw,
+  100vw"
           className={styles.image_section}
         />
 
@@ -41,13 +42,15 @@ const Admitcard = ({ studentDetail, exam_date }) => {
               src={studentDetail.imageShow}
               alt=""
               fill="true"
+              sizes="(min-width: 66em) 33vw,
+  (min-width: 44em) 50vw,
+  100vw"
               className={styles.image_set}
             />
           </div>
           <div className={styles.date_design}>
-            {exam_date.substring(8, 10)}-
-            {exam_date.substring(5, 7)}-
-            {exam_date.substring(0, 4)}
+            {exam_date?.substring(8, 10)}-{exam_date?.substring(5, 7)}-
+            {exam_date?.substring(0, 4)}
           </div>
           <div className={styles.name_design}>{studentDetail.student_name}</div>
           <div className={styles.roll_design}>{studentDetail.roll}</div>

@@ -145,9 +145,6 @@ const SchoolInformation = () => {
             <strong>Email:</strong> {schoolDetails.principalInfo?.email}
           </div>
           <div className={styles.info}>
-            <strong>PIN Code:</strong> {schoolDetails.principalInfo?.pin_number}
-          </div>
-          <div className={styles.info}>
             <strong>Status: </strong> {schoolDetails.status}
           </div>
           <div className={styles.status}>Change Status</div>

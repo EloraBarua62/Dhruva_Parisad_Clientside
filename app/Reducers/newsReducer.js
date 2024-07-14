@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const newsPublish = createAsyncThunk(
   "news/newsPublish",
   async (info, { rejectWithValue, fulfillWithValue }) => {
-    // console.log(info)
+    
     try {
       const { data } = await api.post("/news/publish", info, {
         withCredentials: true,
@@ -54,12 +54,11 @@ export const updateInfo = createAsyncThunk(
   "news/updateInfo",
   async (info, { rejectWithValue, fulfillWithValue }) => {
     const id = info._id;
-    console.log(id, info);
     try {
       const { data } = await api.patch(`/news/update-info/${id}`, info, {
         withCredentials: true,
       });
-      console.log(data);
+
       return fulfillWithValue({ id, info, data });
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -71,7 +70,6 @@ export const deleteInfo = createAsyncThunk(
   "news/deleteInfo",
   async (data, { rejectWithValue, fulfillWithValue }) => {
     const id = data.id;
-    console.log(id);
     try {
       const { data } = await api.delete(`/news/delete-info/${id}`, {
         withCredentials: true,
@@ -85,7 +83,6 @@ export const deleteInfo = createAsyncThunk(
 export const examResultDate = createAsyncThunk(
   "news/examResultDate",
   async (info, { rejectWithValue, fulfillWithValue }) => {
-    console.log(info)
     try {
       const { data } = await api.patch("/news/exam-result/", info, {
         withCredentials: true,
@@ -124,7 +121,7 @@ export const newsReducer = createSlice({
       state.isLoading = false;
     });
     builder.addCase(displayNews.fulfilled, (state, { payload }) => {
-      console.log(payload);
+
       state.successMessage = payload?.message;
       state.newsList = payload?.newsList;
       state.important_date = payload?.important_date;

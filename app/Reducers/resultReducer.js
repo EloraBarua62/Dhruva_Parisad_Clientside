@@ -40,10 +40,10 @@ export const specificSchoolResult = createAsyncThunk(
 export const specificStudentResult = createAsyncThunk(
   "result/specificResultDisplay",
   async (info, { rejectWithValue, fulfillWithValue }) => {
-    const roll = parseInt(info.roll);
+    const roll = info.roll, year= info.year;
     
     try {
-      const { data } = await api.get(`result/student-display/${roll}`, {
+      const { data } = await api.get(`result/student-display?roll=${roll}&&year=${year}`, {
         withCredentials: true,
       });
       return fulfillWithValue(data);
@@ -74,7 +74,7 @@ export const updateWrittenPracticalMarks = createAsyncThunk(
 export const previousResult = createAsyncThunk(
   "result/previousResult",
   async (info, { rejectWithValue, fulfillWithValue }) => {
-    console.log(info)
+    const id = info.id;
     try {
       const { data } = await api.post(
         'result/previous-result',
@@ -83,7 +83,7 @@ export const previousResult = createAsyncThunk(
           withCredentials: true,
         }
       );
-      return fulfillWithValue( data );
+      return fulfillWithValue( {data, id} );
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -99,7 +99,7 @@ export const previousResultDisplay = createAsyncThunk(
   ) => {
     try {
       const { data } = await api.get(
-        `result/previous-display?page=${page}&&searchValue=${searchValue}&&parPage=${parPage}`,
+        `result/previous-display?page=${page}&&parPage=${parPage}&&searchValue=${searchValue}`,
         {
           withCredentials: true,
         }
@@ -118,11 +118,10 @@ export const resultReducer = createSlice({
     errorMessage: "",
     isLoading: false,
     resultInfo: [],
-    studentResultInfo: {},
+    studentResultInfo: [],
     studentPersonalInfo: {},
     totalData: 1000,
     previousData: [],
-    previousPersonalData: [],
   },
   reducers: {
     messageClear: (state) => {
@@ -141,9 +140,9 @@ export const resultReducer = createSlice({
         (state.successMessage = payload.message);
       state.isLoading = false;
     });
-    builder.addCase(resultDisplay.rejected, (state, { payload }) => {
-      state.isLoading = false;
+    builder.addCase(resultDisplay.rejected, (state, { payload }) => {     
       state.errorMessage = payload?.error;
+      state.isLoading = false;
     });
 
     // Role: Principal
@@ -166,13 +165,14 @@ export const resultReducer = createSlice({
       state.isLoading = true;
     });
     builder.addCase(specificStudentResult.fulfilled, (state, { payload }) => {
-      state.successMessage = payload?.message;
       state.studentResultInfo = payload?.studentResultInfo;
       state.studentPersonalInfo = payload?.studentPersonalInfo;
+      state.successMessage = payload?.message;
       state.isLoading = false;
     });
     builder.addCase(specificStudentResult.rejected, (state, { payload }) => {
-      state.studentResultInfo = {};
+      state.studentResultInfo = [];
+      state.studentPersonalInfo = {};
       state.errorMessage = payload?.error;
       state.isLoading = false;
     });
@@ -207,9 +207,9 @@ export const resultReducer = createSlice({
     );
     builder.addCase(
       updateWrittenPracticalMarks.rejected,
-      (state, { payload }) => {
-        state.isLoading = false;
+      (state, { payload }) => {       
         state.errorMessage = payload.error;
+        state.isLoading = false;
       }
     );
 
@@ -218,6 +218,16 @@ export const resultReducer = createSlice({
       state.isLoading = true;
     });
     builder.addCase(previousResult.fulfilled, (state, { payload }) => {
+      const keep_resultInfo = state.resultInfo;
+      const pre_id = payload?.id;
+      const result_info_length = keep_resultInfo.length;
+      for(let i=0 ; i<result_info_length ;i++){
+        if(keep_resultInfo[i]._id === pre_id){
+          keep_resultInfo[i].resultStatus = "Finish";
+          break;
+        }
+      }
+      state.resultInfo = keep_resultInfo;
       state.successMessage = payload?.message;
       state.isLoading = false;
     });
@@ -232,14 +242,12 @@ export const resultReducer = createSlice({
     });
     builder.addCase(previousResultDisplay.fulfilled, (state, { payload }) => {
       state.previousData = payload?.final_parent_array;
-      state.previousPersonalData = payload?.final_personal_info;
       state.totalData = payload?.totalData;
       state.successMessage = payload?.message;
       state.isLoading = false;
     });
     builder.addCase(previousResultDisplay.rejected, (state, { payload }) => {
       state.previousData = [];
-      state.previousPersonalData = [];
       state.totalData= 1000;
       state.errorMessage = payload?.error;
       state.isLoading = false;

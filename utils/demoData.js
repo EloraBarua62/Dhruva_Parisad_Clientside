@@ -26,12 +26,7 @@ export const regFormField = [
     name: "phone_no",
     title: "Phone Number",
     type: "text",
-  },
-  {
-    name: "email",
-    title: "Email Address",
-    type: "email",
-  },
+  }
 ];
 
 

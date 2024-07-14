@@ -88,13 +88,12 @@
       width: 100%;
       display: grid;
       grid-template-columns: 1;
-      gap: 10px;
+      gap: 20px;
 
       @media (min-width: 576px) {
         grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
       }
-      @media (min-width: 768px) {
+      @media (min-width: 1024px) {
         grid-template-columns: repeat(3, 1fr);
         gap: 25px;
       }
@@ -104,8 +103,6 @@
       }
 
       .news_details_section {
-        margin: 50px 0px;
-        gap: 10px;
         background-color: $light-green;
         padding: 20px;
         border: 0;
