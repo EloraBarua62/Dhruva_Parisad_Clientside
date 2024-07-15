@@ -167,7 +167,7 @@ const [checkOldStudent , setCheckOldStudent] = useState("");
       <div className={styles.question}>
         Did you fillup the online exam-registration form last year in this
         website?
-        <div>
+        <div style={{marginTop: '20px'}}>
           <input
             type="radio"
             id="yes"

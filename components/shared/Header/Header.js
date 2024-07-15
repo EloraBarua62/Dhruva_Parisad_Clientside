@@ -19,6 +19,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const page_navigation = [
+    { name: "/user", title: "Home", user_role: ["all"] },
     { name: "/user/news", title: "News", user_role: ["all"] },
     {
       name: "/user/exam_registration",
@@ -45,6 +46,7 @@ const Header = () => {
 
   const handleLogout = () => {
     dispatch(logOut());
+    setOpenHamburger(!openHamburger)
     router.push("/user/login");
   };
 
@@ -152,6 +154,7 @@ const Header = () => {
                           : styles.inactive_small
                       }`}
                       href={`${page.name}`}
+                      onClick={() => setOpenHamburger(!openHamburger)}
                     >
                       {page.title}
                     </Link>
@@ -160,7 +163,7 @@ const Header = () => {
               })
             )}
             {role != "" ? (
-              <button className={styles.inactive_small} onClick={handleLogout}>
+              <button className={styles.inactive_small} onClick={handleLogout} >
                 Log Out
               </button>
             ) : (
@@ -171,6 +174,7 @@ const Header = () => {
                     : styles.inactive_small
                 }`}
                 href={"/user/login"}
+                onClick={() => setOpenHamburger(!openHamburger)}
               >
                 Login
               </Link>
