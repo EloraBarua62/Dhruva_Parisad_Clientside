@@ -21,7 +21,7 @@ const Footer = () => {
                 <h1 className={styles.district_name}>Chittagong</h1>
               </div>
               <div className={styles.districts}>
-                <h1 className={styles.district_name}>Jashor</h1>
+                <h1 className={styles.district_name}>Jashore</h1>
                 <h1 className={styles.district_name}>Barishal</h1>
               </div>
             </div>

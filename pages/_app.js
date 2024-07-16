@@ -13,17 +13,17 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Dhurva Parishad</title>
+        <title>Dhruva Parishad</title>
         <meta
           name="description"
-          content="This is a website of Dhurva Parishad for exam and result management"
+          content="This is a website of Dhruva Parishad for exam and result management"
         />
-        <meta name="keywords" content="Dhurva, Parishad, Bangladesh" />
+        <meta name="keywords" content="Dhruva, Parishad, Bangladesh" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content="Dhurva Parishad Bangladesh" />
+        <meta property="og:title" content="Dhruva Parishad Bangladesh" />
         <meta
           property="og:description"
-          content="Dhurva Parishad Exam & Result management"
+          content="Dhruva Parishad Exam & Result management"
         />
         <meta property="og:image" content="/public/logo.jpeg" />
         <link rel="icon" href="/favicon.ico" />
