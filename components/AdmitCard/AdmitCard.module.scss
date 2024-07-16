@@ -132,7 +132,7 @@
             margin-top: 15px;
           }
           .year_design {
-            margin-left: 50px;
+            margin-left: 70px;
             margin-top: 15px;
           }
         }
@@ -141,8 +141,8 @@
       // tablet device
       @media (min-width: 576px) {
         .student_image {
-          margin-top: 76px;
-          margin-left: 350px;
+          margin-top: 74px;
+          margin-left: 370px;
           width: 80px;
           height: 80px;
           position: relative;
@@ -193,7 +193,7 @@
 
         .sub_year_section {
           margin-top: 70px;
-          margin-left: 0px;
+          margin-left: 20px;
           .sub_year_field {
             font-weight: 500;
             font-size: 14px;
@@ -201,11 +201,11 @@
             justify-content: center;
 
             .subject_design {
-              margin-top: 15px;
+              margin-top: 18px;
             }
             .year_design {
               margin-left: 150px;
-              margin-top: 15px;
+              margin-top: 18px;
             }
           }
         }
@@ -228,7 +228,7 @@
 
         .date_design {
           margin-left: 170px;
-          margin-top: 0px;
+          margin-top: -1px;
           font-weight: 500;
           font-size: 16px;
         }
@@ -264,7 +264,7 @@
         }
 
         .sub_year_section {
-          margin-top: 100px;
+          margin-top: 90px;
           margin-left: 50px;
           .sub_year_field {
             font-weight: 500;
