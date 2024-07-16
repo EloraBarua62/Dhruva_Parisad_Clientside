@@ -199,7 +199,7 @@ const [checkOldStudent , setCheckOldStudent] = useState("");
             {/* Previous roll number */}
             <div className={styles.field_design}>
               <label htmlFor="roll">Your Previous Roll</label>
-              <input type="number" name="roll" required />
+              <input type="number" name="roll" required placeholder="Roll"/>
             </div>
             {/* Exam zone */}
             <div className={styles.field_design_center}>
@@ -207,6 +207,7 @@ const [checkOldStudent , setCheckOldStudent] = useState("");
               <select
                 name="zone"
                 required
+                placeholder="Zone"
                 onChange={(e) => setZoneValue(e.target.value)}
               >
                 {zoneInfo.map((zone, index) => (

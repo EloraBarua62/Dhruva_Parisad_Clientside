@@ -129,11 +129,11 @@
           justify-content: center;
 
           .subject_design {
-            margin-top: 12px;
+            margin-top: 15px;
           }
           .year_design {
             margin-left: 50px;
-            margin-top: 12px;
+            margin-top: 15px;
           }
         }
       }
@@ -142,9 +142,9 @@
       @media (min-width: 576px) {
         .student_image {
           margin-top: 76px;
-          margin-left: 400px;
-          width: 90px;
-          height: 90px;
+          margin-left: 350px;
+          width: 80px;
+          height: 80px;
           position: relative;
           overflow: hidden;
 
@@ -156,47 +156,47 @@
 
         .date_design {
           margin-left: 170px;
-          margin-top: 0px;
+          margin-top: -5px;
           font-weight: 500;
-          font-size: 16px;
+          font-size: 14px;
         }
         .name_design {
           margin-left: 200px;
           margin-top: 10px;
           font-weight: 500;
-          font-size: 16px;
+          font-size: 14px;
         }
         .roll_design {
           margin-left: 150px;
           margin-top: 10px;
           font-weight: 500;
-          font-size: 16px;
+          font-size: 14px;
         }
         .father_name_design {
           margin-left: 200px;
           margin-top: 10px;
           font-weight: 500;
-          font-size: 16px;
+          font-size: 14px;
         }
         .mother_name_design {
           margin-left: 200px;
           margin-top: 10px;
           font-weight: 500;
-          font-size: 16px;
+          font-size: 14px;
         }
         .school_design {
           margin-left: 180px;
           margin-top: 10px;
           font-weight: 500;
-          font-size: 16px;
+          font-size: 14px;
         }
 
         .sub_year_section {
-          margin-top: 90px;
-          margin-left: -50px;
+          margin-top: 70px;
+          margin-left: 0px;
           .sub_year_field {
             font-weight: 500;
-            font-size: 16px;
+            font-size: 14px;
             display: flex;
             justify-content: center;
 
@@ -230,55 +230,54 @@
           margin-left: 170px;
           margin-top: 0px;
           font-weight: 500;
-          font-size: 15px;
+          font-size: 16px;
         }
         .name_design {
           margin-left: 200px;
           margin-top: 10px;
           font-weight: 500;
-          font-size: 15px;
+          font-size: 16px;
         }
         .roll_design {
           margin-left: 150px;
           margin-top: 10px;
           font-weight: 500;
-          font-size: 15px;
+          font-size: 16px;
         }
         .father_name_design {
           margin-left: 200px;
-          margin-top: 10px;
+          margin-top: 12px;
           font-weight: 500;
-          font-size: 15px;
+          font-size: 16px;
         }
         .mother_name_design {
           margin-left: 200px;
-          margin-top: 10px;
+          margin-top: 12px;
           font-weight: 500;
-          font-size: 15px;
+          font-size: 16px;
         }
         .school_design {
           margin-left: 180px;
           margin-top: 12px;
           font-weight: 500;
-          font-size: 15px;
+          font-size: 16px;
         }
 
         .sub_year_section {
-          margin-top: 90px;
-          margin-left: 100px;
+          margin-top: 100px;
+          margin-left: 50px;
           .sub_year_field {
             font-weight: 500;
-            font-size: 15px;
+            font-size: 16px;
             display: flex;
             justify-content: center;
 
             .subject_design {
-              // margin-left: 5px;
-              margin-top: 15px;
+              margin-top: 20px;
             }
             .year_design {
               margin-left: 150px;
-              margin-top: 15px;
+              margin-top: 20px;
             }
           }
         }
