@@ -86,22 +86,22 @@ const StudentResult = () => {
                   <div className={styles.title}>Student Result</div>
                   <div className={styles.personal_details_section}>
                     <div>
-                      <div className={styles.personal_details}>
+                      <div style={{marginBottom:'10px'}} className={styles.personal_details}>
                         Name: {studentPersonalInfo?.student_name}
                       </div>
-                      <div className={styles.personal_details}>
+                      <div style={{marginBottom:'10px'}} className={styles.personal_details}>
                         Roll: {studentResultInfo[0]?.roll}
                       </div>
-                      <div className={styles.personal_details}>
+                      <div style={{marginBottom:'10px'}} className={styles.personal_details}>
                         School Name: {studentPersonalInfo?.school}
                       </div>
                     </div>
                     <div>
-                      <div>
+                      <div style={{marginBottom:'10px'}}>
                         Average Letter Grade:{" "}
                         {studentResultInfo[0]?.averageLetterGrade}
                       </div>
-                      <div>
+                      <div style={{marginBottom:'10px'}}>
                         Average Grade Point:{" "}
                         {studentResultInfo[0]?.averageGradePoint}
                       </div>
