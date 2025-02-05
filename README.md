@@ -1,7 +1,7 @@
 <h1>Dhruva Parishad - Examination & Result Management System</h1>
 
 <h3>📌 Overview</h3>
-<p><a href='https://dhruva-parisad-clientside.vercel.app/user'>Dhruva Parishad</a> is an examination and result management system developed for The Board of Cultural Institute. It enables students from different cultural schools across four districts to register for examinations, select multiple courses, and download auto-generated admit cards. The system also generates final results and excellence rankings automatically, providing students with their results and certificates on the publication date.
+<p><a href='https://dhruva-parisad-clientside.vercel.app/user'>Dhruva Parishad</a> is an examination and result management system developed for <b>The Board of Cultural Institute</b>. It enables students from different cultural schools across four districts to register for examinations, select multiple courses, and download auto-generated admit cards. The system also generates final results and excellence rankings automatically, providing students with their results and certificates on the publication date.
 The platform includes an admin panel for managing exam scores, customizing student details, approving school registrations, publishing news, and opening the result portal. Additionally, school principals can submit requests to register new institutions.</p>
 
 <h3>🚀 Features</h3>
