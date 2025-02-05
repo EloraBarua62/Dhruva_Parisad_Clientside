@@ -1,40 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1>Dhruva Parishad - Examination & Result Management System</h1>
 
-## Getting Started
+<h3>📌 Overview</h3>
+<p><a href='https://dhruva-parisad-clientside.vercel.app/user'>Dhruva Parishad</a> is an examination and result management system developed for The Board of Cultural Institute. It enables students from different cultural schools across four districts to register for examinations, select multiple courses, and download auto-generated admit cards. The system also generates final results and excellence rankings automatically, providing students with their results and certificates on the publication date.
+The platform includes an admin panel for managing exam scores, customizing student details, approving school registrations, publishing news, and opening the result portal. Additionally, school principals can submit requests to register new institutions.</p>
 
-First, run the development server:
+<h3>🚀 Features</h3>
+<ul>
+<li>Student Management: Students choose multiple courses according to their preferences, register or update registration, and download auto-generated admit cards.</li>
+<li>Result Processing: Auto-generates roll numbers, final results, and excellence rankings.</li>
+<li>Certificate Generation: Students receive auto-generated result certificates upon publication.</li>
+<li>School Registration: School principals request to enlist their institutions in the system.</li>
+<li>Admin Control: Admin updates scores, customizes student details, approves new schools, open result portal on publication day, and manages system settings.</li>
+<li>Secure Authentication: JWT-based authentication for students, principals, and admins.</li>
+<li>Email: Get notification to update profile information</li>
+</ul>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<h3>🛠 Tech Stack</h3>
+<ul>
+<li>Frontend: Next.js, Redux.js</li>
+<li>Backend: Node.js, Express.js</li>
+<li>Database: MongoDB</li>
+<li>Authentication: JWT (JSON Web Token)</li>
+</ul>
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<h3>📸 Video</h3>
+<p>This is the video of <a href='https://www.loom.com/share/f5b131dae8cc49eabb7b6886141c9aa6?sid=9e8cf0ad-7184-4cd6-869b-5cf92d7a8fc3'>Dhruva Parishad</a>. Check the video to get insights.</p>
